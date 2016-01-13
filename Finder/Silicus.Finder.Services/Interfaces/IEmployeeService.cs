@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Silicus.Finder.Services.Interfaces
 {
-    interface IEmployeeService
+    public interface IEmployeeService
     {
 
     }
