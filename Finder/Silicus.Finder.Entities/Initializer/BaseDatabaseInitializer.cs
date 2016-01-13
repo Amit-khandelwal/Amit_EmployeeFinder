@@ -43,15 +43,15 @@ namespace Silicus.Finder.Entities.Initializer
                 isActive = true
 
             });
-            context.Add(new Project
-            {
-                ProjectDescription = "Landmark"
-            });
+            //context.Add(new Project
+            //{
+            //    ProjectDescription = "Landmark"
+            //});
 
-            context.Add(new Project
-            {
-                ProjectDescription = "MorningStar"
-            });
+            //context.Add(new Project
+            //{
+            //    ProjectDescription = "MorningStar"
+            //});
 
             context.Add(new ProjectDetail
             {
