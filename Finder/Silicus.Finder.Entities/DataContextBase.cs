@@ -31,9 +31,7 @@ namespace Silicus.Finder.Entities
             Guard.ArgumentNotNull(modelBuilder, "modelBuilder");
 
             modelBuilder.Configurations.Add(new OrganizationMap());
-
-            modelBuilder.Configurations.Add(new ProjectMap());
-
+            
             modelBuilder.Configurations.Add(new ProjectDetailMap());
 
             modelBuilder.Configurations.Add(new ManagerDetailMap());
@@ -41,6 +39,12 @@ namespace Silicus.Finder.Entities
             modelBuilder.Configurations.Add(new EmailAvailableMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new RolesMap());
+
+            modelBuilder.Configurations.Add(new ContactMap());
+            modelBuilder.Configurations.Add(new CubicalLocationMap());
+            modelBuilder.Configurations.Add(new EmployeeMap());
+            modelBuilder.Configurations.Add(new ProjectMap());
+            modelBuilder.Configurations.Add(new SkillSetMap());
 
             // Many-to-many example - can be moved to Map file as well.
             modelBuilder.Entity<Asset>()
