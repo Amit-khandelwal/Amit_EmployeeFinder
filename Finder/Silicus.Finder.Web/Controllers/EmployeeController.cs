@@ -35,13 +35,14 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 // TODO: Add insert logic here
-                
-                return RedirectToAction("Index");
+                _employeeService.SaveEmployee(newEmployee);
+                return RedirectToAction("Success");
             }
             catch
             {
                 return View();
             }
+            
         }
     }
 }

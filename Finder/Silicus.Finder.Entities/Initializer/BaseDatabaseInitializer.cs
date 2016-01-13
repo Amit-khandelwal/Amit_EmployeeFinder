@@ -52,7 +52,7 @@ namespace Silicus.Finder.Entities.Initializer
             //{
             //    ProjectDescription = "MorningStar"
             //});
-
+            
             context.Add(new ProjectDetail
             {
                 ProjectName = "Landmark",
