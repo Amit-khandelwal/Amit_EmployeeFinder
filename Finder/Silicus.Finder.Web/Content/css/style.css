@@ -745,13 +745,13 @@ html > /**/ body body {
 *********************/
 #top {
     width: 100%;
-    background: #2e3638;
-    background: #2e3638 -webkit-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
-    background: #2e3638 -moz-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
-    background: #2e3638 linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
-    -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    background: #FFFFFF;
+    /*background: #FFFFFF -webkit-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);*/
+    /*background: #FFFFFF -moz-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);*/
+    /*background: #FFFFFF linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);*/
+    /*-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
     -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5);*/
     position: fixed;
     top: 0;
     left: 0;
@@ -830,24 +830,25 @@ html > /**/ body body {
 .profile {
     float: right;
     position: relative;
-    background: #232b2f;
-    background: #232b2f -webkit-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
-    background: #232b2f -moz-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
-    background: #232b2f linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
+    /*background: #FFFFFF;
+    background: #FFFFFF -webkit-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
+    background: #FFFFFF -moz-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
+    background: #FFFFFF linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);*/
 }
 
-    .profile::after {
+    /*.profile::after {
         content: '';
         position: absolute;
         width: 1000px;
         height: 100%;
+        padding-left: 20px;
         background: #232b2f;
         background: #232b2f -webkit-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
         background: #232b2f -moz-linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
         background: #232b2f linear-gradient(bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%);
         right: -1000px;
         top: 0;
-    }
+    }*/
 
     .profile ul {
         list-style: none;
@@ -916,10 +917,13 @@ html > /**/ body body {
     float: left;
     line-height: 16px;
     font-size: 14px;
+    color:black;
     margin: 20px 0 0 10px;
     text-shadow: 0 1px 1px rgba(0,0,0,0.5);
     font-family: 'cartogothic_stdbold';
 }
+
+   
 
 .user-email {
     font-size: 12px;
@@ -1441,7 +1445,7 @@ html > /**/ body body {
     }
 
 .main-content .header .page-title {
-    padding: 32px 0px 34px 0px;
+    padding: 50px 0px 34px 0px;
 }
 
 .widget .widget-header .page-title {
@@ -1450,7 +1454,7 @@ html > /**/ body body {
 
 .main-content .header .search {
     float: right;
-    margin-top: 25px;
+    margin-top: 50px;
     position: relative;
 }
 

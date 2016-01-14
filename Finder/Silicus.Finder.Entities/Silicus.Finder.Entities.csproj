@@ -90,7 +90,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="EntityConfigurations\ContactMap.cs" />
     <Compile Include="EntityConfigurations\CubicalLocationMap.cs" />
     <Compile Include="EntityConfigurations\EmailAvailableMap.cs" />
     <Compile Include="EntityConfigurations\EmployeeMap.cs" />
