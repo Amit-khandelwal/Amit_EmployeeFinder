@@ -43,7 +43,7 @@ namespace Silicus.Finder.Web
             container.Register<IMappingService, MappingService>();
             container.Register<ISmtpClient, SmtpClientWrapper>();
             container.Register<IEmailService, EmailService>();
-
+            container.Register<IEmployeeService, EmployeeService>();
             container.Register<ICookieHelper, CookieHelper>();
             container.Register<ILogger>((factory) => new DatabaseLogger("name=FinderLoggerDataContext", Type.GetType(string.Empty), (Func<DateTime>)(() => DateTime.UtcNow), string.Empty));
             container.Register<IAuditManager>((factory) => new AuditManager("name=FinderAuditingDataContext"));

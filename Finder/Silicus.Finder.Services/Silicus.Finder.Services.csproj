@@ -96,7 +96,9 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="EmailService.cs" />
+    <Compile Include="EmployeeService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\IEmployeeService.cs" />
     <Compile Include="Interfaces\IManager.cs" />
     <Compile Include="Interfaces\IProjectDetailService.cs" />
     <Compile Include="Interfaces\IProjectService.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Interfaces\ISmtpClient.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="ManagerService.cs" />
+    <Compile Include="MockData\EmployeeMock.cs" />
     <Compile Include="ProjectDetailService.cs" />
     <Compile Include="ProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
