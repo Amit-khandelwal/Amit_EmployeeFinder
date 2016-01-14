@@ -8,52 +8,52 @@ namespace Silicus.Finder.Web.Controllers
 {
     public class ProjectController : Controller
     {
-        private readonly IProjectService _projectService;
+        private readonly IProjectDetailService _projectDetailService;
 
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectDetailService projectDetailService)
         {
-            _projectService = projectService;
+            _projectDetailService = projectDetailService;
         }
 
-        // GET: Projects
-        public ActionResult Index()
+        public ActionResult GetProjectDetails([DataSourceRequest] DataSourceRequest request)
         {
-            return View();
+            var projectDetails = _projectDetailService.GetProjectDetails();
+            return Json(projectDetails.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
-
-
-        // GET: Projects/Create
-        public ActionResult CreateProject()
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CreateProject(ProjectDetail projectDetail)
         {
-
-            ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
-            ViewBag.Employees2 = new MultiSelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
-
-            return View();
-        }
-
-
-        // POST: Projects/Create
-        [HttpPost]
-        public ActionResult CreateProject(Project Project)
-        {
-            try
+            if (projectDetail != null && ModelState.IsValid)
             {
-                var projectId = _projectService.Add(Project);
-                if (projectId != null)
-                {
-                    TempData["AlertMessage"] = Project.ProjectName + "created successfully..ProjectId:" + projectId;
-
-                }
-
-                return RedirectToAction("Index");
+                return Json(_projectDetailService.Add(projectDetail));
             }
-            catch
-            {
-                return View();
-            }
+
+            return Json(-1);
         }
 
-       
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateProject(ProjectDetail projectDetail)
+        {
+            if (projectDetail != null && ModelState.IsValid)
+            {
+                _projectDetailService.Update(projectDetail);
+                return Json(1);
+            }
+
+            return Json(-1);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteProject(ProjectDetail projectDetail)
+        {
+            if (projectDetail != null && ModelState.IsValid)
+            {
+                _projectDetailService.Delete(projectDetail);
+                return Json(1);
+            }
+
+            return Json(-1);
+        }
     }
 }

@@ -1,48 +1,40 @@
-﻿using System;
+﻿using AutoMapper;
+using Silicus.Finder.Services.Interfaces;
+using Silicus.Finder.Web.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Silicus.Finder.Models.DataObjects;
-using Silicus.Finder.Services.Interfaces;
 
 namespace Silicus.Finder.Web.Controllers
 {
     public class EmployeeController : Controller
     {
-         private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeService _employeeService;
 
-         public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
-        // GET: Employee
+
         public ActionResult Index()
         {
-            return View();
+            var emp = _employeeService.GetEmployee();
+            return View(emp);
         }
-
-        public ActionResult Create()
-        {
-            var newEmployee = new Employee();
-            return View("CreateEmployee", newEmployee);
-        }
-
-        // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(Employee newEmployee)
+        public ActionResult SearchEmployeeByName(string name)
         {
-            try
+            List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
+            if ( ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-                _employeeService.SaveEmployee(newEmployee);
-                return View("Success");
+                var _employeeList = _employeeService.GetEmployeeByName(name);
+                Mapper.Map(_employeeList, _employeeNameViewModel);
+               
             }
-            catch
-            {
-                return View();
-            }
-            
+            return View(_employeeNameViewModel);
         }
     }
 }
+//name != null &&

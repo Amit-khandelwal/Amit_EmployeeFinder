@@ -25,7 +25,7 @@ namespace Silicus.Finder.Web.Controllers
         }
 
         // GET: Projects/Create
-        public ActionResult Create()
+        public ActionResult CreateProject()
         {
            
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
@@ -36,7 +36,7 @@ namespace Silicus.Finder.Web.Controllers
 
         // POST: Projects/Create
         [HttpPost]
-        public ActionResult Create(Project Project)
+        public ActionResult CreateProject(Project Project)
         {
             try
             {
