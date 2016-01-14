@@ -36,7 +36,7 @@ namespace Silicus.Finder.Web.Controllers
             {
                 // TODO: Add insert logic here
                 _employeeService.SaveEmployee(newEmployee);
-                return RedirectToAction("Success");
+                return View("Success");
             }
             catch
             {

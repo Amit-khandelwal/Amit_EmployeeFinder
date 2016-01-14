@@ -654,7 +654,6 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Contact.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
