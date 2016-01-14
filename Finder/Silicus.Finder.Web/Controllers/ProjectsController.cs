@@ -17,7 +17,6 @@ namespace Silicus.Finder.Web.Controllers
             _projectService = projectService;
         }
 
-
         // GET: Projects
         public ActionResult Index()
         {
@@ -27,10 +26,7 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects/Create
         public ActionResult CreateProject()
         {
-           
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
-            ViewBag.Employees2 = new MultiSelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");     
-
             return View();
         }
 
@@ -41,10 +37,10 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 var projectId = _projectService.Add(Project);
-                if (projectId!=null)
+                if (projectId != null)
                 {
-                    TempData["AlertMessage"] = Project.ProjectName+"created successfully..ProjectId:"+projectId;
-              
+                    TempData["AlertMessage"] = Project.ProjectName + " created successfully..ProjectId:" + projectId;
+
                 }
 
                 return RedirectToAction("Index");
@@ -54,27 +50,5 @@ namespace Silicus.Finder.Web.Controllers
                 return View();
             }
         }
-
-        // GET: Projects/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Projects/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-               return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-     
     }
 }
