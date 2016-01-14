@@ -315,6 +315,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CookieHelper.cs" />
@@ -342,6 +343,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Silicus.Finder.Web.dll" />
+    <Content Include="bin\Silicus.Finder.Web.pdb" />
     <Content Include="Content\css\Bootstrap\3.3.1\bootstrap-theme.css" />
     <Content Include="Content\css\Bootstrap\3.3.1\bootstrap-theme.min.css" />
     <Content Include="Content\css\Bootstrap\3.3.1\bootstrap.css" />
@@ -614,6 +617,25 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="styles\images\animated-overlay.gif" />
+    <Content Include="styles\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="styles\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="styles\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="styles\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="styles\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="styles\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="styles\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="styles\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="styles\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="styles\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="styles\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="styles\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="styles\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="styles\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="styles\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="styles\layout.css" />
+    <Content Include="styles\navi.css" />
+    <Content Include="styles\ui.jqgrid.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -655,6 +677,12 @@
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
+    <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Admin\Select.cshtml" />
+    <Content Include="Views\Admin\_partialViewjqgrid.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Project\Index.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -663,6 +691,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\" />
+    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Scripts\Custom\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />

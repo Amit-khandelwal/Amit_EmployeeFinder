@@ -26,6 +26,8 @@ namespace Silicus.Finder.Services
             var allEmployeeList = _context.Query<Employee>().ToList();
             return allEmployeeList;
         }
+
+   
     }
 }
 
