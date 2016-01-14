@@ -44,7 +44,7 @@ namespace Silicus.Finder.Web.Tests.Controllers
 
             var target = new ProjectController(mockService.Object);
 
-            var data = target.GetProjectDetails(new DataSourceRequest()) as JsonResult;
+            var data = target.GetProjectList(new DataSourceRequest()) as JsonResult;
             var actualList = ((DataSourceResult)(data.Data)).Data as List<ProjectDetail>;
 
             //Assert
@@ -94,7 +94,7 @@ namespace Silicus.Finder.Web.Tests.Controllers
 
             var target = new ProjectController(mockService.Object);
 
-            var data = target.GetProjectDetails(new DataSourceRequest() { PageSize = 5 }) as JsonResult;
+            var data = target.GetProjectList(new DataSourceRequest() { PageSize = 5 }) as JsonResult;
             var actualList = ((DataSourceResult)(data.Data)).Data as List<ProjectDetail>;
 
             //Assert

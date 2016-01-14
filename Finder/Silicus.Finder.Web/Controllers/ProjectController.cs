@@ -3,16 +3,21 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using System.Collections.Generic;
+using Silicus.Finder.Web.ViewModel;
+using AutoMapper;
 
 namespace Silicus.Finder.Web.Controllers
 {
     public class ProjectController : Controller
     {
         private readonly IProjectDetailService _projectDetailService;
+        private readonly IProjectService _projectService;
 
-        public ProjectController(IProjectDetailService projectDetailService)
+        public ProjectController(IProjectDetailService projectDetailService, IProjectService projectService)
         {
             _projectDetailService = projectDetailService;
+            _projectService = projectService;
         }
 
         public ActionResult GetProjectDetails([DataSourceRequest] DataSourceRequest request)
@@ -54,6 +59,14 @@ namespace Silicus.Finder.Web.Controllers
             }
 
             return Json(-1);
+        }
+
+        public ActionResult GetProjectList([DataSourceRequest] DataSourceRequest request)
+        {
+            var projectList = _projectService.GetProjectsList();
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList,projectListViewModel);
+            return View("ProjectList", projectListViewModel);
         }
     }
 }

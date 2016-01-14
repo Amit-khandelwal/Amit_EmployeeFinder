@@ -37,6 +37,8 @@ namespace Silicus.Finder.Models.DataObjects
         [DataType(DataType.Date)]
         public DateTime? StartDate { get; set; }
 
+        public Status Status { get; set; }
+
         [Display(Name = "Expected End_Date")]
         [DataType(DataType.Date)]
         public DateTime? ExpectedEndDate { get; set; }

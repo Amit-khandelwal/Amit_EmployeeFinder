@@ -26,6 +26,13 @@ namespace Silicus.Finder.Services
             var allEmployeeList = _context.Query<Employee>().ToList();
             return allEmployeeList;
         }
+
+
+        public IEnumerable<Project> GetProjectsList()
+        {
+            var projectList = _context.Query<Project>().ToList();
+            return projectList;
+        }
     }
 }
 

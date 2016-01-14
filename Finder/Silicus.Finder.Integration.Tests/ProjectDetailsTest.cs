@@ -57,7 +57,7 @@ namespace Silicus.Finder.Integration.Tests
                 Status = "Yello"
             });
 
-            var data = target.GetProjectDetails(new DataSourceRequest()) as JsonResult;
+            var data = target.GetProjectList(new DataSourceRequest()) as JsonResult;
             var actualList = ((DataSourceResult) (data.Data)).Data as List<ProjectDetail>;
 
             //Assert
