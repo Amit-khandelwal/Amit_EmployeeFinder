@@ -1,5 +1,6 @@
 ﻿using Silicus.Finder.Entities;
 using Silicus.Finder.Models.DataObjects;
+using Silicus.Finder.Services.Comparable.EmployeeComparable;
 using Silicus.Finder.Services.Interfaces;
 using Silicus.Finder.Services.MockData;
 using System;
@@ -21,8 +22,8 @@ namespace Silicus.Finder.Services
 
        public List<Employee> GetEmployee()
         {
-          //  var emp = context.Query<Employee>().ToList();
-            var emp = new EmployeeMock().EmployeeData();
+           var emp = context.Query<Employee>().ToList();
+           // var emp = new EmployeeMock().EmployeeData();
                return emp;
         }
 
@@ -30,8 +31,11 @@ namespace Silicus.Finder.Services
         {
             string _name = name.Trim();
             List<Employee> _employeeList = new List<Employee>();
-            _employeeList = new EmployeeMock().EmployeeData().Where(e => e.FirstName.Contains(_name)).ToList();
-            //_employeeList = context .Query<Employee>().ToList().Where(e => e.FirstName.Contains(_name)).ToList();
+            //_employeeList = new EmployeeMock().EmployeeData().Where(e => e.FirstName.Contains(_name)).ToList();
+            _employeeList = context .Query<Employee>().ToList().Where((e => e.FirstName.Contains(_name))).ToList();
+         //   _employeeList = context.Query<Employee>().ToList().Where((e => e.LastName.Contains(_name))).ToList();
+            EmployeeSortByName _employeeSortByName = new EmployeeSortByName();
+            _employeeList.Sort(_employeeSortByName);
             return _employeeList;
         }
     }

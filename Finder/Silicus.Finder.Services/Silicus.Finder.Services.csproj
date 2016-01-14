@@ -95,6 +95,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Comparable\EmployeeComparable\EmployeeSortByName.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />

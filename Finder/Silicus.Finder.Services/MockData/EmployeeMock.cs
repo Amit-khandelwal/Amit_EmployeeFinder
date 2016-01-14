@@ -17,7 +17,7 @@ namespace Silicus.Finder.Services.MockData
                 new Employee( )
                 {
                    EmployeeId =1,
-                    FirstName="abc",
+                   // FullName="abc",
                         MiddleName="patil",
                         LastName = "Gupta",
                         TotalExperienceInMonths = 10,
