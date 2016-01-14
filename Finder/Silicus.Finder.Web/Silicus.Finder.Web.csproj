@@ -340,6 +340,7 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Bootstrap\3.3.1\bootstrap-theme.css" />
@@ -655,6 +656,8 @@
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -664,7 +667,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\" />
     <Folder Include="Scripts\Custom\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>

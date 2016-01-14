@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using AutoMapper;
+using Silicus.Finder.Web.ViewModel;
 
 namespace Silicus.Finder.Web.Controllers
 {
@@ -43,6 +45,23 @@ namespace Silicus.Finder.Web.Controllers
                 return View();
             }
             
+        }
+
+        public ActionResult Details(int employeeId)
+        {
+            var newEmployee = _employeeService.GetEmployee(employeeId);
+            var employeeDetails = new EmployeeViewModel();
+            Mapper.Map(newEmployee, employeeDetails);
+            return View(employeeDetails);
+        }
+
+        public ActionResult Edit(int employeeId)
+        {
+            _employeeService.GetEmployee(1);
+            var newEmployee = new Employee();
+            var employeeDetails = new EmployeeViewModel();
+            Mapper.Map(newEmployee, employeeDetails);
+            return View("EmployeeDetails", newEmployee);
         }
     }
 }

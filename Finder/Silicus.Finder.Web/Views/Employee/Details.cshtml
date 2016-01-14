@@ -1,0 +1,69 @@
+﻿@model Silicus.Finder.Web.ViewModel.EmployeeViewModel
+
+@{
+    ViewBag.Title = "EmployeeDetails";
+}
+
+<h2>Employee Details</h2>
+
+<div>
+    <h4>EmployeeViewModel</h4>
+    <hr />
+    <div class="dl-horizontal">
+
+        <div>
+            <div class="header">Name:</div>
+
+            @Html.DisplayFor(model => model.FirstName)
+
+            @Html.DisplayFor(model => model.MiddleName)
+
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.TotalExperienceInMonths)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.SilicusExperienceInMonths)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.HighestQualification)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.HighestQualification)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.CubicalLocation)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.CubicalLocation)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Contact)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Contact)
+        </div>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  employeeId=1 }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

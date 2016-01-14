@@ -3,6 +3,8 @@
 using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
 using Silicus.Finder.Models;
+using Silicus.Finder.Models.DataObjects;
+using Silicus.Finder.Web.ViewModel;
 
 namespace Silicus.Finder.Web.Mappings
 {
@@ -17,7 +19,7 @@ namespace Silicus.Finder.Web.Mappings
         protected override void Configure()
         {
             Mapper.CreateMap<EntityA, Model>();
-
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
             // Example for member to member mapping
             //Mapper.CreateMap<OrganizationUser, OrganizationUserDataAccessViewModel>()
             //    .ForMember(o => o.Name, b => b.MapFrom(z => z.FirstName + " " + z.LastName));

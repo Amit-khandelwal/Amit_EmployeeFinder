@@ -23,5 +23,13 @@ namespace Silicus.Finder.Services
             context.Add(newOrganization);
             //context.SaveChanges();
         }
+
+
+        public Employee GetEmployee(int employeeId)
+        {
+            var employee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).Single();
+
+            return employee;
+        }
     }
 }

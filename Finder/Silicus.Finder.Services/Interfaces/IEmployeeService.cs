@@ -10,5 +10,7 @@ namespace Silicus.Finder.Services.Interfaces
     public interface IEmployeeService
     {
         void SaveEmployee(Employee newOrganization);
+
+        Employee GetEmployee(int employeeId);
     }
 }
