@@ -38,6 +38,7 @@ namespace Silicus.Finder.Web
             container.Register<IDataContextFactory, DataContextFactory>();
             container.Register<IProjectDetailService, ProjectDetailService>();
             container.Register<IProjectService, ProjectService>();
+            container.Register<IEmployeeService, EmployeeService>();
             container.Register<IUserService, UserService>();
             container.Register<IRolesService, RolesService>();
             container.Register<IMappingService, MappingService>();
