@@ -26,10 +26,15 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            var _employeeList = _employeeService.GetEmployeeByName(name);
             List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
-            Mapper.Map(_employeeList, _employeeNameViewModel);
+            if ( ModelState.IsValid)
+            {
+                var _employeeList = _employeeService.GetEmployeeByName(name);
+                Mapper.Map(_employeeList, _employeeNameViewModel);
+               
+            }
             return View(_employeeNameViewModel);
         }
     }
 }
+//name != null &&
