@@ -172,7 +172,7 @@ namespace Silicus.Finder.Web.Controllers
                         return View(model);
                     case SignInStatus.Failure:
                     default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
+                        ModelState.AddModelError("", "User Name and Password does not matches! Please provide your correct login credentials.");
                         return View(model);
                 }
             }
@@ -380,13 +380,7 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-
-            if (isAdmin)
-            {
-                return RedirectToAction("Dashboard", "Admin");
-            }
-
-            return RedirectToAction("Dashboard", "User");
+            return RedirectToAction("Dashboard", "Admin");
         }
 
         private void SendForgotPasswordMail(string email, string userName, object key)

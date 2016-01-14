@@ -9,6 +9,14 @@ namespace Silicus.Finder.Models.DataObjects
 {
     public class Project
     {
+
+        public Project()
+        {
+            this.Employees = new HashSet<Employee>();
+            this.SkillSets = new HashSet<SkillSet>();
+        }
+
+
         [Key]
         public int ProjectId { get; set; }
 
@@ -26,20 +34,23 @@ namespace Silicus.Finder.Models.DataObjects
         public EngagementType EngagementType { get; set; }
 
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
         public DateTime? StartDate { get; set; }
 
         [Display(Name = "Expected End_Date")]
+        [DataType(DataType.Date)]
         public DateTime? ExpectedEndDate { get; set; }
 
         [Display(Name = "Actual End_Date")]
+        [DataType(DataType.Date)]
         public DateTime? ActualEndDate { get; set; }
 
         // [Required(ErrorMessage = "Engagement Manager Id can't be blank")]
-        [Display(Name = "Project Name")]
+        [Display(Name = "Engagement Manager")]
         public int? EngagementManagerId { get; set; }
 
         // [Required(ErrorMessage = "Project Manager Id can't be blank")]
-        [Display(Name = "Project Manager Id")]
+        [Display(Name = "Project Manager")]
         public int? ProjectManagerId { get; set; }
 
         [StringLength(150, ErrorMessage = "Additional Notes should contain less than 150 characters")]
