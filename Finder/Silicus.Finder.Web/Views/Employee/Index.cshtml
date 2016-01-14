@@ -74,13 +74,16 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }) |
+                @Html.ActionLink("Add Project", "AddProjectToEmployee", new { id = item.EmployeeId })
             </td>
         </tr>
     }
 
 </table>
-
+<div>
+    @Html.ActionLink("Add Employee", "Create", "Employee")
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function () {

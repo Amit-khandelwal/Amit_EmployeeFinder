@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Silicus.Finder.Models.DataObjects;
 
 namespace Silicus.Finder.Web.Controllers
 {
@@ -23,6 +24,8 @@ namespace Silicus.Finder.Web.Controllers
             var emp = _employeeService.GetEmployee();
             return View(emp);
         }
+
+
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
@@ -35,6 +38,54 @@ namespace Silicus.Finder.Web.Controllers
             }
             return View(_employeeNameViewModel);
         }
+        public ActionResult Create()
+        {
+            var newEmployee = new Employee();
+            return View(newEmployee);
+        }
+
+        // POST: Employee/Create
+        [HttpPost]
+        public ActionResult Create(Employee newEmployee)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                _employeeService.SaveEmployee(newEmployee);
+                ViewBag.SavedEmployee = newEmployee.FirstName;
+                return View("Success");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        public ActionResult AddProjectToEmployee()
+        {
+            var newEmployee = new Employee();
+            return View(newEmployee);
+        }
+
+        // POST: Employee/Create
+        [HttpPost]
+        public ActionResult AddProjectToEmployee(Employee newEmployee)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                _employeeService.SaveEmployee(newEmployee);
+                ViewBag.SavedEmployee = newEmployee.FirstName;
+                return View("Success");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+        
     }
 }
 //name != null &&

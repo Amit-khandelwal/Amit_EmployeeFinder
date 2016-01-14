@@ -19,7 +19,10 @@ namespace Silicus.Finder.Services
         {
             this.context = dataContextFactory.Create(ConnectionType.Ip);
         }
-
+        public void SaveEmployee(Employee newEmployee)
+        {
+            context.Add(newEmployee);
+        }
        public List<Employee> GetEmployee()
         {
             var emp = context.Query<Employee>().ToList();
