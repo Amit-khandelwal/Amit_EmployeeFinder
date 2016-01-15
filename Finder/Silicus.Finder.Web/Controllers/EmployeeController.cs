@@ -41,6 +41,7 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult Create()
         {
             var newEmployee = new Employee();
+            ViewBag.Projects = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
             return View(newEmployee);
         }
 
@@ -51,6 +52,12 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 // TODO: Add insert logic here
+
+                foreach (int projectId in newEmployee.ProjectId)
+                {
+                    var employeeProject = _employeeService.GetProjectById(projectId);
+                    newEmployee.Projects.Add(employeeProject);
+                }
                 _employeeService.SaveEmployee(newEmployee);
                 ViewBag.SavedEmployee = newEmployee.FirstName;
                 return View("Success");
@@ -62,22 +69,27 @@ namespace Silicus.Finder.Web.Controllers
 
         }
 
-        public ActionResult AddProjectToEmployee()
+        public ActionResult AddProjectToEmployee(int id)
         {
-            var newEmployee = new Employee();
-            return View(newEmployee);
+            var targetEmployee = _employeeService.GetEmployeeById(id);
+            ViewBag.Employee = targetEmployee.FirstName;
+            ViewBag.Projects = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+            return View(targetEmployee);
         }
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult AddProjectToEmployee(Employee newEmployee)
+        public ActionResult AddProjectToEmployee(Employee targetEmployee)
         {
             try
             {
                 // TODO: Add insert logic here
-                _employeeService.SaveEmployee(newEmployee);
-                ViewBag.SavedEmployee = newEmployee.FirstName;
-                return View("Success");
+                foreach (int projectId in targetEmployee.ProjectId)
+                {
+                    var employeeProject = _employeeService.GetProjectById(projectId);
+                    targetEmployee.Projects.Add(employeeProject);
+                }
+                return RedirectToAction("Index");
             }
             catch
             {

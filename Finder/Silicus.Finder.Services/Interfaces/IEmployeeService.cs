@@ -12,5 +12,9 @@ namespace Silicus.Finder.Services.Interfaces
        List<Employee> GetEmployeeByName(string name);
        List<Employee> GetEmployee();
        void SaveEmployee(Employee newEmployee);
+       void AddProjectToEmployee(Employee targetEmployee);
+       Employee GetEmployeeById(int employeeId);
+       List<Project> GetAllProjects();
+       Project GetProjectById(int projectId);
     }
 }

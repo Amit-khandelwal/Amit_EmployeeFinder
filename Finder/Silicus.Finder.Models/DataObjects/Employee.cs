@@ -10,6 +10,10 @@ namespace Silicus.Finder.Models.DataObjects
 {
     public class Employee
     {
+        public Employee()
+        {
+            Projects = new HashSet<Project>();
+        }
         [Key]
         public int EmployeeId { get; set; }
         
@@ -55,15 +59,14 @@ namespace Silicus.Finder.Models.DataObjects
         [ForeignKey("Contact")]
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
-        
+
+        [NotMapped]
+        public int[] ProjectId { get; set; }
         public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
 
         [Display(Name = "Manager Recommendation")]
         [StringLength(200)]
         public string ManagerRecommendation { get; set; }
-        public Employee()
-        {
-            Projects = new HashSet<Project>();
-        }
+        
     }
 }

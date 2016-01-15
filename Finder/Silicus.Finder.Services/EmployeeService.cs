@@ -41,5 +41,25 @@ namespace Silicus.Finder.Services
             }
             return _employeeList;
         }
+
+        public List<Project> GetAllProjects()
+        {
+            return context.Query<Project>().ToList();
+        }
+
+        public Project GetProjectById(int projectId)
+        {
+            return context.Query<Project>().Where(pro => pro.ProjectId == projectId).First();
+        }
+
+        public Employee GetEmployeeById(int employeeId)
+        {
+            var targetEmployee = context.Query<Employee>().Where(emp=>emp.EmployeeId==employeeId).First();
+            return targetEmployee;
+        }
+        public void AddProjectToEmployee(Employee targetEmployee)
+        {
+
+        }
     }
 }
