@@ -1,5 +1,5 @@
 ﻿@model Silicus.Finder.Web.ViewModel.EmployeeViewModel
-
+<link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
 @{
     ViewBag.Title = "EmployeeDetails";
 }
@@ -11,9 +11,9 @@
     <hr />
     <div class="dl-horizontal">
 
-        <div>
-            <div class="header">Name:</div>
 
+        <div class="details-header">Name:</div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.FirstName)
 
             @Html.DisplayFor(model => model.MiddleName)
@@ -21,49 +21,49 @@
             @Html.DisplayFor(model => model.LastName)
         </div>
 
-        <div>
+        <div class="details-header">
             @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
         </div>
 
-        <div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.TotalExperienceInMonths)
         </div>
 
-        <div>
+        <div class="details-header">
             @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
         </div>
 
-        <div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.SilicusExperienceInMonths)
         </div>
 
-        <div>
+        <div class="details-header">
             @Html.DisplayNameFor(model => model.HighestQualification)
         </div>
 
-        <div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.HighestQualification)
         </div>
 
-        <div>
+        <div class="details-header">
             @Html.DisplayNameFor(model => model.CubicalLocation)
         </div>
 
-        <div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.CubicalLocation)
         </div>
 
-        <div>
+        <div class="details-header">
             @Html.DisplayNameFor(model => model.Contact)
         </div>
 
-        <div>
+        <div class="details-content">
             @Html.DisplayFor(model => model.Contact)
         </div>
 
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  employeeId=1 }) |
+    @Html.ActionLink("Edit", "Edit", new { employeeId = 1 }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

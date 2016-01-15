@@ -19,10 +19,12 @@ namespace Silicus.Finder.Web.Controllers
             _employeeService = employeeService;
         }
         // GET: Employee
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+         public ActionResult Index()
+         {
+             var emp = _employeeService.GetEmployee();
+             return View(emp);
+         }
 
         public ActionResult Create()
         {
@@ -47,21 +49,13 @@ namespace Silicus.Finder.Web.Controllers
             
         }
 
-        public ActionResult Details(int employeeId)
+        public ActionResult Details(int id)
         {
-            var newEmployee = _employeeService.GetEmployee(employeeId);
+            var newEmployee = _employeeService.GetEmployee(id);
             var employeeDetails = new EmployeeViewModel();
             Mapper.Map(newEmployee, employeeDetails);
             return View(employeeDetails);
         }
 
-        public ActionResult Edit(int employeeId)
-        {
-            _employeeService.GetEmployee(1);
-            var newEmployee = new Employee();
-            var employeeDetails = new EmployeeViewModel();
-            Mapper.Map(newEmployee, employeeDetails);
-            return View("EmployeeDetails", newEmployee);
-        }
     }
 }
