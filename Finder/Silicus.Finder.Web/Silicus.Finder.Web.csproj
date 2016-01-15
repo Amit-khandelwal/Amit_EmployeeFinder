@@ -679,7 +679,6 @@
     <Content Include="Views\Admin\_partialViewUser.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ComboBox.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\CreateProject.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Admin\_partialViewjqgrid.cshtml" />
@@ -689,6 +688,9 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
+    <Content Include="Views\Employee\AddProjectToEmployee.cshtml" />
+    <Content Include="Views\Employee\AddSkillSetToEmployee.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

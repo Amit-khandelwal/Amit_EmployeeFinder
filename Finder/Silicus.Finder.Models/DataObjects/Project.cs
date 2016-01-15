@@ -13,7 +13,7 @@ namespace Silicus.Finder.Models.DataObjects
 
         public Project()
         {
-            this.Employees = new HashSet<Employee>();
+           // this.Employees = new HashSet<Employee>();
             this.SkillSets = new HashSet<SkillSet>();
         }
 
@@ -58,6 +58,7 @@ namespace Silicus.Finder.Models.DataObjects
         public string AdditionalNotes { get; set; }
        
         public virtual ICollection<SkillSet> SkillSets { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }
+        //public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
     }
 }
