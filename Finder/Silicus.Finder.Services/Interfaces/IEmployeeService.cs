@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Silicus.Finder.Services.Interfaces
 {
-    public interface IEmployeeService
+   public interface IEmployeeService
     {
-        void SaveEmployee(Employee newOrganization);
+       List<Employee> GetEmployeeByName(string name);
+       List<Employee> GetEmployee();
+       void SaveEmployee(Employee newEmployee);
     }
 }

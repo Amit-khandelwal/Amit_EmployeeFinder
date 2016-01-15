@@ -1,15 +1,23 @@
-﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Project>
+﻿
 
 @{
     ViewBag.Title = "Index";
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
 
 <h2>Index</h2>
 <br />
 <br />
 <br />
-
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateProject")
 </p>
+
+
+<script type="text/javascript">
+    var message = '@message';
+    if(message)
+        alert(message);
+</script>

@@ -172,40 +172,9 @@ namespace Silicus.Finder.Web.Controllers
                         return View(model);
                     case SignInStatus.Failure:
                     default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
+                        ModelState.AddModelError("", "User Name and Password does not matches! Please provide your correct login credentials.");
                         return View(model);
                 }
-                //if (loginResult == SignInStatus.Success)
-                //{
-
-                //    var identityUser = await UserManager.FindByNameAsync(model.UserName);
-                //    if (identityUser != null)
-                //    {
-                //        _cookieHelper.SetCookie("_userInfo", identityUser.UserName, new TimeSpan(8, 0, 0));
-
-                //        identityUser.aut (model.UserName, model.RememberMe);
-                //        _cookieHelper.SetCookie("_notification", "false", new TimeSpan(8, 0, 0));
-
-                //        var userRole = _membershipService.GetRoleForUser(model.UserName);
-                                              
-                //        if (userRole.Count > 0)
-                //        {
-                //            _logger.Log(
-                //                string.Format("Redirecting to {1} URL for user : {0}", model.UserName, returnUrl),
-                //                LogCategory.Verbose, GetUserIdentifiableString(model.UserName));
-
-                //            return RedirectToLocal(returnUrl, model.UserName);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        _logger.Log(string.Format("MembershipUser is found null for user : {0}", model.UserName), LogCategory.Warning, GetUserIdentifiableString(model.UserName));
-                //    }
-                //}
-                //else
-                //{
-                //    _logger.Log(string.Format("Failed login attempt for user : {0}", model.UserName), LogCategory.Information, GetUserIdentifiableString(model.UserName));
-                //}
             }
 
             // If we got this far, something failed, redisplay form
@@ -411,13 +380,7 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-
-            if (isAdmin)
-            {
-                return RedirectToAction("Dashboard", "Admin");
-            }
-
-            return RedirectToAction("Dashboard", "User");
+            return RedirectToAction("Dashboard", "Admin");
         }
 
         private void SendForgotPasswordMail(string email, string userName, object key)

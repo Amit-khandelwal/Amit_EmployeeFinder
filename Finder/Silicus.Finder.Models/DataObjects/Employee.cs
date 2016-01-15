@@ -12,7 +12,7 @@ namespace Silicus.Finder.Models.DataObjects
     {
         [Key]
         public int EmployeeId { get; set; }
-
+        
         [Required(ErrorMessage = "First Name can't be blank")]
         [StringLength(20, ErrorMessage = "First Name should contain less than 20 characters")]
         [Display(Name = "First Name")]
@@ -26,6 +26,9 @@ namespace Silicus.Finder.Models.DataObjects
         [StringLength(20, ErrorMessage = "Last Name should contain less than 20 characters")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [NotMapped]
+        public string FullName { get {return FirstName+" "+ LastName;} }
 
         [Required(ErrorMessage = "Please select Gender")]
         public Gender Gender { get; set; }
@@ -54,5 +57,13 @@ namespace Silicus.Finder.Models.DataObjects
         public virtual Contact Contact { get; set; }
         
         public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
+
+        [Display(Name = "Manager Recommendation")]
+        [StringLength(200)]
+        public string ManagerRecommendation { get; set; }
+        public Employee()
+        {
+            Projects = new HashSet<Project>();
+        }
     }
 }

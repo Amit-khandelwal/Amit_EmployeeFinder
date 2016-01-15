@@ -19,6 +19,8 @@ namespace Silicus.Finder.Web.Mappings
         protected override void Configure()
         {
             Mapper.CreateMap<EntityA, Model>();
+
+            Mapper.CreateMap<Employee, EmployeeNameViewModel>();
             Mapper.CreateMap<Project,ProjectListViewModel>();
             // Example for member to member mapping
             //Mapper.CreateMap<OrganizationUser, OrganizationUserDataAccessViewModel>()

@@ -1,7 +1,7 @@
 ﻿@model Silicus.Finder.Models.DataObjects.Project
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreateProject";
 }
 
 <h2>Create</h2>
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.ProjectType, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EnumDropDownListFor(model => model.ProjectType,"Select", new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.ProjectType, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,13 +42,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EngagementType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.EngagementType,new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => model.EngagementType,"Select",new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProjectType, "", new { @class = "text-danger" })
                
             </div>
         </div>
-
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -77,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EngagementManagerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Employees")
+                @Html.DropDownListFor(model => model.EngagementManagerId,(SelectList)ViewBag.Employees,"Select")
                 @Html.ValidationMessageFor(model => model.EngagementManagerId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -85,7 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectManagerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectManagerId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.ProjectManagerId, (SelectList)ViewBag.Employees, "Select")
                 @Html.ValidationMessageFor(model => model.ProjectManagerId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,16 +91,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AdditionalNotes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AdditionalNotes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AdditionalNotes, new { htmlAttributes = new { @class = "form-control", style = "width:400px" } })
                 @Html.ValidationMessageFor(model => model.AdditionalNotes, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Projects") + "'");" />
+
+            </div>  
+        </div>       
     </div>
 }
 
