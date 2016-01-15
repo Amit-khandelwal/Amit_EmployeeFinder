@@ -11,6 +11,7 @@ namespace Silicus.Finder.Models.DataObjects
     public class Contact
     {
         [Key]
+    [ScaffoldColumn(false)]
         public int ContactId { get; set; }
 
         public string SkypeId { get; set; }

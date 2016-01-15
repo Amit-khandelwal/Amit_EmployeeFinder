@@ -11,6 +11,7 @@ namespace Silicus.Finder.Models.DataObjects
     public class CubicalLocation
     {
         [Key]
+        [ScaffoldColumn(false)]
         public int CubicalLocationId { get; set; }
 
         //[Key]

@@ -45,8 +45,8 @@ namespace Silicus.Finder.Services
             {
                 string _name = name.Trim();
                 _employeeList = context.Query<Employee>().ToList().Where((e => e.FirstName.Contains(_name))).ToList();
-              //  EmployeeSortByName _employeeSortByName = new EmployeeSortByName();
-            //    _employeeList.Sort(_employeeSortByName);
+               EmployeeSortByName _employeeSortByName = new EmployeeSortByName();
+               _employeeList.Sort(_employeeSortByName);
             }
             return _employeeList;
         }
