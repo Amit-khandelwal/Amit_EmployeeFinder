@@ -1,7 +1,10 @@
 ﻿@model Silicus.Finder.Web.ViewModel.EmployeeViewModel
-<link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
+
+@using Kendo.Mvc.UI;
+
 @{
-    ViewBag.Title = "EmployeeDetails";
+    var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
+    var projects = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
 }
 
 <h2>Employee Details</h2>
@@ -52,7 +55,7 @@
         <div class="details-content">
             @Html.DisplayFor(model => model.CubicalLocation)
         </div>
-
+        
         <div class="details-header">
             @Html.DisplayNameFor(model => model.Contact)
         </div>
@@ -67,3 +70,24 @@
     @Html.ActionLink("Edit", "Edit", new { employeeId = 1 }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+
+
+<div class="fluid mt20">
+    <div class="kendogrid">
+        @(Html.Kendo().TabStrip()
+        .Name("Tabs")
+        .Items(tabstrip =>
+            {
+                tabstrip.Add().Text("Skills")
+                    .Selected(true)
+                    .Content(skills.ToString());
+
+                tabstrip.Add().Text("Projects")
+                    .Content(projects.ToString());
+            })
+        )
+    </div>
+</div>
+

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
+    {
+        @Html.Label("Employee Name")
+        @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
+        <input type="submit" id="submit" value="Search" />
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighestQualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CubicalLocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>@Html.ActionLink(item.FirstName+item.LastName, "Details", new { employeeId=item.EmployeeId})
+    </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilicusExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighestQualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CubicalLocationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var data = $("#name").val();
+            if (data.length == 0) {
+                alert("Please enter search name");
+                return false;
+            }
+        });
+    });
+</script>

@@ -56,6 +56,15 @@ namespace Silicus.Finder.Web.Controllers
             Mapper.Map(newEmployee, employeeDetails);
             return View(employeeDetails);
         }
+        //public JsonResult GetData(int id)
+        //{
+        //    Employee emp = new Employee();
+        //    emp.EmployeeId = id;
+        //    emp.FirstName = "Dev";
+        //    emp.LastName = "Birthare";
+        //    return Json(emp, JsonRequestBehavior.AllowGet);
+        //}
 
-    }
+      
+  }
 }
