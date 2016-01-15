@@ -38,10 +38,11 @@ namespace Silicus.Finder.Web.Controllers
             }
             return View(_employeeNameViewModel);
         }
+
         public ActionResult Create()
         {
             var newEmployee = new Employee();
-            ViewBag.Projects = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+           // ViewBag.Projects = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
             return View(newEmployee);
         }
 
@@ -53,11 +54,36 @@ namespace Silicus.Finder.Web.Controllers
             {
                 // TODO: Add insert logic here
 
-                foreach (int projectId in newEmployee.ProjectId)
-                {
-                    var employeeProject = _employeeService.GetProjectById(projectId);
-                    newEmployee.Projects.Add(employeeProject);
-                }
+                //foreach (int projectId in newEmployee.ProjectId)
+                //{
+                //    var employeeProject = _employeeService.GetProjectById(projectId);
+                //    newEmployee.Projects.Add(employeeProject);
+                //}
+                _employeeService.SaveEmployee(newEmployee);
+                ViewBag.SavedEmployee = newEmployee.FirstName;
+                return View("Success");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+
+
+        public ActionResult Edit(int id)
+        {
+            var selectedEmployee = _employeeService.GetEmployeeById(id);
+            return View(selectedEmployee);
+        }
+
+        // POST: Employee/Create
+        [HttpPost]
+        public ActionResult Edit(Employee newEmployee)
+        {
+            try
+            {
                 _employeeService.SaveEmployee(newEmployee);
                 ViewBag.SavedEmployee = newEmployee.FirstName;
                 return View("Success");
@@ -73,22 +99,45 @@ namespace Silicus.Finder.Web.Controllers
         {
             var targetEmployee = _employeeService.GetEmployeeById(id);
             ViewBag.Employee = targetEmployee.FirstName;
-            ViewBag.Projects = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
-            return View(targetEmployee);
+            ViewBag.ProjectId = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+            var newEmployeeProject = new EmployeeProjects();
+            newEmployeeProject.EmployeeId = targetEmployee.EmployeeId;
+            return View(newEmployeeProject);
         }
 
-        // POST: Employee/Create
+  
         [HttpPost]
-        public ActionResult AddProjectToEmployee(Employee targetEmployee)
+        public ActionResult AddProjectToEmployee(EmployeeProjects newEmployeeProject)
         {
             try
             {
-                // TODO: Add insert logic here
-                foreach (int projectId in targetEmployee.ProjectId)
-                {
-                    var employeeProject = _employeeService.GetProjectById(projectId);
-                    targetEmployee.Projects.Add(employeeProject);
-                }
+                _employeeService.SaveEmployeeProject(newEmployeeProject);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        public ActionResult AddSkillSetToEmployee(int id)
+        {
+            var targetEmployee = _employeeService.GetEmployeeById(id);
+            ViewBag.Employee = targetEmployee.FirstName;
+            ViewBag.SkillSetId = new SelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
+            var newEmployeeSkillSet = new EmployeeSkillSet();
+            newEmployeeSkillSet.EmployeeId = targetEmployee.EmployeeId;
+            return View(newEmployeeSkillSet);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddSkillSetToEmployee(EmployeeSkillSet newEmployeeSkillSet)
+        {
+            try
+            {
+                _employeeService.SaveEmployeeSkillSet(newEmployeeSkillSet);
                 return RedirectToAction("Index");
             }
             catch

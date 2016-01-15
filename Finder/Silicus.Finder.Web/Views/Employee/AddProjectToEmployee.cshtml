@@ -1,10 +1,10 @@
-﻿@model Silicus.Finder.Models.DataObjects.Employee
+﻿@model Silicus.Finder.Models.DataObjects.EmployeeProjects
 
 @{
-    ViewBag.Title = "Add Project";
+    ViewBag.Title = "Add Project To Employee";
 }
 
-<h2>Add Project</h2>
+<h2>Add Project To Employee</h2>
 
 
 @using (Html.BeginForm())
@@ -14,33 +14,34 @@
     <div class="form-horizontal">
         
         <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label("Employee", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Employee Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.EmployeeId)
                 @ViewBag.Employee
                 @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
             </div>
-
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProjectId, "ProjectId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ProjectId, (SelectList)ViewBag.Projects, new { style = "width: 250px" })
-                @Html.ValidationMessageFor(model => model.ManagerRecommendation, "", new { @class = "text-danger" })
+                @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Index", "Employee") + "'");" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "RedirectToList")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
