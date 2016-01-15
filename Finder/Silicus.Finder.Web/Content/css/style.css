@@ -16,6 +16,8 @@
     outline: none!important;
 }
 
+
+
 /*Change the white to any color*/
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
@@ -33,6 +35,13 @@ select:-webkit-autofill {
 input[type=text]::-ms-clear {
     display: none;
 }
+
+
+/*width for input form control*/
+ .col-md-10 {
+        width: 300px;
+    }
+
 
 /***General Classes******/
 .align_left {

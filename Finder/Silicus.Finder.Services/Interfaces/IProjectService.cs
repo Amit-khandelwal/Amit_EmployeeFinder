@@ -7,8 +7,10 @@ namespace Silicus.Finder.Services.Interfaces
         int Add(Project Project);
         List<Project> GetAllProjects();
         Project GetProjectById(int? id);
+        List<SkillSet> GetAllSkills();
+        SkillSet GetSkillSetById(int? id);
         List<Employee> GetAllEmployee();
-        Employee GetEmployeeById(int id);
+        Employee GetEmployeeById(int? id);
        
     }
 }

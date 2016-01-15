@@ -28,8 +28,7 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult CreateProject()
         {
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
-            ViewBag.MultiEmployees = new MultiSelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
-
+            ViewBag.Skills = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name");
             return View();
         }
 
@@ -39,12 +38,8 @@ namespace Silicus.Finder.Web.Controllers
         {
             try
             {
-
-                //foreach(int employeeeId in Project.EmployeeIds)
-                //{
-                //    var tempEmployee=_projectService.GetEmployeeById(employeeeId);
-                //    Project.Employees.Add(tempEmployee);
-                //}
+                var skill = _projectService.GetSkillSetById(Project.skillSetId);
+                Project.SkillSets.Add(skill); 
 
                 var projectId = _projectService.Add(Project);
                 if (projectId >= 0)
@@ -65,6 +60,12 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult EditProject(int? id)
         {
             var project = _projectService.GetProjectById(id);
+            var selectedEngagementManager = _projectService.GetEmployeeById(project.EngagementManagerId);
+            var selectedProjectManager = _projectService.GetEmployeeById(project.ProjectManagerId);
+
+            ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
+            ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
+           
             return View(project);
         }
 
