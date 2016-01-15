@@ -426,6 +426,9 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Images\silicus\Dashboard.jpg" />
+    <Content Include="Images\silicus\loginbackground.jpg" />
+    <Content Include="Images\silicus\logo.jpg" />
     <Content Include="Images\silicus\logo.png" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.min.js" />
