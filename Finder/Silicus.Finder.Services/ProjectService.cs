@@ -30,7 +30,7 @@ namespace Silicus.Finder.Services
 
         public IEnumerable<Project> GetProjectsList()
         {
-            var projectList = _context.Query<Project>().ToList();
+            var projectList = _context.Query<Project>().Include(e=>e.Employees).ToList();
             return projectList;
         }
     }

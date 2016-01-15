@@ -6,7 +6,7 @@
 
 <h2>ProjectList</h2>
 
-<p>
+<p id="CreateButtonCSS">
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -32,10 +32,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ExpectedEndDate)
         </th>
-        <th>
-            @*@{
-                var result = Model.Select(m=>m.Emp)
-            }*@
+        <th>           
             @Html.DisplayNameFor(model => model.EngagementManagerId)
         </th>
         <th>
@@ -50,7 +47,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectName)
+            <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProjectId)
@@ -70,20 +67,26 @@
         <td>
             @Html.DisplayFor(modelItem => item.ExpectedEndDate)
         </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.EngagementManagerId)
+        <td>     
+            @{
+                var fullName = Model.Where(p => p.Employees.Any(e => e.EmployeeId == p.EngagementManagerId)).Select(e => e.Employees.Select(em=>em.FirstName + " " + em.LastName)).FirstOrDefault();
+             }
+
+            @Html.DisplayFor(modelItem => fullName)
+
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectManagerId)
-        </td>
+            @{
+                var projectManagerName = Model.Where(p => p.Employees.Any(e => e.EmployeeId == p.EngagementManagerId)).Select(e => e.Employees.Select(em => em.FirstName + " " + em.LastName)).FirstOrDefault();
+            }
+
+            @Html.DisplayFor(modelItem => projectManagerName)
+        </td>   
         <td>
-            
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
-        </td>
+            <a href="">
+                <img src="~/Images/Project/project-archive.png" width="22" height="22" />
+            </a>
+        </td>     
     </tr>
 }
 

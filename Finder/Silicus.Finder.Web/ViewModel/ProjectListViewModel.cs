@@ -39,5 +39,7 @@ namespace Silicus.Finder.Web.ViewModel
 
         [Display(Name = "Project Manager")]
         public int? ProjectManagerId { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

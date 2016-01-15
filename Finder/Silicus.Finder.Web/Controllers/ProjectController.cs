@@ -61,7 +61,7 @@ namespace Silicus.Finder.Web.Controllers
             return Json(-1);
         }
 
-        public ActionResult GetProjectList([Bind(Include = "Employees")] Project project)
+        public ActionResult GetProjectList()
         {
             var projectList = _projectService.GetProjectsList();
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
