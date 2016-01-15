@@ -27,7 +27,24 @@ namespace Silicus.Finder.Services
             return allEmployeeList;
         }
 
-   
+        public Employee GetEmployeeById(int id)
+        {
+            var employee=_context.Query<Employee>().Where(model => model.EmployeeId == id).FirstOrDefault();
+            return employee;
+        }
+
+
+        public List<Project> GetAllProjects()
+        {
+            return _context.Query<Project>().ToList();
+        }
+
+
+        public Project GetProjectById(int? id)
+        {
+            return _context.Query<Project>().Where(model => model.ProjectId == id).FirstOrDefault();
+        }
+
     }
 }
 
