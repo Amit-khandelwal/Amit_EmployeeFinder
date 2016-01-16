@@ -12,7 +12,7 @@ namespace Silicus.Finder.Models.DataObjects
     {
         public Employee()
         {
-            //Projects = new HashSet<Project>();
+            Projects = new HashSet<Project>();
         }
         [Key]
         public int EmployeeId { get; set; }
@@ -50,7 +50,7 @@ namespace Silicus.Finder.Models.DataObjects
       //  [Required(ErrorMessage = "Enter your Highest Qualification")]
         public string HighestQualification { get; set; }
 
-        public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
+       // public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
 
         [ForeignKey("CubicleLocation")]
         public int CubicleLocationId { get; set; }      // composite key in Location, Foreign key in Employee
@@ -60,11 +60,16 @@ namespace Silicus.Finder.Models.DataObjects
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
 
-        //[NotMapped]
-        ////public int[] ProjectId { get; set; }
-        //public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
+        [NotMapped]
+        public int[] ProjectId { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
 
-        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+        //public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+
+
+        [NotMapped]
+        public int[] SkillId { get; set; }
+        public virtual ICollection<SkillSet> SkillSets { get; set; } 
 
         [Display(Name = "Manager Recommendation")]
         [StringLength(200)]

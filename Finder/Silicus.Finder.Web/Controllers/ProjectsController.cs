@@ -20,13 +20,15 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            return View();
+            var projects = _projectService.GetAllProjects();
+            return View(projects);
         }
 
         // GET: Projects/Create
         public ActionResult CreateProject()
         {
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
+            ViewBag.Skills = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name");
             return View();
         }
 
@@ -36,8 +38,11 @@ namespace Silicus.Finder.Web.Controllers
         {
             try
             {
+                var skill = _projectService.GetSkillSetById(Project.skillSetId);
+                Project.SkillSets.Add(skill); 
+
                 var projectId = _projectService.Add(Project);
-                if (projectId != null)
+                if (projectId >= 0)
                 {
                     TempData["AlertMessage"] = Project.ProjectName + " created successfully..ProjectId:" + projectId;
 
@@ -49,6 +54,26 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult EditProject(int? id)
+        {
+            var project = _projectService.GetProjectById(id);
+            var selectedEngagementManager = _projectService.GetEmployeeById(project.EngagementManagerId);
+            var selectedProjectManager = _projectService.GetEmployeeById(project.ProjectManagerId);
+
+            ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
+            ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
+           
+            return View(project);
+        }
+
+        [HttpPost]
+        public ActionResult EditProject(Project project)
+        {
+            _projectService.Add(project);
+            return View(project);
         }
     }
 }

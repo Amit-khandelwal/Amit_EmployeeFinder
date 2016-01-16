@@ -53,42 +53,32 @@ namespace Silicus.Finder.Entities.Initializer
             //    ProjectDescription = "MorningStar"
             //});
             
-            context.Add(new ProjectDetail
-            {
-                ProjectName = "Landmark",
-                Status = "Red"
-            });
+            //context.Add(new ProjectDetail
+            //{
+            //    ProjectName = "Landmark",
+            //    Status = "Red"
+            //});
 
-            context.Add(new ProjectDetail
-            {
-                ProjectName = "MorningStar",
-                Status = "Green"
-            });
+            //context.Add(new ProjectDetail
+            //{
+            //    ProjectName = "MorningStar",
+            //    Status = "Green"
+            //});
 
-            context.Add(new ProjectDetail
-            {
-                ProjectName = "Finder",
-                Status = "Yellow"
-            });
+            //context.Add(new Manager
+            //{
+            //    ManagerName = "Shailendra"
+            //});
 
-            context.Add(new Manager
-            {
-                ManagerName = "Shailendra"
-            });
+            //context.Add(new Manager
+            //{
+            //    ManagerName = "Sulekha"
+            //});
 
-            context.Add(new Manager
-            {
-                ManagerName = "Smita"
-            });
 
-            context.Add(new Manager
-            {
-                ManagerName = "Snehal"
-            });
+         
 
-            
         }
-
 
         private static void AddIndexes(FinderIpDataContext context, string databaseName)
         {
@@ -100,7 +90,7 @@ namespace Silicus.Finder.Entities.Initializer
 
             context.Database.ExecuteSqlCommand(modifiedSqlScript);
         }
-
+        
         private static void DropExistingConnectionToDatabase(FinderIpDataContext context, string databaseName)
         {
             var sqlContent = Content(DropConnectionScript);
