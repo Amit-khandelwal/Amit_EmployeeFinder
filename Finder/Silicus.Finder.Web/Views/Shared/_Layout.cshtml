@@ -37,7 +37,6 @@
 
 
     <link href="~/Content/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-
     <link href="~/Content/toastr.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
 
@@ -68,52 +67,38 @@
         </div>
     </div>
     <div id="wrapper">
-        @if (actname != "login" && actname != "logoff" && actname != "forgotpassword")
-        {
-            <div id="top">
-                <div class="container">
+        <div>
 
-                    <div class="main-logo"></div>
-
-                    <div class="profile">
-
-                        <div class="user-info">
-                            <a href="#">MyAccount</a>|<a href="@Url.Action("LogOff", "Account")">Log Out</a><br />
-                            <span>Welcome User</span>
-                        </div>
-
-
-                    </div>
-                    @*<div style="padding-top:0px;padding-right:700px">Enabling enterprises <span><strong>in the cloud</strong></span></div>*@
-                    <div style="background-color:#A4A4A4;margin-top:80px;  height:20px"><span style="padding-left:800px">Dashboard</span></div>
-                </div> <!-- /container -->
-
-            </div> <!-- /top -->
-
-        }
-        @*<div class="container">
-            <div class="row">*@
-
-                <div @*style="margin-top:100px;"*@ class="container" style="background-color:red">
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-xs-12">
-
-                        </div>
-                        @RenderBody()
-                    </div>
-                  
-                </div>
-
-                @*@if (actname != "login" && actname != "logoff" && actname != "forgotpassword")
+            @if (actname != "login" && actname != "logoff" && actname != "forgotpassword")
             {
-                @:</div>
-                <h1>hi</h1>
-            }*@
+                <div id="top">
+                    <div class="container">
+
+                        <div class="main-logo"></div>
+
+                        <div class="profile">
+
+                            <div class="user-info">
+                                <a href="#">MyAccount</a>|<a href="@Url.Action("LogOff", "Account")">Log Out</a><br />
+                                <span>Welcome User</span>
+                            </div>
+                        </div>
+                        <div style="background-color:#A4A4A4;margin-top:80px;  height:20px"><span style="padding-left:800px">Dashboard</span></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div style="margin-top:100px;" class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                </div>
+                @RenderBody()
             </div>
-        @*</div>
-        
-        </div>*@
-        @RenderSection("scripts", required: false)
-    </body>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
 </html>
 @Scripts.Render("~/bundles/CommonJS")
