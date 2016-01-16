@@ -144,58 +144,12 @@ namespace Silicus.Finder.Web.Controllers
             }
 
         }
-        
-        //public ActionResult AddProjectToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.ProjectId = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
-        //    var newEmployeeProject = new EmployeeProjects();
-        //    newEmployeeProject.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeProject);
-        //}
 
-  
-        //[HttpPost]
-        //public ActionResult AddProjectToEmployee(EmployeeProjects newEmployeeProject)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeProject(newEmployeeProject);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
-
-        //public ActionResult AddSkillSetToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.SkillSetId = new SelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
-        //    var newEmployeeSkillSet = new EmployeeSkillSet();
-        //    newEmployeeSkillSet.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeSkillSet);
-        //}
-
-
-        //[HttpPost]
-        //public ActionResult AddSkillSetToEmployee(EmployeeSkillSet newEmployeeSkillSet)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeSkillSet(newEmployeeSkillSet);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
+        public ActionResult Details(int id)
+        {
+            var selectedEmployee = _employeeService.GetEmployee(id);
+            return View(selectedEmployee);
+        }
         
     }
 }

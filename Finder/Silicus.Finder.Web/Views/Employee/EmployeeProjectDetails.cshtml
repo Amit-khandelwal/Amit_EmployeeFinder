@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.ProjectViewModel>
+﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Project>
 
 <table class="table">
     <tr>
@@ -16,18 +16,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ActualEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EngagementManagerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectManagerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdditionalNotes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.skillSetId)
         </th>
         <th></th>
     </tr>
@@ -48,23 +36,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ActualEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EngagementManagerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectManagerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdditionalNotes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.skillSetId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
         </td>
     </tr>
 }
