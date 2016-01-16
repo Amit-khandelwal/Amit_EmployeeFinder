@@ -1,15 +1,33 @@
-﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.EmployeeProjects>
+﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Project>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeId)
+            @Html.DisplayNameFor(model => model.ProjectName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectId)
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EngagementManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skillSetId)
         </th>
         <th></th>
     </tr>
@@ -17,10 +35,36 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EmployeeId)
+            @Html.DisplayFor(modelItem => item.ProjectName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectId)
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActualEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EngagementManagerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectManagerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skillSetId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
         </td>
     </tr>
 }

@@ -1,92 +1,99 @@
-﻿@model Silicus.Finder.Web.ViewModel.EmployeeViewModel
-
+﻿@model Silicus.Finder.Models.DataObjects.Employee
+<link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
 @using Kendo.Mvc.UI;
 
 @{
-    //var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
-    //var projects = Html.Partial("~/Views/Employee/EmployeeProjectDetails.cshtml", Model.Projects);
+    var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
+    var projects = Html.Partial("~/Views/Employee/EmployeeProjectDetails.cshtml", Model.Projects);
 }
 
 <h2>Employee Details</h2>
+<hr />
+<h3>Summary</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
 
-<div>
-    <h4>EmployeeViewModel</h4>
-    <hr />
-    <div class="dl-horizontal">
+            <div class="dl-horizontal">
 
-        <div class="details-header">Name:</div>
-        <div class="details-content">
-            @Html.DisplayFor(model => model.FirstName)
+                <div>
+                    <span class="details-header">Name</span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.FirstName)
 
-            @Html.DisplayFor(model => model.MiddleName)
+                        @Html.DisplayFor(model => model.MiddleName)
 
-            @Html.DisplayFor(model => model.LastName)
+                        @Html.DisplayFor(model => model.LastName)
+                    </span>
+                </div>
+
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.TotalExperienceInMonths)
+                    </span>
+                    <span>Months</span>
+                </div>
+
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.SilicusExperienceInMonths)
+                    </span>
+                    <span>Months</span>
+                </div>
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.HighestQualification)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.HighestQualification)
+                    </span>
+                </div>
+            </div>
         </div>
-
-        <div class="details-header">
-            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        <div class="col-md-5">
+            <div>@Html.Partial("~/Views/Employee/EmployeeCubicleLocation.cshtml", Model.CubicleLocation)</div>
+            <div>@Html.Partial("~/Views/Employee/EmployeeContactDetails.cshtml", Model.Contact)</div>
         </div>
-
-        <div class="details-content">
-            @Html.DisplayFor(model => model.TotalExperienceInMonths)
-        </div>
-
-        <div class="details-header">
-            @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
-        </div>
-
-        <div class="details-content">
-            @Html.DisplayFor(model => model.SilicusExperienceInMonths)
-        </div>
-
-        <div class="details-header">
-            @Html.DisplayNameFor(model => model.HighestQualification)
-        </div>
-
-        <div class="details-content">
-            @Html.DisplayFor(model => model.HighestQualification)
-        </div>
-
-        <div class="details-header">
-            @Html.DisplayNameFor(model => model.CubicleLocation)
-        </div>
-
-        <div class="details-content">
-            @Html.DisplayFor(model => model.CubicleLocation)
-        </div>
-        
-        <div class="details-header">
-            @Html.DisplayNameFor(model => model.Contact)
-        </div>
-
-        <div class="details-content">
-            @Html.DisplayFor(model => model.Contact)
-        </div>
-
     </div>
+
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { employeeId = 1 }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { employeeId = Model.EmployeeId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 
 
 
 
-<div class="fluid mt20">
-    <div class="kendogrid">
-        @(Html.Kendo().TabStrip()
+    <div class="fluid mt20 row">
+        <div class="kendogrid">
+            @(Html.Kendo().TabStrip()
         .Name("Tabs")
         .Items(tabstrip =>
             {
-                //tabstrip.Add().Text("Skills")
-                //    .Selected(true)
-                //    .Content(skills.ToString());
+                tabstrip.Add().Text("Skills")
+                    .Selected(true)
+                    .Content(skills.ToString());
 
-                //tabstrip.Add().Text("Projects")
-                //    .Content(projects.ToString());
+                tabstrip.Add().Text("Projects")
+                    .Content(projects.ToString());
             })
-        )
+            )
+        </div>
     </div>
 </div>
-

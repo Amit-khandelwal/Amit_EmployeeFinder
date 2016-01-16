@@ -17,8 +17,8 @@ namespace Silicus.Finder.Models.DataObjects
         [StringLength(30, ErrorMessage = "Name should contain less than 30 characters")]
         public string Name { get; set; }
 
-        //public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
+        //public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
     }
 }

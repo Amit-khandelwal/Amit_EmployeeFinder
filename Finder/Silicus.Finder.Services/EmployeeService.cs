@@ -21,25 +21,6 @@ namespace Silicus.Finder.Services
             context.Add(newEmployee);
         }
 
-       public List<Employee> GetEmployee()
-        {
-            var emp = context.Query<Employee>().ToList();
-               return emp;
-        }
-
-      //  public List<Employee> GetEmployeeByName(string name)
-      //{
-      //      List<Employee> _employeeList = new List<Employee>();
-      //      if(name != null)
-      //      {
-      //          string _name = name.Trim();
-      //          _employeeList = context.Query<Employee>().ToList().Where((e => e.FirstName.Contains(_name))).ToList();
-      //          EmployeeSortByName _employeeSortByName = new EmployeeSortByName();
-      //          _employeeList.Sort(_employeeSortByName);
-      //      }
-      //      return _employeeList;
-      //  }
-
         public List<Project> GetAllProjects()
         {
             return context.Query<Project>().ToList();
@@ -101,7 +82,7 @@ namespace Silicus.Finder.Services
             return employee;
         }
 
-        public List<Employee> GetEmployees()
+        public List<Employee> GetAllEmployees()
         {
             var emp = context.Query<Employee>().ToList();
             return emp;

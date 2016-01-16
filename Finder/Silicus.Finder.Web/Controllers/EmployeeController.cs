@@ -24,7 +24,7 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            var emp = _employeeService.GetEmployees();
+            var emp = _employeeService.GetAllEmployees();
             return View(emp);
         }
 
@@ -33,11 +33,11 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult SearchEmployeeByName(string name)
         {
             List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
-            if ( ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var _employeeList = _employeeService.GetEmployeeByName(name);
                 Mapper.Map(_employeeList, _employeeNameViewModel);
-               
+
             }
             return View(_employeeNameViewModel);
         }
@@ -45,7 +45,7 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult Create()
         {
             var newEmployee = new Employee();
-            ViewBag.Projects = new  MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+            ViewBag.Projects = new MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
             ViewBag.Skills = new MultiSelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
             return View(newEmployee);
         }
@@ -56,7 +56,6 @@ namespace Silicus.Finder.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
 
                 foreach (int projectId in newEmployee.ProjectId)
                 {
@@ -70,8 +69,6 @@ namespace Silicus.Finder.Web.Controllers
                     newEmployee.SkillSets.Add(employeeSkill);
                 }
 
-                //var employeeProject = _employeeService.GetProjectById(newEmployee.ProjectId);
-                //newEmployee.Projects.Add(employeeProject); 
                 _employeeService.SaveEmployee(newEmployee);
                 ViewBag.SavedEmployee = newEmployee.FirstName;
                 return View("Success");
@@ -82,8 +79,6 @@ namespace Silicus.Finder.Web.Controllers
             }
 
         }
-
-
 
         public ActionResult Edit(int id)
         {
@@ -107,43 +102,6 @@ namespace Silicus.Finder.Web.Controllers
 
         }
 
-        //public ActionResult AddProjectToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.ProjectId = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
-        //    var newEmployeeProject = new EmployeeProjects();
-        //    newEmployeeProject.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeProject);
-        //}
-
-  
-        //[HttpPost]
-        //public ActionResult AddProjectToEmployee(EmployeeProjects newEmployeeProject)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeProject(newEmployeeProject);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
-
-        //public ActionResult AddSkillSetToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.SkillSetId = new SelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
-        //    var newEmployeeSkillSet = new EmployeeSkillSet();
-        //    newEmployeeSkillSet.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeSkillSet);
-        //}
-
-
         [HttpPost]
         public ActionResult AddSkillSetToEmployee(EmployeeSkillSet newEmployeeSkillSet)
         {
@@ -159,35 +117,10 @@ namespace Silicus.Finder.Web.Controllers
         }
         public ActionResult Details(int id)
         {
-            var newEmployee = _employeeService.GetEmployee(id);
-            var employeeDetails = new EmployeeViewModel();
-            Mapper.Map(newEmployee, employeeDetails);
-            return View(employeeDetails);
+            var employee = _employeeService.GetEmployee(id);
+            return View(employee);
         }
-        //public JsonResult GetData(int id)
-        //{
-        //    Employee emp = new Employee();
-        //    emp.EmployeeId = id;
-        //    emp.FirstName = "Dev";
-        //    emp.LastName = "Birthare";
-        //    return Json(emp, JsonRequestBehavior.AllowGet);
-        //}
 
-        //[HttpPost]
-        //public ActionResult AddSkillSetToEmployee(EmployeeSkillSet newEmployeeSkillSet)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeSkillSet(newEmployeeSkillSet);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
-        
     }
-       
-//name != null &&
+
+}
