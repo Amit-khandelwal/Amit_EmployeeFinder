@@ -32,7 +32,7 @@ namespace Silicus.Finder.Services
         }
 
         public List<Employee> GetEmployeeByName(string name)
-        {
+      {
             List<Employee> employeeList = new List<Employee>();
             if (name != null)
             {
@@ -70,40 +70,21 @@ namespace Silicus.Finder.Services
 
         public Employee GetEmployeeById(int employeeId)
         {
-            var targetEmployee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
-            return targetEmployee;
+            return context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
+            
         }
 
         public SkillSet GetSkillSetById(int skillSetId)
         {
             return context.Query<SkillSet>().Where(emp => emp.SkillSetId == skillSetId).First();
-
-        }
-
-        public void SaveEmployeeProject(EmployeeProjects newEmployeeProject)
-        {
-            context.Add(newEmployeeProject);
-        }
-
-        public void SaveEmployeeSkillSet(EmployeeSkillSet newEmployeeSkillSet)
-        {
-            context.Add(newEmployeeSkillSet);
-        }
-
-        private void DeleteEmployee(Employee selectedEmployee)
-        {
-            context.Delete(selectedEmployee);
+            
         }
 
         public void EditEmployee(Employee selectedEmployee)
         {
-            var targetEmployee = GetEmployeeById(selectedEmployee.EmployeeId);
-            DeleteEmployee(targetEmployee);
-            context.Add(selectedEmployee);
+           // context.Update(selectedEmployee.Contact);
+            context.Update<Employee>(selectedEmployee);
         }
-
-        public void AddProjectToEmployee(Employee targetEmployee)
-        {
 
         }
     }

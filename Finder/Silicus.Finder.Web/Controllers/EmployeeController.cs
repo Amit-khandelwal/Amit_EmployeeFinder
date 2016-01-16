@@ -36,7 +36,7 @@ namespace Silicus.Finder.Web.Controllers
                 Mapper.Map(employeeList, employeeNameViewModel);
 
             }
-
+               
             if (employeeNameViewModel.Count != 0)
             {
                 return View(employeeNameViewModel);
@@ -45,8 +45,8 @@ namespace Silicus.Finder.Web.Controllers
             {
                 ViewBag.current = "Incorrect Employee Name! Please refine your search.";
                 return View("NoEmployee");
-            }
-               
+        }
+
             }
 
 
@@ -57,6 +57,7 @@ namespace Silicus.Finder.Web.Controllers
             Mapper.Map(employeesList, employeesListViewMode);
             return View(employeesListViewMode);
         }
+        [HttpGet]
         public ActionResult Create()
         {
             var newEmployee = new Employee();
@@ -72,21 +73,23 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                if (newEmployee.ProjectId != null)
+                {
                 foreach (int projectId in newEmployee.ProjectId)
                 {
                     var employeeProject = _employeeService.GetProjectById(projectId);
                     newEmployee.Projects.Add(employeeProject);
                 }
-
+                }
+                if (newEmployee.SkillId != null)
+                {
                 foreach (int skillId in newEmployee.SkillId)
                 {
                     var employeeSkill = _employeeService.GetSkillSetById(skillId);
                     newEmployee.SkillSets.Add(employeeSkill);
                 }
+                }
 
-                //var employeeProject = _employeeService.GetProjectById(newEmployee.ProjectId);
-                //newEmployee.Projects.Add(employeeProject); 
                 _employeeService.SaveEmployee(newEmployee);
                 ViewBag.SavedEmployee = newEmployee.FirstName;
                 return View("Success");
@@ -99,19 +102,39 @@ namespace Silicus.Finder.Web.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var newEmployee = new Employee();
-            return View(newEmployee);
+            var selectedEmployee = _employeeService.GetEmployeeById(id);
+            ViewBag.Projects = new MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+            ViewBag.Skills = new MultiSelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
+            return View(selectedEmployee);
         }
 
-        // POST: Employee/Create
+        // POST: Employee/Edit
         [HttpPost]
         public ActionResult Edit(Employee selectedEmployee)
         {
+            ViewBag.Projects = new MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+            ViewBag.Skills = new MultiSelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
             try
             {
+                if (selectedEmployee.ProjectId != null)
+                {
+                    foreach (int projectId in selectedEmployee.ProjectId)
+                    {
+                        var employeeProject = _employeeService.GetProjectById(projectId);
+                        selectedEmployee.Projects.Add(employeeProject);
+                    }
+                }
+                if (selectedEmployee.SkillId != null)
+                {
+                    foreach (int skillId in selectedEmployee.SkillId)
+                    {
+                        var employeeSkill = _employeeService.GetSkillSetById(skillId);
+                        selectedEmployee.SkillSets.Add(employeeSkill);
+                    }
+                }
                 _employeeService.EditEmployee(selectedEmployee);
                 return View("Success");
             }
@@ -121,58 +144,5 @@ namespace Silicus.Finder.Web.Controllers
             }
 
         }
-        
-        //public ActionResult AddProjectToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.ProjectId = new SelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
-        //    var newEmployeeProject = new EmployeeProjects();
-        //    newEmployeeProject.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeProject);
-        //}
-
-  
-        //[HttpPost]
-        //public ActionResult AddProjectToEmployee(EmployeeProjects newEmployeeProject)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeProject(newEmployeeProject);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
-
-        //public ActionResult AddSkillSetToEmployee(int id)
-        //{
-        //    var targetEmployee = _employeeService.GetEmployeeById(id);
-        //    ViewBag.Employee = targetEmployee.FirstName;
-        //    ViewBag.SkillSetId = new SelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
-        //    var newEmployeeSkillSet = new EmployeeSkillSet();
-        //    newEmployeeSkillSet.EmployeeId = targetEmployee.EmployeeId;
-        //    return View(newEmployeeSkillSet);
-        //}
-
-
-        //[HttpPost]
-        //public ActionResult AddSkillSetToEmployee(EmployeeSkillSet newEmployeeSkillSet)
-        //{
-        //    try
-        //    {
-        //        _employeeService.SaveEmployeeSkillSet(newEmployeeSkillSet);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-
-        //}
-        
     }
 }

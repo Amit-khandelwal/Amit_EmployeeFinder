@@ -59,7 +59,7 @@ namespace Silicus.Finder.Entities.Initializer
             //           Description = "Find the exact employee",
             //           Employees = new List<Employee>
             //                          {
-
+            
 
             //                           }
             //                       }
@@ -127,7 +127,7 @@ namespace Silicus.Finder.Entities.Initializer
                 ManagerRecommendation = "Well performance",
                 SilicusExperienceInMonths = 4,
                 TotalExperienceInMonths = 4,
-
+         
                 SkillSets = new List<SkillSet> { 
                                                   new SkillSet {Name="ASP",Description="ASP net description" }
                                                }
@@ -147,7 +147,7 @@ namespace Silicus.Finder.Entities.Initializer
 
             context.Database.ExecuteSqlCommand(modifiedSqlScript);
         }
-
+        
         private static void DropExistingConnectionToDatabase(FinderIpDataContext context, string databaseName)
         {
             var sqlContent = Content(DropConnectionScript);
