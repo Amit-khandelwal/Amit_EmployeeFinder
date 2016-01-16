@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "GetEmployeesList";
 }
-
-<h2>GetEmployeesList</h2>
+<br />
+<br />
+<br />
+<h4><i>List of all employees</i></h4>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -47,26 +49,10 @@
         <th>
             @Html.DisplayName("ProjectName")
         </th>
-        @*[5:55:44 PM] Shivani Surana: @{
-            var skypeId = Model.Select(p => p.Contact.SkypeId);
-        }
-        @Html.DisplayFor(modelItem => skypeId)
-        [5:56:05 PM] Shivani Surana: var fullName = Model.Where(p => p.Employees.Any(e => e.EmployeeId == p.EngagementManagerId)).Select(e => e.Employees.Select(em => em.FirstName + " " + em.LastName)).FirstOrDefault();*@
-        
 
-        @*<th>
-                @Html.DisplayNameFor(model => model.skillSetList)
-            </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.skillSetList)
-            </th>*@
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
@@ -91,7 +77,7 @@
 
             <td>
                 @{
-        var emailId = Model.Select(p => p.Contact.EmailId);
+            var emailId = Model.Select(p => p.Contact.EmailAddress);
                 }
                 @Html.DisplayFor(modelItem => emailId)
 
@@ -100,45 +86,49 @@
             <td>
                 @{
 
-        var mobile = Model.Select(p => p.Contact.MobileNumber);
+            var mobile = Model.Select(p => p.Contact.MobileNumber);
                 }
 
                 @Html.DisplayFor(modelItem => mobile)
 
             </td>
 
-            <td>@{
-                var location = Model.Select(p => p.CubicalLocation.Building + "/" +
-                    p.CubicalLocation.FloorNumber+ "/" +
-                    p.CubicalLocation.DeskNumber);
-            }
+            <td>
+                @{
+            var location = Model.Select(p => p.CubicleLocation.Building + "/" +
+                        p.CubicleLocation.FloorNumber + "/" +
+                        p.CubicleLocation.DeskNumber);
+                }
                 @Html.DisplayFor(modelItem => location)
             </td>
 
-            @*<td>
-                    <ul>
-                        <li>
-                            @item.skillSetList
-                        </li>
-                    </ul>
-                </td>*@
 
             <td>
-                
-                
+                @{
 
-                @*@{
-        var name = Model.Where(e => e.Projects.Any(c => c.Employees.Any(t => t.EmployeeId == e.EmployeeId))).Select(d => d.Projects.Select(w => w.ProjectName));
-                }
-                @Html.DisplayFor(modelItem => name)*@
-            </td>
+            var projectName = Model.Where(p => p.Projects.Any(e => e.ProjectId.Equals(p.ProjectId))).Select(pm => pm.ProjectId);
 
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
-            </td>
-        </tr>
+            }
+            @Html.DisplayFor(modelItem => projectName)
+        </td>
 
 
-    }
+        @*<td>
+                <ul>
+                    <li>
+                        @item.skillSetList
+                    </li>
+                </ul>
+            </td>*@
 
-</table>
+        <td></td>
+
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+        </td>
+    </tr>
+
+
+        }
+
+    </table>

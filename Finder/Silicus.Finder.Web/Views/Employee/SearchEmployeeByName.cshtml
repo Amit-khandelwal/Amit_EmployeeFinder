@@ -3,14 +3,10 @@
     ViewBag.Title = "SearchEmployeeByName";
 }
 
-
+>
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<h4>SearchEmployeeByName</h4>
+<h5>Name :</h5>
 @*<table class="table">*@
 
 @foreach (var item in Model)
@@ -20,13 +16,5 @@
             @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
         </li>
    
-    
-    @*<tr>
-        <td>
-            @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
-        </td>
-    </tr>*@
 }
-@*</table>*@
-
 

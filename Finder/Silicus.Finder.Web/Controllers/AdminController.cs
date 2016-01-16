@@ -7,12 +7,15 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin; 
 using Silicus.Finder.Services.Interfaces;
 using Silicus.Finder.IdentityWrapper;
+using Silicus.Finder.Services;
 
 namespace Silicus.Finder.Web.Controllers
 {
     public class AdminController : Controller
     {
         private readonly IEmailService _emailService;
+        private readonly IEmployeeService _employeeService;
+         private readonly IProjectService  _projectService;
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -40,14 +43,22 @@ namespace Silicus.Finder.Web.Controllers
             }
         }
 
-        public AdminController(IEmailService emailService)
+        public AdminController(IEmailService emailService, IEmployeeService employeeservice, IProjectService projectService)
         {
+            _projectService = projectService;
+            _employeeService = employeeservice;
             _emailService = emailService;
         }
 
         public ActionResult Dashboard()
         {
+             
             ViewBag.UserRoles = RoleManager.Roles.Select(r => new SelectListItem {Text = r.Name, Value = r.Name}).ToList();
+           
+            @ViewBag.NumberOfEmployee = _employeeService.GetAllEmployees().Count();
+           // @ViewBag.NumberOfProjects = _projectService.GetAllProjects();
+           
+
             return View();
         }
 

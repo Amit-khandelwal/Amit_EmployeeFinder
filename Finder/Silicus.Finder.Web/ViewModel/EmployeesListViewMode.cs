@@ -44,20 +44,26 @@ namespace Silicus.Finder.Web.ViewModel
         //  [Required(ErrorMessage = "Enter your Highest Qualification")]
         public string HighestQualification { get; set; }
 
-        public List<SkillSet> skillSetList = new List<SkillSet>();
+        // public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
 
-        public virtual ICollection<SkillSet> SkillSets { get; set; }
-
-        [ForeignKey("CubicalLocation")]
-        public int CubicalLocationId { get; set; }      // composite key in Location, Foreign key in Employee
-        public virtual CubicalLocation CubicalLocation { get; set; }
+        [ForeignKey("CubicleLocation")]
+        public int CubicleLocationId { get; set; }      // composite key in Location, Foreign key in Employee
+        public virtual CubicleLocation CubicleLocation { get; set; }
 
         [ForeignKey("Contact")]
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
 
+        [NotMapped]
+        public int[] ProjectId { get; set; }
         public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
 
+        //public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+
+
+        [NotMapped]
+        public int[] SkillId { get; set; }
+        public virtual ICollection<SkillSet> SkillSets { get; set; } 
 
     }
 }
