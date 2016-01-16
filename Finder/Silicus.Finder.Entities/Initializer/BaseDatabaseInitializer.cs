@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 using Silicus.Finder.Models.DataObjects;
+using System.Collections.Generic;
+using System;
 
 namespace Silicus.Finder.Entities.Initializer
 {
@@ -43,6 +45,109 @@ namespace Silicus.Finder.Entities.Initializer
                 isActive = true
 
             });
+
+
+
+            context.Add(
+                new Employee
+                {
+                    FirstName = "Abhishek",
+                    MiddleName = "A",
+                    LastName = "Jadhav",
+                    Gender = Gender.Male,
+
+                    Contact = new Contact
+                    {
+                        EmailAddress = "a@b.com",
+                        MobileNumber = 758838,
+                        PhoneNumber = "02382-265234",
+                        Skype = "aMohite"
+                    },
+
+                    CubicleLocation = new CubicleLocation
+                    {
+                        Building = "B",
+                        DeskNumber = "5/INCB-19",
+                        FloorNumber = 5
+                    },
+
+                    EmployeeType = EmployeeType.Contract,
+                    HighestQualification = "Be",
+                    ManagerRecommendation = "Well performance",
+                    SilicusExperienceInMonths = 4,
+                    TotalExperienceInMonths = 4,
+                    SkillSets = new List<SkillSet> { 
+                                            new SkillSet {Name="C#",Description="C# net description" }
+                                         }
+
+                }
+                         );
+
+
+            context.Add(new Employee
+            {
+                FirstName = "Ankit",
+                MiddleName = "Amit",
+                LastName = "Agrawal",
+                Gender = Gender.Male,
+                Contact = new Contact
+                {
+                    EmailAddress = "a@b.com",
+                    MobileNumber = 758838,
+                    PhoneNumber = "02382-265234",
+                    Skype = "aMohite"
+                },
+                CubicleLocation = new CubicleLocation
+                {
+                    Building = "B",
+                    DeskNumber = "5/INCB-19",
+                    FloorNumber = 5
+                },
+                //EmployeeSkillSets
+                EmployeeType = EmployeeType.Contract,
+                HighestQualification = "MTEK",
+                ManagerRecommendation = "Well performance",
+                SilicusExperienceInMonths = 4,
+                TotalExperienceInMonths = 4,
+
+                SkillSets = new List<SkillSet> { 
+                                                  new SkillSet {Name="ASP",Description="ASP net description" }
+                                               }
+            }
+            );
+
+            context.Add(new Project
+            {
+                ProjectName = "SilicusFinder",
+                Description = "Employee Finder",
+                ProjectType = ProjectType.Internal,
+                EngagementType = EngagementType.Time_Based,
+                StartDate = new DateTime(2015,1,10),
+                Status = Status.In_Progress,
+                ExpectedEndDate = new DateTime(2015,10,20),
+                ActualEndDate = new DateTime(2015,12,23),
+                EngagementManagerId = 1,
+                ProjectManagerId = 2,
+                AdditionalNotes = "Project is developing",                
+            }
+            );
+
+            context.Add(new Project
+            {
+                ProjectName = "Online Reservation",
+                Description = "All types of reservation",
+                ProjectType = ProjectType.External,
+                EngagementType = EngagementType.T_and_M,
+                StartDate = new DateTime(2016, 1, 10),
+                Status = Status.Not_Started,
+                ExpectedEndDate = new DateTime(2016, 10, 20),
+                ActualEndDate = new DateTime(2016, 12, 4),
+                EngagementManagerId = 2,
+                ProjectManagerId = 1,
+                AdditionalNotes = "Project is not started",
+            }
+            );
+
             //context.Add(new Project
             //{
             //    ProjectDescription = "Landmark"
