@@ -55,7 +55,7 @@ namespace Silicus.Finder.Web.Controllers
              
             ViewBag.UserRoles = RoleManager.Roles.Select(r => new SelectListItem {Text = r.Name, Value = r.Name}).ToList();
            
-            @ViewBag.NumberOfEmployee = _employeeService.GetEmployee().Count();
+            @ViewBag.NumberOfEmployee = _employeeService.GetAllEmployees().Count();
            // @ViewBag.NumberOfProjects = _projectService.GetAllProjects();
            
 

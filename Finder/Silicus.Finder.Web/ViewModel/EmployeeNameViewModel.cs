@@ -13,6 +13,6 @@ namespace Silicus.Finder.Web.ViewModel
 
         [Required(ErrorMessage = "First Name can't be blank")]
         [StringLength(20, ErrorMessage = "First Name should contain less than 20 characters")]
-        public string FirstName { get; set; }
+        public string FullName{ get; set; }
     }
 }

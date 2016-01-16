@@ -346,6 +346,7 @@
     <Compile Include="ViewModel\EmployeeNameViewModel.cs" />
     <Compile Include="ViewModel\ProjectListViewModel.cs" />
     <Compile Include="ViewModel\SkillSetViewModel.cs" />
+    <Compile Include="ViewModel\EmployeesListViewMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Silicus.Finder.Web.dll" />
@@ -697,10 +698,9 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\EditProject.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
-    <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Technology\Success.cshtml" />
+    <Content Include="Views\Employee\GetAllEmployees.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -21,7 +21,7 @@ namespace Silicus.Finder.Web.Controllers
 
         public ActionResult Index()
         {
-            var emp = _employeeService.GetEmployee();
+            var emp = _employeeService.GetAllEmployees();
             return View(emp);
         }
 
@@ -29,16 +29,34 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
-            if ( ModelState.IsValid)
+            List<EmployeeNameViewModel> employeeNameViewModel = new List<EmployeeNameViewModel>();
+            if (ModelState.IsValid)
             {
-                var _employeeList = _employeeService.GetEmployeeByName(name);
-                Mapper.Map(_employeeList, _employeeNameViewModel);
+                var employeeList = _employeeService.GetEmployeeByName(name);
+                Mapper.Map(employeeList, employeeNameViewModel);
+
+            }
+
+            if (employeeNameViewModel.Count != 0)
+            {
+                return View(employeeNameViewModel);
+            }
+            else
+            {
+                ViewBag.current = "Incorrect Employee Name! Please refine your search.";
+                return View("NoEmployee");
+            }
                
             }
-            return View(_employeeNameViewModel);
-        }
 
+
+        public ActionResult GetAllEmployees()
+        {
+            var employeesList = _employeeService.GetAllEmployees();
+            var employeesListViewMode = new List<EmployeesListViewMode>();
+            Mapper.Map(employeesList, employeesListViewMode);
+            return View(employeesListViewMode);
+        }
         public ActionResult Create()
         {
             var newEmployee = new Employee();
@@ -84,8 +102,8 @@ namespace Silicus.Finder.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            var selectedEmployee = _employeeService.GetEmployeeById(id);
-            return View(selectedEmployee);
+            var newEmployee = new Employee();
+            return View(newEmployee);
         }
 
         // POST: Employee/Create
@@ -103,7 +121,7 @@ namespace Silicus.Finder.Web.Controllers
             }
 
         }
-
+        
         //public ActionResult AddProjectToEmployee(int id)
         //{
         //    var targetEmployee = _employeeService.GetEmployeeById(id);
@@ -158,4 +176,3 @@ namespace Silicus.Finder.Web.Controllers
         
     }
 }
-//name != null &&

@@ -25,23 +25,32 @@ namespace Silicus.Finder.Services
             context.Add(newEmployee);
         }
 
-       public List<Employee> GetEmployee()
+        public List<Employee> GetAllEmployees()
         {
-            var emp = context.Query<Employee>().ToList();
-               return emp;
+            var employeeList = context.Query<Employee>().ToList();
+            return employeeList;
         }
 
         public List<Employee> GetEmployeeByName(string name)
-      {
-            List<Employee> _employeeList = new List<Employee>();
-            if(name != null)
+        {
+            List<Employee> employeeList = new List<Employee>();
+            if (name != null)
             {
-                string _name = name.Trim();
-                _employeeList = context.Query<Employee>().ToList().Where((e => e.FirstName.Contains(_name))).ToList();
-                EmployeeSortByName _employeeSortByName = new EmployeeSortByName();
-                _employeeList.Sort(_employeeSortByName);
+                EmployeeSortByName employeeSortByName = new EmployeeSortByName();
+                string _name = name.Trim().ToLower();
+                employeeList = context.Query<Employee>().ToList()
+                .Where((e => e.FullName.ToLower().Contains(_name))).ToList();
+                if (employeeList.Count == 0)
+                {
+                    var empList = context.Query<Employee>().ToList()
+                    .Where(e => e.EmployeeId.ToString().Contains(_name)).ToList();
+                    empList.Sort(employeeSortByName);
+
+                    return empList;
+                }
+                employeeList.Sort(employeeSortByName);
             }
-            return _employeeList;
+            return employeeList;
         }
 
         public List<Project> GetAllProjects()
@@ -61,14 +70,14 @@ namespace Silicus.Finder.Services
 
         public Employee GetEmployeeById(int employeeId)
         {
-            var targetEmployee = context.Query<Employee>().Where(emp=>emp.EmployeeId==employeeId).First();
+            var targetEmployee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
             return targetEmployee;
         }
 
         public SkillSet GetSkillSetById(int skillSetId)
         {
             return context.Query<SkillSet>().Where(emp => emp.SkillSetId == skillSetId).First();
-            
+
         }
 
         public void SaveEmployeeProject(EmployeeProjects newEmployeeProject)
@@ -98,4 +107,7 @@ namespace Silicus.Finder.Services
 
         }
     }
+
 }
+
+
