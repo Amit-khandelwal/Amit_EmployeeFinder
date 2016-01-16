@@ -16,16 +16,7 @@
         </th>
         <th></th>
     </tr>
-    @Html.ActionLink("Download", "#", new { id = "star"} )
 
-    <div id="dModal" class="modal hide fade" aria-hidden="true">
-        <div class="modal-body">
-            @using (Html.BeginForm("getCSV", "Download", new { filename = data - id }, FormMethod.Post, null))
-            {
-                <button id="btnCSV" type="submit">Download CSV</button>
-            }
-        </div>
-    </div>
 @*@foreach (var item in Model) {
     <tr>
         <td>

@@ -1,5 +1,7 @@
-﻿using Silicus.Finder.Models.DataObjects;
+﻿using AutoMapper;
+using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using Silicus.Finder.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

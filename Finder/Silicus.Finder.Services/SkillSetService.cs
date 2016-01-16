@@ -21,6 +21,6 @@ namespace Silicus.Finder.Services
         public void Add(SkillSet skillSet)
         {
             _context.Add(skillSet);
-        } 
+        }
     }
 }
