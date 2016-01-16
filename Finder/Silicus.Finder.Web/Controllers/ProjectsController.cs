@@ -22,8 +22,8 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            var projects = _projectService.GetAllProjects();
-            return View(projects);
+            //var projects = _projectService.GetAllProjects();
+            return View();
         }
 
         // GET: Projects/Create
@@ -59,23 +59,34 @@ namespace Silicus.Finder.Web.Controllers
         }    
         
     
-        public ActionResult GetProjectList(string name)
+        public ActionResult GetProjectList()
+        {
+            var projectList = _projectService.GetProjectsList();
+               
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
+        }
+
+        public ActionResult GetProjectsListByName(string name)
         {
             IEnumerable<Project> projectList;
+            ViewBag.Message = "Incorrect Project Name! Please refine your search.";
 
-            if(name != "")
+            if (name != "")
             {
                 projectList = _projectService.GetProjectsListByName(name);
-                
-                if(projectList.Count() == 0)
+
+                if (projectList.Count() == 0)
                 {
-                    ViewBag.Message = "Incorrect Project Name! Please refine your search.";
                     return View("ProjectNotFound");
                 }
             }
+            //If project name is not entered, shows Error message on another view.
             else
-            {
-                projectList = _projectService.GetProjectsList();
+            {                
+                return View("ProjectNotFound");
             }
 
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
