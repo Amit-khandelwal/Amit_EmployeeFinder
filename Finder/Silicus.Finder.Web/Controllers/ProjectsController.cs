@@ -1,5 +1,7 @@
-﻿using Silicus.Finder.Models.DataObjects;
+﻿using AutoMapper;
+using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using Silicus.Finder.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +51,32 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return View();
             }
+        }    
+        
+    
+        public ActionResult GetProjectList(string name)
+        {
+            IEnumerable<Project> projectList;
+
+            if(name != "")
+            {
+                projectList = _projectService.GetProjectsListByName(name);
+                
+                if(projectList.Count() == 0)
+                {
+                    ViewBag.Message = "Incorrect Project Name! Please refine your search.";
+                    return View("ProjectNotFound");
+                }
+            }
+            else
+            {
+                projectList = _projectService.GetProjectsList();
+            }
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
         }
     }
 }

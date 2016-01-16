@@ -7,5 +7,6 @@ namespace Silicus.Finder.Services.Interfaces
         int Add(Project Project);
         List<Employee> GetAllEmployee();
         IEnumerable<Project> GetProjectsList();
+        IEnumerable<Project> GetProjectsListByName(string name);
     }
 }

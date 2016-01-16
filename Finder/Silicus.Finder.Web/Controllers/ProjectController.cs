@@ -12,12 +12,10 @@ namespace Silicus.Finder.Web.Controllers
     public class ProjectController : Controller
     {
         private readonly IProjectDetailService _projectDetailService;
-        private readonly IProjectService _projectService;
 
-        public ProjectController(IProjectDetailService projectDetailService, IProjectService projectService)
+        public ProjectController(IProjectDetailService projectDetailService)
         {
             _projectDetailService = projectDetailService;
-            _projectService = projectService;
         }
 
         public ActionResult GetProjectDetails([DataSourceRequest] DataSourceRequest request)
@@ -59,14 +57,6 @@ namespace Silicus.Finder.Web.Controllers
             }
 
             return Json(-1);
-        }
-
-        public ActionResult GetProjectList()
-        {
-            var projectList = _projectService.GetProjectsList();
-            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
-            Mapper.Map(projectList,projectListViewModel);
-            return View("ProjectList", projectListViewModel);
         }
     }
 }

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.ProjectListViewModel>
+
+@{
+    ViewBag.Title = "ProjectList";
+}
+@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
+<h2>ProjectList</h2>
+<br />
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create", new { @class = "ProjectCreateButtonCSS" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EngagementType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EngagementManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectManagerId)
+        </th>
+        <th>
+            @Html.DisplayName("Action")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
+                @*@Html.ActionLink("Details", "GetProjectDetails", "Projects", new { proViewModel = Model, id = item.ProjectId })*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngagementType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedEndDate)
+            </td>
+
+            <td>
+                @{
+                    // var projectid = ViewBag.ProjectId;
+                    string fullName = "";
+                    var employeeList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.EngagementManagerId)).Select(a => a.Employees).FirstOrDefault();
+                    foreach(var employee in employeeList)
+                    {
+                        fullName = employee.FirstName + " " + employee.LastName;
+                    }
+                    @Html.DisplayFor(modelItem => fullName)
+                    }                   
+            </td>
+
+            <td>
+                @{
+                    string projectManagerName = "";
+                    var projectManagerList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.ProjectManagerId)).Select(a => a.Employees).FirstOrDefault();
+                    foreach (var employee in projectManagerList)
+                    {
+                        projectManagerName = employee.FirstName + " " + employee.LastName;
+                    }
+                    @Html.DisplayFor(modelItem => projectManagerName)
+                }  
+            </td>
+
+            <td>
+                <a href="">
+                    <img src="~/Images/Project/project-archive.png" width="22" height="22" />
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>       

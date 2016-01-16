@@ -16,6 +16,18 @@
     outline: none!important;
 }
 
+.ProjectCreateButtonCSS{    
+    border: solid;
+    color: black;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+
 /*Change the white to any color*/
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;

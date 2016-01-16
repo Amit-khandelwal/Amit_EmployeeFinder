@@ -688,10 +688,11 @@
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Project\ProjectList.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
+    <Content Include="Views\Projects\ProjectList.cshtml" />
+    <Content Include="Views\Projects\ProjectNotFound.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

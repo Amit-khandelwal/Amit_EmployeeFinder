@@ -89,7 +89,7 @@
             @*</div>
         </div>*@
             }
-            @using (Html.BeginForm("Dashboard", "Admin"))
+            @*@using (Html.BeginForm("GetProjectList", "Projects", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
             {
                
                         <div class="col-md-4 col-sm-4 col-xs-4" style="height:100vh;border:solid;border-color:gray;">
@@ -98,14 +98,37 @@
                             </div>
                             <button style=" width:50%;  height:80px;"><span class="fa fa-pencil-square-o fa-5x"></span></button>
                             <div class="input-group" style="padding-top:100px">
-                                <input type="text" placeholder="Search for Project" class="form-control">
+                                <input type="text" id="searchByName" name="searchByName" placeholder="Search for Project" class="form-control">
+                               
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search "></span></button>
+                                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("GetProjectList", "Projects")'"><span class="glyphicon glyphicon-search "></span></button>
                                 </span>
+
                             </div>
-                        </div>
+                        </div>      
                    
+            }*@
+
+            @using (Html.BeginForm("GetProjectList", "Projects", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
+            {
+
+                <div class="col-md-4 col-sm-4 col-xs-4" style="height:100vh;border:solid;border-color:gray;">
+                    <div>
+                        <button style="width:80%;height:80px;background-color:#666666">Projects</button>
+                    </div>
+                    <button style=" width:50%;  height:80px;"><span class="fa fa-pencil-square-o fa-5x"></span></button>
+                    <div class="input-group" style="padding-top:100px">
+                       
+                    @Html.Label("")
+                    @Html.TextBox("name", "", new { id = "name", @class = "form-control" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search "></span></button>
+                    </span>
+                    </div>
+                </div>
+
             }
+
             @using (Html.BeginForm("Dashboard", "Admin"))
             {
                 
@@ -180,3 +203,23 @@
         }
     }
 </script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            var enteredName = $("searchByName").val();
+            alert("button clicked");
+        });
+    });
+</script>*@
+
+<script>
+
+    $(document).ready(function () {
+        document.getElementById("name").value = "";
+    });
+
+</script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
