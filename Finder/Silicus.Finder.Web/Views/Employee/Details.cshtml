@@ -3,8 +3,8 @@
 @using Kendo.Mvc.UI;
 
 @{
-    var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
-    var projects = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
+    //var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
+    //var projects = Html.Partial("~/Views/Employee/EmployeeProjectDetails.cshtml", Model.Projects);
 }
 
 <h2>Employee Details</h2>
@@ -13,7 +13,6 @@
     <h4>EmployeeViewModel</h4>
     <hr />
     <div class="dl-horizontal">
-
 
         <div class="details-header">Name:</div>
         <div class="details-content">
@@ -49,11 +48,11 @@
         </div>
 
         <div class="details-header">
-            @Html.DisplayNameFor(model => model.CubicalLocation)
+            @Html.DisplayNameFor(model => model.CubicleLocation)
         </div>
 
         <div class="details-content">
-            @Html.DisplayFor(model => model.CubicalLocation)
+            @Html.DisplayFor(model => model.CubicleLocation)
         </div>
         
         <div class="details-header">
@@ -80,12 +79,12 @@
         .Name("Tabs")
         .Items(tabstrip =>
             {
-                tabstrip.Add().Text("Skills")
-                    .Selected(true)
-                    .Content(skills.ToString());
+                //tabstrip.Add().Text("Skills")
+                //    .Selected(true)
+                //    .Content(skills.ToString());
 
-                tabstrip.Add().Text("Projects")
-                    .Content(projects.ToString());
+                //tabstrip.Add().Text("Projects")
+                //    .Content(projects.ToString());
             })
         )
     </div>

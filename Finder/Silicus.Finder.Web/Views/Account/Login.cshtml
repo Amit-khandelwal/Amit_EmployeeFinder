@@ -1,80 +1,81 @@
 ﻿@using System.Configuration
 @using Microsoft.Owin.Security
 @model Silicus.Finder.Web.Models.LoginModel
-
 @{
     ViewBag.Title = "Sign In";
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 }
-<div class="logincontainer">  
-    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-default" >
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "loginform", @class = "form-horizontal" }))
-            {
-                <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />   
-    
-      
-       
-                <div class="p10" style="background-color:#000;"><img src="../../Images/silicus/logo.png" alt="Silicus Technologies, LLC. Logo" /></div> 
-                <div class="panel-heading">
-                    <div class="panel-title">Sign In</div>
-                    <div class="floatRight positionrel mt20neg"><a href="@Url.Action("ForgotPassword", "Account")" tabindex="5">Forgot your password?</a></div>
-                </div>     
-                
-                <div class="panel-body p30" >
-                    <div id="login-alert" class="alert alert-danger col-sm-12 hidden"></div>
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    <div class="input-group mb5">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>    
-                        @Html.TextBoxFor(m => m.UserName, new { @placeholder="User Name", @onfocus="this.placeholder = ''", @onblur="this.placeholder = 'User Name';",tabindex=1, @class="form-control" })                                    
-                    </div>
-                    <span class="help-block field-validation-error mt10 mb10">@Html.ValidationMessageFor(m => m.UserName)</span>
-                                
-                    <div class="input-group mb5">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        @Html.PasswordFor(m => m.Password, new { @class="form-control", @placeholder="Password", @onfocus="this.placeholder = ''", @onblur="this.placeholder = 'Password';",tabindex=2 })
-                    </div>
-                    <span class="help-block field-validation-error mt10 mb10">@Html.ValidationMessageFor(m => m.Password)</span>            
+<div class="container" style="position: fixed;width: 100%;height:100%;left: 0; top: 0;">
 
-                                
-                    <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                @Html.CheckBoxFor(m => m.RememberMe, new { @id="login-remember", tabindex=3, @checked = "checked"})
-                                <span><label for="login-remember">Remember me</label></span>
-                            </label>
+    <div class="row">
+        <div class="col-md-8 hidden-sm hidden-xs" style="height:100vh; border:1px solid red;"><img src="~/Images/silicus/loginbackground.jpg" style="height:100vh;width:100%;" /></div>
+        <div class="col-md-4 col-sm-12 col-xs-12" style="border:1px solid green;background-color:#2B4F6F;height:100vh">
+            <div class=" logincontainer">
+                @*<div id=" loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">*@
+                <div @*class="panel panel-default"*@ style="width:350px;  padding-top:50%">
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "loginform", @class = "form-horizontal" }))
+                    { <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
+
+                        @*<div class="p10" style="background-color:#000;"><img src="../../Images/silicus/logo.png" alt="Silicus Technologies, LLC. Logo" /></div>*@
+                        <div class="panel-heading">
+                            <div class="panel-title"><strong style="color:white">Log in into your Account</strong></div>
+                            @*<div class="floatRight positionrel mt20neg"><a href="@Url.Action("ForgotPassword", "Account")" tabindex="5">Forgot your password?</a></div>*@
                         </div>
-                    </div>
 
+                        <div class="panel-body p30">
+                            <div id="login-alert" class="alert alert-danger col-sm-12 hidden"></div>
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="input-group mb5">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(m => m.UserName, new { @placeholder = "User Name or Email Id", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'User Name or Email Id';", tabindex = 1, style = "width: 150px;", @class = "form-control" })
+                            </div>
+                            <span class="help-block field-validation-error mt10 mb10">@Html.ValidationMessageFor(m => m.UserName)</span>
 
-                    <div style="margin-top:10px" class="form-group">
-                        <!-- Button -->
+                            <div class="input-group mb5">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @onfocus = "this.placeholder = ''", @onblur = "this.placeholder = 'Password';", style = "width:150px", tabindex = 2 })
+                            </div>
+                            <span class="help-block field-validation-error mt10 mb10">@Html.ValidationMessageFor(m => m.Password)</span>
 
-                        <div class="col-sm-12 controls">
-                            <input type="submit" value="Sign In" id="btn-login" class="btn btn-success" tabindex="4" />
+                            <div class="input-group">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { @id = "login-remember", tabindex = 3, @checked = "checked" })
+                                        <span><label for="login-remember" style="color:#ADC7E0">Remember me</label></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="floatRight positionrel mt20neg"><a href="@Url.Action("ForgotPassword", "Account")" tabindex="5" style="color:#ADC7E0">Forgot your password?</a></div>
+                            <div style="margin-top:10px" class="form-group">
+
+                                <div class="col-sm-12 controls">
+                                    <input type="submit" value="Sign In" id="btn-login" class="btn btn-success" tabindex="4" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>  
-   
-            }
-
-           @* @using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
-            {
-                @Html.AntiForgeryToken()
-                <div id="socialLoginList">
-                    <p>
-                        @foreach (AuthenticationDescription p in loginProviders)
+                    }
+                    @* @using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
                         {
-                            <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-                        }
-                    </p>
+                            @Html.AntiForgeryToken()
+                            <div id="socialLoginList">
+                                <p>
+                                    @foreach (AuthenticationDescription p in loginProviders)
+                                    {
+                                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                                    }
+                                </p>
+                            </div>
+                        }*@
                 </div>
-            }*@
-        </div>
-    </div>  
-</div>
+                @*</div>*@
 
- @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,7 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Success";
 }
-
-<h2>Success</h2>
-
+<div style="padding-top:100px">
+    <h2>@ViewBag.SavedEmployee added Successfully</h2>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index", "Employee")
+</div>

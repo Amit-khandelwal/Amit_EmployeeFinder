@@ -31,10 +31,10 @@ namespace Silicus.Finder.Web.ViewModel
         public string HighestQualification { get; set; }
 
         [Display(Name = "Skill Set")]
-        public virtual ICollection<SkillSet> SkillSets { get; set; }
+       public virtual ICollection<SkillSet> SkillSets { get; set; }
         
         [Display(Name = "Cubical Location")]
-        public virtual CubicalLocation CubicalLocation { get; set; }
+        public virtual CubicleLocation CubicleLocation { get; set; }
         public virtual Contact Contact { get; set; }
         public virtual ICollection<Project> Projects { get; set; } 
     }

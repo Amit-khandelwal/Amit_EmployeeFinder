@@ -10,9 +10,13 @@ namespace Silicus.Finder.Models.DataObjects
 {
     public class Employee
     {
+        public Employee()
+        {
+            //Projects = new HashSet<Project>();
+        }
         [Key]
         public int EmployeeId { get; set; }
-
+        
         [Required(ErrorMessage = "First Name can't be blank")]
         [StringLength(20, ErrorMessage = "First Name should contain less than 20 characters")]
         [Display(Name = "First Name")]
@@ -26,6 +30,9 @@ namespace Silicus.Finder.Models.DataObjects
         [StringLength(20, ErrorMessage = "Last Name should contain less than 20 characters")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [NotMapped]
+        public string FullName { get {return FirstName+" "+ LastName;} }
 
         [Required(ErrorMessage = "Please select Gender")]
         public Gender Gender { get; set; }
@@ -43,16 +50,25 @@ namespace Silicus.Finder.Models.DataObjects
       //  [Required(ErrorMessage = "Enter your Highest Qualification")]
         public string HighestQualification { get; set; }
 
-        public virtual ICollection<SkillSet> SkillSets { get; set; }
+        public virtual ICollection<EmployeeSkillSet> EmployeeSkillSets { get; set; }
 
-        [ForeignKey("CubicalLocation")]
-        public int CubicalLocationId { get; set; }      // composite key in Location, Foreign key in Employee
-        public virtual CubicalLocation CubicalLocation { get; set; }
+        [ForeignKey("CubicleLocation")]
+        public int CubicleLocationId { get; set; }      // composite key in Location, Foreign key in Employee
+        public virtual CubicleLocation CubicleLocation { get; set; }
 
         [ForeignKey("Contact")]
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
+
+        //[NotMapped]
+        ////public int[] ProjectId { get; set; }
+        //public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
+
+        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+
+        [Display(Name = "Manager Recommendation")]
+        [StringLength(200)]
+        public string ManagerRecommendation { get; set; }
         
-        public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
     }
 }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Silicus.Finder.Models.DataObjects
 {
-    public class CubicalLocation
+    public class CubicleLocation
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int CubicalLocationId { get; set; }
+        public int CubicleLocationId { get; set; }
 
         //[Key]
         //[Column(Order = 1)]
