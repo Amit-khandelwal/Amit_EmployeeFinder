@@ -14,7 +14,7 @@ namespace Silicus.Finder.Models.DataObjects
         [ScaffoldColumn(false)]
         public int ContactId { get; set; }
 
-        [StringLength(15)]
+        [StringLength(30)]
         public string Skype { get; set; }
 
         [Required(ErrorMessage = "Email can't be blank")]
