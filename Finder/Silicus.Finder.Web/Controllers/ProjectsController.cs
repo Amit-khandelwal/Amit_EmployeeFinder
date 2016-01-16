@@ -2,10 +2,8 @@
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
 using Silicus.Finder.Web.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Silicus.Finder.Web.Controllers
@@ -41,8 +39,8 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 var skill = _projectService.GetSkillSetById(Project.skillSetId);
-                Project.SkillSets.Add(skill); 
-
+                Project.SkillSets.Add(skill);                
+                
                 var projectId = _projectService.Add(Project);
                 if (projectId >= 0)
                 {
@@ -50,19 +48,19 @@ namespace Silicus.Finder.Web.Controllers
 
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProjectList");
             }
             catch
             {
                 return View();
             }
-        }    
-        
-    
+        }
+
+
         public ActionResult GetProjectList()
         {
             var projectList = _projectService.GetProjectsList();
-               
+
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
@@ -85,7 +83,7 @@ namespace Silicus.Finder.Web.Controllers
             }
             //If project name is not entered, shows Error message on another view.
             else
-            {                
+            {
                 return View("ProjectNotFound");
             }
 
@@ -104,7 +102,7 @@ namespace Silicus.Finder.Web.Controllers
 
             ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
             ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
-           
+
             return View(project);
         }
 

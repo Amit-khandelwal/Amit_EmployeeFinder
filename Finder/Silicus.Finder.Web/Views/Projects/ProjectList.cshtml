@@ -6,8 +6,8 @@
 <h2>ProjectList</h2>
 <br />
 <br />
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p>    
+    <input type="submit" value="Add Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" />
 </p>
 
 <table class="table">
