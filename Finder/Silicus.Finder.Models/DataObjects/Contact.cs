@@ -11,15 +11,20 @@ namespace Silicus.Finder.Models.DataObjects
     public class Contact
     {
         [Key]
-    [ScaffoldColumn(false)]
+        [ScaffoldColumn(false)]
         public int ContactId { get; set; }
 
-        [Display(Name="Skype Id")]
-        public string SkypeId { get; set; }
-        [Display(Name = "Email Id")]
-        public string EmailId { get; set; } // have to make it unique 
+        [StringLength(30)]
+        public string Skype { get; set; }
+
+        [Required(ErrorMessage = "Email can't be blank")]
+        [Display(Name = "Email Address")]
+        public string EmailAddress { get; set; } // have to make it unique 
+
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Mobile can't be blank")]
         [Display(Name = "Mobile Number")]
         public int? MobileNumber { get; set; }
 

@@ -40,6 +40,8 @@ namespace Silicus.Finder.Models.DataObjects
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? StartDate { get; set; }
 
+        public Status Status { get; set; }
+
         [Display(Name = "Expected End_Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

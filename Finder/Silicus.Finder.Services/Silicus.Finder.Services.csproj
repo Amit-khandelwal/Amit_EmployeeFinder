@@ -93,6 +93,7 @@
     <Compile Include="Interfaces\IProjectDetailService.cs" />
     <Compile Include="Interfaces\IProjectService.cs" />
     <Compile Include="Interfaces\IRolesService.cs" />
+    <Compile Include="Interfaces\ISkillSetService.cs" />
     <Compile Include="Interfaces\ISmtpClient.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="ManagerService.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="ProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesService.cs" />
+    <Compile Include="SkillSetService.cs" />
     <Compile Include="SmtpClientWrapper.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

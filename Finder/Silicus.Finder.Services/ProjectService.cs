@@ -33,12 +33,37 @@ namespace Silicus.Finder.Services
             return employee;
         }
 
-
-        public List<Project> GetAllProjects()
+   
+        public IEnumerable<Project> GetProjectsList()
         {
-            var projects=_context.Query<Project>().ToList();
-            return projects;
+            var projectList = _context.Query<Project>().Include(e=>e.Employees).ToList();
+            return projectList;
         }
+
+
+        public IEnumerable<Project> GetProjectsListByName(string name)
+        {
+            var projectListStartsWith = _context.Query<Project>().Include(e => e.Employees).Where(e => e.ProjectName.StartsWith(name)).ToList();
+
+            var projectListEndsWith = new List<Project>();
+
+            if(projectListStartsWith.Count != 0)
+            {
+                return projectListStartsWith;
+            }
+            else if(projectListEndsWith.Count == 0)
+            {
+                projectListEndsWith = _context.Query<Project>().Include(e => e.Employees).Where(e => e.ProjectName.EndsWith(name)).ToList();
+
+                    if(projectListEndsWith.Count == 0)
+                    {
+                        return _context.Query<Project>().Include(e => e.Employees).Where(e => e.ProjectId.ToString().Equals(name)).ToList();
+                    }                
+            }
+
+            return projectListEndsWith;          
+        }
+        
 
 
         public Project GetProjectById(int? id)
