@@ -41,10 +41,10 @@ namespace Silicus.Finder.Web.Controllers
                 var skill = _projectService.GetSkillSetById(Project.skillSetId);
                 Project.SkillSets.Add(skill); 
 
-                var projectId = _projectService.Add(Project);
+                var projectId = _projectService.AddProject(Project);
                 if (projectId >= 0)
                 {
-                    TempData["AlertMessage"] = Project.ProjectName + " created successfully..ProjectId:" + projectId;
+                    TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + projectId + " Created Successfully.";
 
                 }
 
@@ -65,15 +65,22 @@ namespace Silicus.Finder.Web.Controllers
 
             ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
             ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
-           
+            ViewBag.Technologies = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name", project.skillSetId);
+
             return View(project);
         }
 
         [HttpPost]
-        public ActionResult EditProject(Project project)
+        public ActionResult EditProject(Project Project)
         {
-            _projectService.Add(project);
-            return View(project);
+            var updatedProjectId =  _projectService.UpdateProject(Project);
+            if (updatedProjectId >= 0)
+            {
+                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId+" Updated Successfully.";
+
+            }
+  
+            return RedirectToAction("Index");
         }
     }
 }

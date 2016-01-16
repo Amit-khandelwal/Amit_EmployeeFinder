@@ -15,7 +15,7 @@ namespace Silicus.Finder.Services
             _context = dataContextFactory.Create(ConnectionType.Ip);
         }
 
-        public int Add(Project Project)
+        public int AddProject(Project Project)
         {
             _context.Add(Project);
             return Project.ProjectId;
@@ -60,6 +60,13 @@ namespace Silicus.Finder.Services
         {
             var skillset=_context.Query<SkillSet>().Where(model => model.SkillSetId == id).FirstOrDefault();
             return skillset;
+        }
+
+
+        public int UpdateProject(Project Project)
+        {
+          _context.Update<Project>(Project);
+          return Project.ProjectId;
         }
     }
 }

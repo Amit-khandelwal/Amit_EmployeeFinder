@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 using Silicus.Finder.Models.DataObjects;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Silicus.Finder.Entities.Initializer
 {
@@ -43,42 +45,97 @@ namespace Silicus.Finder.Entities.Initializer
                 isActive = true
 
             });
-            //context.Add(new Project
-            //{
-            //    ProjectDescription = "Landmark"
-            //});
 
-            //context.Add(new Project
-            //{
-            //    ProjectDescription = "MorningStar"
-            //});
-            
-            //context.Add(new ProjectDetail
-            //{
-            //    ProjectName = "Landmark",
-            //    Status = "Red"
-            //});
-
-            //context.Add(new ProjectDetail
-            //{
-            //    ProjectName = "MorningStar",
-            //    Status = "Green"
-            //});
-
-            //context.Add(new Manager
-            //{
-            //    ManagerName = "Shailendra"
-            //});
-
-            //context.Add(new Manager
-            //{
-            //    ManagerName = "Sulekha"
-            //});
+            //context.Add(
+            //      new Project
+            //       {
+            //           ProjectName = "Employee Finder",
+            //           ProjectType = ProjectType.Internal,
+            //           EngagementType = EngagementType.Time_Based,
+            //           StartDate = new System.DateTime(2010, 05, 22),
+            //           ExpectedEndDate = new System.DateTime(2010, 05, 22),
+            //           ActualEndDate = new System.DateTime(2010, 05, 22),
+            //           AdditionalNotes = "This is additional note",
+            //           Description = "Find the exact employee",
+            //           Employees = new List<Employee>
+            //                          {
 
 
-         
+            //                           }
+            //                       }
+
+            //                       );
+
+            context.Add(
+                new Employee
+                       {
+                           FirstName = "Abhishek",
+                           MiddleName = "A",
+                           LastName = "Jadhav",
+                           Gender = Gender.Male,
+
+                           Contact = new Contact
+                               {
+                                   EmailAddress = "a@b.com",
+                                   MobileNumber = 758838,
+                                   PhoneNumber = "02382-265234",
+                                   Skype = "aMohite"
+                               },
+
+                           CubicleLocation = new CubicleLocation
+                                  {
+                                      Building = "B",
+                                      DeskNumber = "5/INCB-19",
+                                      FloorNumber = 5
+                                  },
+
+                           EmployeeType = EmployeeType.Contract,
+                           HighestQualification = "Be",
+                           ManagerRecommendation = "Well performance",
+                           SilicusExperienceInMonths = 4,
+                           TotalExperienceInMonths = 4,
+                           SkillSets = new List<SkillSet> { 
+                                            new SkillSet {Name="C#",Description="C# net description" }
+                                         }
+
+                       }
+                         );
+
+
+            context.Add(new Employee
+            {
+                FirstName = "Ankit",
+                MiddleName = "Amit",
+                LastName = "Agrawal",
+                Gender = Gender.Male,
+                Contact = new Contact
+                {
+                    EmailAddress = "a@b.com",
+                    MobileNumber = 758838,
+                    PhoneNumber = "02382-265234",
+                    Skype = "aMohite"
+                },
+                CubicleLocation = new CubicleLocation
+                {
+                    Building = "B",
+                    DeskNumber = "5/INCB-19",
+                    FloorNumber = 5
+                },
+                //EmployeeSkillSets
+                EmployeeType = EmployeeType.Contract,
+                HighestQualification = "MTEK",
+                ManagerRecommendation = "Well performance",
+                SilicusExperienceInMonths = 4,
+                TotalExperienceInMonths = 4,
+
+                SkillSets = new List<SkillSet> { 
+                                                  new SkillSet {Name="ASP",Description="ASP net description" }
+                                               }
+            }
+            );
 
         }
+
 
         private static void AddIndexes(FinderIpDataContext context, string databaseName)
         {
@@ -90,7 +147,7 @@ namespace Silicus.Finder.Entities.Initializer
 
             context.Database.ExecuteSqlCommand(modifiedSqlScript);
         }
-        
+
         private static void DropExistingConnectionToDatabase(FinderIpDataContext context, string databaseName)
         {
             var sqlContent = Content(DropConnectionScript);

@@ -4,7 +4,8 @@ namespace Silicus.Finder.Services.Interfaces
 {
     public interface IProjectService
     {
-        int Add(Project Project);
+        int AddProject(Project Project);
+        int UpdateProject(Project Project);
         List<Project> GetAllProjects();
         Project GetProjectById(int? id);
         List<SkillSet> GetAllSkills();
