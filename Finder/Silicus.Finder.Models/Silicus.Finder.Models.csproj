@@ -94,9 +94,11 @@
     <Compile Include="DataObjects\Asset.cs" />
     <Compile Include="DataObjects\Category.cs" />
     <Compile Include="DataObjects\Contact.cs" />
-    <Compile Include="DataObjects\CubicalLocation.cs" />
+    <Compile Include="DataObjects\CubicleLocation.cs" />
     <Compile Include="DataObjects\EmailAvailable.cs" />
     <Compile Include="DataObjects\Employee.cs" />
+    <Compile Include="DataObjects\EmployeeProjects.cs" />
+    <Compile Include="DataObjects\EmployeeSkillSet.cs" />
     <Compile Include="DataObjects\EmployeeType.cs" />
     <Compile Include="DataObjects\Engagement.cs" />
     <Compile Include="DataObjects\Gender.cs" />

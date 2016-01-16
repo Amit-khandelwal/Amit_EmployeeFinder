@@ -318,6 +318,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CookieHelper.cs" />
     <Compile Include="Filters\AuditAttribute.cs" />
@@ -344,6 +345,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\EmployeeNameViewModel.cs" />
     <Compile Include="ViewModel\ProjectListViewModel.cs" />
+    <Compile Include="ViewModel\SkillSetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Silicus.Finder.Web.dll" />
@@ -680,7 +682,6 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\CreateProject.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Admin\_partialViewjqgrid.cshtml" />
     <Content Include="Views\Admin\Select.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
@@ -693,6 +694,14 @@
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
     <Content Include="Views\Projects\ProjectList.cshtml" />
     <Content Include="Views\Projects\ProjectNotFound.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\EditProject.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
+    <Content Include="Views\Technology\Index.cshtml" />
+    <Content Include="Views\Technology\Create.cshtml" />
+    <Content Include="Views\Technology\GetStateList.cshtml" />
+    <Content Include="Views\Technology\ProjectList_Nikhil.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -760,7 +769,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

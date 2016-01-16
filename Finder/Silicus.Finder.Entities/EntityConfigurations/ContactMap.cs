@@ -15,6 +15,7 @@ namespace Silicus.Finder.Entities.EntityConfigurations
 
             ToTable(TableSettings.Contacts, TableSettings.DefaultSchema);
 
+
         }
     }
 }

@@ -53,27 +53,31 @@ namespace Silicus.Finder.Entities.Initializer
             //    ProjectDescription = "MorningStar"
             //});
             
-            context.Add(new ProjectDetail
-            {
-                ProjectName = "Landmark",
-                Status = "Red"
-            });
+            //context.Add(new ProjectDetail
+            //{
+            //    ProjectName = "Landmark",
+            //    Status = "Red"
+            //});
 
-            context.Add(new ProjectDetail
-            {
-                ProjectName = "MorningStar",
-                Status = "Green"
-            });
+            //context.Add(new ProjectDetail
+            //{
+            //    ProjectName = "MorningStar",
+            //    Status = "Green"
+            //});
 
-            context.Add(new Manager
-            {
-                ManagerName = "Shailendra"
-            });
+            //context.Add(new Manager
+            //{
+            //    ManagerName = "Shailendra"
+            //});
 
-            context.Add(new Manager
-            {
-                ManagerName = "Sulekha"
-            });
+            //context.Add(new Manager
+            //{
+            //    ManagerName = "Sulekha"
+            //});
+
+
+         
+
         }
 
         private static void AddIndexes(FinderIpDataContext context, string databaseName)
