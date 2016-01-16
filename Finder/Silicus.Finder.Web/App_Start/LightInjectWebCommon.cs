@@ -38,12 +38,12 @@ namespace Silicus.Finder.Web
             container.Register<IDataContextFactory, DataContextFactory>();
             container.Register<IProjectDetailService, ProjectDetailService>();
             container.Register<IProjectService, ProjectService>();
-            container.Register<IEmployeeService, EmployeeService>();
             container.Register<IUserService, UserService>();
             container.Register<IRolesService, RolesService>();
             container.Register<IMappingService, MappingService>();
             container.Register<ISmtpClient, SmtpClientWrapper>();
             container.Register<IEmailService, EmailService>();
+            container.Register<IEmployeeService, EmployeeService>();
             container.Register<ISkillSetService, SkillSetService>();
             container.Register<ICookieHelper, CookieHelper>();
             container.Register<ILogger>((factory) => new DatabaseLogger("name=FinderLoggerDataContext", Type.GetType(string.Empty), (Func<DateTime>)(() => DateTime.UtcNow), string.Empty));
