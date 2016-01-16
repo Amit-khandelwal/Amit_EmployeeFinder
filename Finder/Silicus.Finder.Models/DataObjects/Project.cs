@@ -30,10 +30,10 @@ namespace Silicus.Finder.Models.DataObjects
         public string Description { get; set; }
 
         [Display(Name = "Project Type")]
-        public ProjectType ProjectType { get; set; }
+        public ProjectType? ProjectType { get; set; }
 
         [Display(Name = "Engagement Type")]
-        public EngagementType EngagementType { get; set; }
+        public EngagementType? EngagementType { get; set; }
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]

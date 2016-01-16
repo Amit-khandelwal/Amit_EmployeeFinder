@@ -2,12 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
-<br />
-<br />
-<br />
-<br />
-<h2>Index</h2>
+
+<h2>Projects</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateProject")
@@ -76,3 +74,9 @@
 }
 
 </table>
+
+<script type="text/javascript">
+    var message = '@message';
+    if (message)
+        alert(message);
+</script>
