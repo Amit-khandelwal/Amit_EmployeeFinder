@@ -3,30 +3,30 @@
     ViewBag.Title = "SearchEmployeeByName";
 }
 
-<h2>SearchEmployeeByName</h2>
-<table class="table">
-<tr>
-    <th>
-        @Html.DisplayNameFor(model => model.FirstName)
-    </th>
-    <th></th>
-</tr>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h4>SearchEmployeeByName</h4>
+@*<table class="table">*@
 
 @foreach (var item in Model)
 {
-    <tr>
+    
+        <li>
+            @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
+        </li>
+   
+    
+    @*<tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-
+            @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
         </td>
-        <td>
-           
-            @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
-           
-        </td>
-    </tr>
+    </tr>*@
 }
-
-</table>
+@*</table>*@
 
 

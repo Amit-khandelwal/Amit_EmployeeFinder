@@ -1,18 +1,16 @@
-﻿using System;
+﻿
+using Silicus.Finder.Models.DataObjects;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Silicus.Finder.Models.DataObjects
+namespace Silicus.Finder.Web.ViewModel
 {
-    public class Employee
+    public class EmployeesListViewMode
     {
         [Key]
         public int EmployeeId { get; set; }
-        
+
         [Required(ErrorMessage = "First Name can't be blank")]
         [StringLength(20, ErrorMessage = "First Name should contain less than 20 characters")]
         [Display(Name = "First Name")]
@@ -28,7 +26,7 @@ namespace Silicus.Finder.Models.DataObjects
         public string LastName { get; set; }
 
         [NotMapped]
-        public string FullName { get {return FirstName+" "+ LastName;} }
+        public string FullName { get { return FirstName + " " + LastName; } }
 
         [Required(ErrorMessage = "Please select Gender")]
         public Gender Gender { get; set; }
@@ -43,8 +41,10 @@ namespace Silicus.Finder.Models.DataObjects
         public int? SilicusExperienceInMonths { get; set; }
 
         [Display(Name = "Highest Qualification")]
-      //  [Required(ErrorMessage = "Enter your Highest Qualification")]
+        //  [Required(ErrorMessage = "Enter your Highest Qualification")]
         public string HighestQualification { get; set; }
+
+        public List<SkillSet> skillSetList = new List<SkillSet>();
 
         public virtual ICollection<SkillSet> SkillSets { get; set; }
 
@@ -56,16 +56,8 @@ namespace Silicus.Finder.Models.DataObjects
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
 
-        
-       // public int? ProjectId { get; set; }
         public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
 
-        [Display(Name = "Manager Recommendation")]
-        [StringLength(200)]
-        public string ManagerRecommendation { get; set; }
-        public Employee()
-        {
-            Projects = new HashSet<Project>();
-        }
+
     }
 }

@@ -5,15 +5,21 @@
 }
 
 <h2>Index</h2>
-
-
+<br />
+<br/>
+<br/>
+<br />
 <p>
-    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
+    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("name") }))
     {
         @Html.Label("Employee Name")
-        @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
+       @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
+       
         <input type="submit" id="submit" value="Search" />
     }
+
+   
+
 </p>
 <table class="table">
     <tr>
@@ -78,7 +84,10 @@
                 @Html.ActionLink("Add Project", "AddProjectToEmployee", new { id = item.EmployeeId })
             </td>
         </tr>
+        
     }
+
+    @Html.ActionLink("EmployeeList", "GetEmployeesList") 
 
 </table>
 <div>

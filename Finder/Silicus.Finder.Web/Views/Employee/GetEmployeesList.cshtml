@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.EmployeesListViewMode>
+
+@{
+    ViewBag.Title = "GetEmployeesList";
+}
+
+<h2>GetEmployeesList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighestQualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeType)
+        </th>
+
+        <th>
+            @Html.DisplayName("Email Id")
+        </th>
+
+        <th>
+            @Html.DisplayName("Mobile")
+        </th>
+
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+
+        <th>
+            @Html.DisplayName("ProjectName")
+        </th>
+        @*[5:55:44 PM] Shivani Surana: @{
+            var skypeId = Model.Select(p => p.Contact.SkypeId);
+        }
+        @Html.DisplayFor(modelItem => skypeId)
+        [5:56:05 PM] Shivani Surana: var fullName = Model.Where(p => p.Employees.Any(e => e.EmployeeId == p.EngagementManagerId)).Select(e => e.Employees.Select(em => em.FirstName + " " + em.LastName)).FirstOrDefault();*@
+        
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.skillSetList)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.skillSetList)
+            </th>*@
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilicusExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighestQualification)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeType)
+            </td>
+
+            <td>
+                @{
+        var emailId = Model.Select(p => p.Contact.EmailId);
+                }
+                @Html.DisplayFor(modelItem => emailId)
+
+            </td>
+
+            <td>
+                @{
+
+        var mobile = Model.Select(p => p.Contact.MobileNumber);
+                }
+
+                @Html.DisplayFor(modelItem => mobile)
+
+            </td>
+
+            <td>@{
+                var location = Model.Select(p => p.CubicalLocation.Building + "/" +
+                    p.CubicalLocation.FloorNumber+ "/" +
+                    p.CubicalLocation.DeskNumber);
+            }
+                @Html.DisplayFor(modelItem => location)
+            </td>
+
+            @*<td>
+                    <ul>
+                        <li>
+                            @item.skillSetList
+                        </li>
+                    </ul>
+                </td>*@
+
+            <td>
+                
+                
+
+                @*@{
+        var name = Model.Where(e => e.Projects.Any(c => c.Employees.Any(t => t.EmployeeId == e.EmployeeId))).Select(d => d.Projects.Select(w => w.ProjectName));
+                }
+                @Html.DisplayFor(modelItem => name)*@
+            </td>
+
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+            </td>
+        </tr>
+
+
+    }
+
+</table>

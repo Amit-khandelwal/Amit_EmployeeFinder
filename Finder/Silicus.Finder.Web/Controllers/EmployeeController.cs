@@ -15,7 +15,7 @@ namespace Silicus.Finder.Web.Controllers
         private readonly IEmployeeService _employeeService;
 
         public EmployeeController(IEmployeeService employeeService)
-        {
+       {
             _employeeService = employeeService;
         }
 
@@ -29,15 +29,36 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
-            if ( ModelState.IsValid)
+            List<EmployeeNameViewModel> employeeNameViewModel = new List<EmployeeNameViewModel>();
+            if (ModelState.IsValid)
             {
-                var _employeeList = _employeeService.GetEmployeeByName(name);
-                Mapper.Map(_employeeList, _employeeNameViewModel);
-               
+                var employeeList = _employeeService.GetEmployeeByName(name);
+                Mapper.Map(employeeList, employeeNameViewModel);
+
             }
-            return View(_employeeNameViewModel);
+
+            if (employeeNameViewModel.Count != 0)
+            {
+                return View(employeeNameViewModel);
+            }
+            else
+            {
+                ViewBag.current = "Incorrect Employee Name! Please refine your search.";
+                return View("NoEmployee");
+            }
+
         }
+
+
+        public ActionResult GetEmployeesList()
+        {
+            var employeesList = _employeeService.GetEmployee();
+            var employeesListViewMode = new List<EmployeesListViewMode>();
+            Mapper.Map(employeesList, employeesListViewMode);
+            return View(employeesListViewMode);
+        }
+
+
         public ActionResult Create()
         {
             var newEmployee = new Employee();
@@ -65,6 +86,7 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult AddProjectToEmployee()
         {
             var newEmployee = new Employee();
+
             return View(newEmployee);
         }
 
@@ -88,4 +110,3 @@ namespace Silicus.Finder.Web.Controllers
         
     }
 }
-//name != null &&
