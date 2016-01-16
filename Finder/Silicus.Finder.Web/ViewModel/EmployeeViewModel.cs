@@ -10,7 +10,7 @@ namespace Silicus.Finder.Web.ViewModel
     public class EmployeeViewModel
     {
         public int EmployeeId { get; set; }
-        
+
        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Middle Name")]
