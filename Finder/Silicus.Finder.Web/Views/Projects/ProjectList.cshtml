@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ProjectList";
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
 @*<link href="~/Content/css/style.css" rel="stylesheet" />*@
 <h2>ProjectList</h2>
@@ -10,7 +11,7 @@
 <br />
 <br />
 <p>
-    @Html.ActionLink("Create New", "Create", new { @class = "ProjectCreateButtonCSS" })
+    @Html.ActionLink("Create New", "CreateProject", new { @class = "ProjectCreateButtonCSS" })
 </p>
 
 <table class="table">
@@ -45,7 +46,7 @@
         <th>
             @Html.DisplayName("Action")
         </th>
-        <th></th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -53,6 +54,7 @@
         <tr>
             <td>
                 <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
+               ( @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )
                 @*@Html.ActionLink("Details", "GetProjectDetails", "Projects", new { proViewModel = Model, id = item.ProjectId })*@
             </td>
             <td>
@@ -75,28 +77,12 @@
             </td>
 
             <td>
-                @{
-                    // var projectid = ViewBag.ProjectId;
-                    string fullName = "";
-                    var employeeList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.EngagementManagerId)).Select(a => a.Employees).FirstOrDefault();
-                    foreach(var employee in employeeList)
-                    {
-                        fullName = employee.FirstName + " " + employee.LastName;
-                    }
-                    @Html.DisplayFor(modelItem => fullName)
-                    }                   
+                @Html.DisplayFor(modelItem => item.EngagementManagerId)
             </td>
 
+
             <td>
-                @{
-                    string projectManagerName = "";
-                    var projectManagerList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.ProjectManagerId)).Select(a => a.Employees).FirstOrDefault();
-                    foreach (var employee in projectManagerList)
-                    {
-                        projectManagerName = employee.FirstName + " " + employee.LastName;
-                    }
-                    @Html.DisplayFor(modelItem => projectManagerName)
-                }  
+                @Html.DisplayFor(modelItem => item.ProjectManagerId)
             </td>
 
             <td>
@@ -104,7 +90,14 @@
                     <img src="~/Images/Project/project-archive.png" width="22" height="22" />
                 </a>
             </td>
+
+            
         </tr>
     }
 
 </table>       
+<script type="text/javascript">
+    var message = '@message';
+    if (message)
+        alert(message);
+</script>  

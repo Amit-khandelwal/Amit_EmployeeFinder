@@ -720,6 +720,10 @@
     <Content Include="Views\Employee\EmployeeSkillSetDetails.cshtml" />
     <Content Include="Views\Employee\GetAllEmployees.cshtml" />
     <Content Include="Views\Employee\GetEmployeesList.cshtml" />
+    <Content Include="Views\Employee\GetAllEmployees.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Employee\GetAllEmployees.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

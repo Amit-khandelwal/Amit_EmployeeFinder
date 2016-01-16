@@ -77,9 +77,9 @@
 
             <td>
                 @{
-            var EmailAddress = Model.Select(p => p.Contact.EmailAddress);
+            var emailId = Model.Select(p => p.Contact.EmailAddress);
                 }
-                @Html.DisplayFor(modelItem => EmailAddress)
+                @Html.DisplayFor(modelItem => emailId)
 
             </td>
 
