@@ -679,16 +679,16 @@
     <Content Include="Views\Admin\_partialViewUser.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ComboBox.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\CreateProject.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Admin\_partialViewjqgrid.cshtml" />
     <Content Include="Views\Admin\Select.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
-    <Content Include="Views\Employee\AddProjectToEmployee.cshtml" />
-    <Content Include="Views\Employee\AddSkillSetToEmployee.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\EditProject.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
@@ -763,7 +763,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

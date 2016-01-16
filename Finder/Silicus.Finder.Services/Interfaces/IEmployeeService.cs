@@ -18,7 +18,10 @@ namespace Silicus.Finder.Services.Interfaces
        List<Project> GetAllProjects();
        List<SkillSet> GetAllSkillSets();
        Project GetProjectById(int projectId);
+       SkillSet GetSkillSetById(int skillSetId);
        void SaveEmployeeProject(EmployeeProjects newEmployeeProject);
        void SaveEmployeeSkillSet(EmployeeSkillSet newEmployeeSkillSet);
+       void EditEmployee(Employee selectedEmployee);
+
     }
 }

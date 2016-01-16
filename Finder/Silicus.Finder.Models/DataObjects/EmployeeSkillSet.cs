@@ -12,11 +12,11 @@ namespace Silicus.Finder.Models.DataObjects
         public int EmployeeSkillSetId { get; set; }
         public int EmployeeId { get; set; }
         public int SkillSetId { get; set; }
-        
-        [ForeignKey("EmployeeId")]
-        public virtual Employee Employee { get; set; }
 
-        [ForeignKey("SkillSetId")]
-        public virtual SkillSet SkillSet { get; set; }
+        //[ForeignKey("EmployeeId")]
+        //public virtual Employee Employee { get; set; }
+
+        //[ForeignKey("SkillSetId")]
+        //public virtual SkillSet SkillSet { get; set; }
     }
 }

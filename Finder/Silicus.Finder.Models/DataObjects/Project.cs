@@ -13,7 +13,7 @@ namespace Silicus.Finder.Models.DataObjects
 
         public Project()
         {
-           // this.Employees = new HashSet<Employee>();
+            this.Employees = new HashSet<Employee>();
             this.SkillSets = new HashSet<SkillSet>();
         }
 
@@ -37,28 +37,37 @@ namespace Silicus.Finder.Models.DataObjects
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? StartDate { get; set; }
 
         [Display(Name = "Expected End_Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? ExpectedEndDate { get; set; }
 
         [Display(Name = "Actual End_Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? ActualEndDate { get; set; }
 
         [Display(Name = "Engagement Manager")]
+        [Required(ErrorMessage = "Select Engagement Manager")]
         public int? EngagementManagerId { get; set; }
       
         [Display(Name = "Project Manager")]
+        [Required(ErrorMessage = "Select Project Manager")]
         public int? ProjectManagerId { get; set; }
 
         [StringLength(150, ErrorMessage = "Additional Notes should contain less than 150 characters")]
         [Display(Name = "Additional Notes")]
         public string AdditionalNotes { get; set; }
-       
+
+        [NotMapped]
+        public int? skillSetId { get; set; }
         public virtual ICollection<SkillSet> SkillSets { get; set; }
-        //public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+        
+        [NotMapped]
+        public int[] EmployeeIds { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

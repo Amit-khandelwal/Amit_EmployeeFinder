@@ -61,6 +61,12 @@ namespace Silicus.Finder.Services
             return targetEmployee;
         }
 
+        public SkillSet GetSkillSetById(int skillSetId)
+        {
+            return context.Query<SkillSet>().Where(emp => emp.SkillSetId == skillSetId).First();
+            
+        }
+
         public void SaveEmployeeProject(EmployeeProjects newEmployeeProject)
         {
             context.Add(newEmployeeProject);
@@ -69,6 +75,18 @@ namespace Silicus.Finder.Services
         public void SaveEmployeeSkillSet(EmployeeSkillSet newEmployeeSkillSet)
         {
             context.Add(newEmployeeSkillSet);
+        }
+
+        private void DeleteEmployee(Employee selectedEmployee)
+        {
+            context.Delete(selectedEmployee);
+        }
+
+        public void EditEmployee(Employee selectedEmployee)
+        {
+            var targetEmployee = GetEmployeeById(selectedEmployee.EmployeeId);
+            DeleteEmployee(targetEmployee);
+            context.Add(selectedEmployee);
         }
 
         public void AddProjectToEmployee(Employee targetEmployee)
