@@ -21,7 +21,7 @@ namespace Silicus.Finder.Web.Controllers
 
         public ActionResult Index()
         {
-            var emp = _employeeService.GetEmployee();
+            var emp = _employeeService.GetAllEmployees();
             return View(emp);
         }
 
@@ -29,16 +29,34 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
-            if ( ModelState.IsValid)
+            List<EmployeeNameViewModel> employeeNameViewModel = new List<EmployeeNameViewModel>();
+            if (ModelState.IsValid)
             {
-                var _employeeList = _employeeService.GetEmployeeByName(name);
-                Mapper.Map(_employeeList, _employeeNameViewModel);
-               
+                var employeeList = _employeeService.GetEmployeeByName(name);
+                Mapper.Map(employeeList, employeeNameViewModel);
+
             }
-            return View(_employeeNameViewModel);
+               
+            if (employeeNameViewModel.Count != 0)
+            {
+                return View(employeeNameViewModel);
+            }
+            else
+            {
+                ViewBag.current = "Incorrect Employee Name! Please refine your search.";
+                return View("NoEmployee");
         }
 
+            }
+
+
+        public ActionResult GetAllEmployees()
+        {
+            var employeesList = _employeeService.GetAllEmployees();
+            var employeesListViewMode = new List<EmployeesListViewMode>();
+            Mapper.Map(employeesList, employeesListViewMode);
+            return View(employeesListViewMode);
+        }
         [HttpGet]
         public ActionResult Create()
         {
@@ -57,19 +75,19 @@ namespace Silicus.Finder.Web.Controllers
                 // TODO: Add insert logic here
                 if (newEmployee.ProjectId != null)
                 {
-                    foreach (int projectId in newEmployee.ProjectId)
-                    {
-                        var employeeProject = _employeeService.GetProjectById(projectId);
-                        newEmployee.Projects.Add(employeeProject);
-                    }
+                foreach (int projectId in newEmployee.ProjectId)
+                {
+                    var employeeProject = _employeeService.GetProjectById(projectId);
+                    newEmployee.Projects.Add(employeeProject);
+                }
                 }
                 if (newEmployee.SkillId != null)
                 {
-                    foreach (int skillId in newEmployee.SkillId)
-                    {
-                        var employeeSkill = _employeeService.GetSkillSetById(skillId);
-                        newEmployee.SkillSets.Add(employeeSkill);
-                    }
+                foreach (int skillId in newEmployee.SkillId)
+                {
+                    var employeeSkill = _employeeService.GetSkillSetById(skillId);
+                    newEmployee.SkillSets.Add(employeeSkill);
+                }
                 }
 
                 _employeeService.SaveEmployee(newEmployee);
@@ -100,7 +118,7 @@ namespace Silicus.Finder.Web.Controllers
             ViewBag.Projects = new MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
             ViewBag.Skills = new MultiSelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
             try
-             {
+            {
                 if (selectedEmployee.ProjectId != null)
                 {
                     foreach (int projectId in selectedEmployee.ProjectId)
@@ -125,6 +143,6 @@ namespace Silicus.Finder.Web.Controllers
                 return View();
             }
 
-        }        
+        }
     }
 }

@@ -4,16 +4,27 @@
     ViewBag.Title = "GetAllEmployees";
 }
 
-<h2>GetAllEmployees</h2>
+<br/>
+<br/>
 
+<h4>List Of Employees</h4>
+
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <input type="submit" value="Add Employee" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
 </p>
+
 <table class="table">
     <tr>
 
         <th>
             @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayName("Type")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
@@ -25,30 +36,34 @@
             @Html.DisplayNameFor(model => model.HighestQualification)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            @Html.DisplayName("Email Id")
         </th>
-
+        <th>
+            @Html.DisplayName("Contact")
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.CubicleLocationId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactId)
-        </th>
-
-        <th>
-            @Html.DisplayName("Location")
-        </th>
-
-        <th>
             @Html.DisplayName("ProjectName")
         </th>
 
+        <th>
+            @Html.DisplayName("Skills")
+        </th>
 
         @foreach (var item in Model)
         {
         <tr>
             <td>
                 @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
@@ -59,67 +74,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HighestQualification)
             </td>
-
             <td>
-                @Html.DisplayFor(modelItem => item.Gender)
+                @Html.Label(item.Contact.EmailAddress)
             </td>
-
             <td>
-                @Html.DisplayFor(modelItem => item.EmployeeType)
+                @Html.Label("" + item.Contact.MobileNumber)
             </td>
-
             <td>
-                @{
-            var emailId = Model.Select(p => p.Contact.EmailAddress);
+                @Html.Label(item.CubicleLocation.Building +
+                item.CubicleLocation.FloorNumber +
+                item.CubicleLocation.DeskNumber)
+            </td>
+            <td>
+                @foreach (var project in item.Projects)
+                {
+                    @Html.Label(project.ProjectName + ",")
                 }
-                @Html.DisplayFor(modelItem => emailId)
-
             </td>
-
             <td>
-                @{
-
-            var mobile = Model.Select(p => p.Contact.MobileNumber);
+                @foreach (var skills in item.SkillSets)
+                {
+                    @Html.Label(skills.Name)
                 }
-
-                @Html.DisplayFor(modelItem => mobile)
-
             </td>
-
-            <td>
-                @{
-            var location = Model.Select(p => p.CubicleLocation.Building + "/" +
-                        p.CubicleLocation.FloorNumber + "/" +
-                        p.CubicleLocation.DeskNumber);
-                }
-                @Html.DisplayFor(modelItem => location)
-            </td>
-
-
-            @*<td>
-                @{
-            var projectName = Model.Select
-                (p => p.Projects.Select(e => e.EmployeeIds.Equals (item.EmployeeId)))
-                ;
-                
-                }
-            </td>*@
-
-            
-
-
-
-
-            @*<td>
-                    <ul>
-                        <li>
-                            @item.skillSetList
-                        </li>
-                    </ul>
-                </td>*@
-
-            <td></td>
-
             <td>
                 @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
             </td>

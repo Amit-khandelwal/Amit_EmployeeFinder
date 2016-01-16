@@ -5,17 +5,24 @@
 }
 
 <h2>Index</h2>
-
+<br />
+<br/>
+<br/>
+<br />
 <p>
-    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
+    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("name") }))
     {
         @Html.Label("Employee Name")
         @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
-        <input type="submit" id="submit" value="Search" />
+
+    <input type="submit" id="submit" value="Search" class="btn btn-default" />
     }
+
+   
+
 </p>
 <p>
-    <input type="submit" value="Add Employee" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
+    <input type="submit" value="Employeee List" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetAllEmployees", "Employee") + "'");" />
 </p>
 <table class="table">
     <tr>
@@ -82,7 +89,10 @@
 
             
         </tr>
+        
     }
+
+    @Html.ActionLink("EmployeeList", "GetAllEmployees") 
 
 </table>
 
