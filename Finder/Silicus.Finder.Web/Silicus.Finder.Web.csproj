@@ -343,9 +343,10 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeNameViewModel.cs" />
     <Compile Include="ViewModel\ProjectListViewModel.cs" />
     <Compile Include="ViewModel\SkillSetViewModel.cs" />
+    <Compile Include="ViewModel\EmployeesListViewMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Silicus.Finder.Web.dll" />
@@ -429,12 +430,12 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Images\Project\project-archive.png" />
     <Content Include="Images\silicus\logo.png" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Global.asax.cs.bak" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -686,21 +687,20 @@
     <Content Include="Views\Admin\Select.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
+    <Content Include="Views\Projects\ProjectList.cshtml" />
+    <Content Include="Views\Projects\ProjectNotFound.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\EditProject.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
-    <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Technology\GetStateList.cshtml" />
-    <Content Include="Views\Technology\ProjectList_Nikhil.cshtml" />
-    <Content Include="Views\Projects\ProjectList.cshtml" />
-    <Content Include="Views\Projects\ProjectNotFound.cshtml" />
-    <Content Include="Views\Employee\AddProjectToEmployee.cshtml" />
-    <Content Include="Settings.StyleCop" />
+    <Content Include="Views\Employee\GetAllEmployees.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

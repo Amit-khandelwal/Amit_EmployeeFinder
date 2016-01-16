@@ -33,7 +33,7 @@ namespace Silicus.Finder.Services
             return employee;
         }
 
-
+   
         public IEnumerable<Project> GetProjectsList()
         {
             var projectList = _context.Query<Project>().Include(e=>e.Employees).ToList();
@@ -56,14 +56,14 @@ namespace Silicus.Finder.Services
                 projectListEndsWith = _context.Query<Project>().Include(e => e.Employees).Where(e => e.ProjectName.EndsWith(name)).ToList();
 
                     if(projectListEndsWith.Count == 0)
-        {
+                    {
                         return _context.Query<Project>().Include(e => e.Employees).Where(e => e.ProjectId.ToString().Equals(name)).ToList();
                     }                
             }
 
             return projectListEndsWith;          
         }
-
+        
 
 
         public Project GetProjectById(int? id)
