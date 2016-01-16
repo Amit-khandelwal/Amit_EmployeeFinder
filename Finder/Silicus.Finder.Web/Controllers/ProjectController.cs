@@ -3,6 +3,9 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using System.Collections.Generic;
+using Silicus.Finder.Web.ViewModel;
+using AutoMapper;
 
 namespace Silicus.Finder.Web.Controllers
 {

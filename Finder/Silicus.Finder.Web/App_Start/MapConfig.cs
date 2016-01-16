@@ -12,7 +12,7 @@ namespace Silicus.Finder.Web
     {
         public static void RegisterMap()
         {
-            Mapper.CreateMap<Employee, EmployeeNameViewModel>();
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
         }
     }
 }

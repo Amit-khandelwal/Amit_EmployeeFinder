@@ -1,5 +1,7 @@
-﻿using Silicus.Finder.Models.DataObjects;
+﻿using AutoMapper;
+using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
+using Silicus.Finder.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +22,8 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            var projects = _projectService.GetAllProjects();
-            return View(projects);
+            //var projects = _projectService.GetAllProjects();
+            return View();
         }
 
         // GET: Projects/Create
@@ -39,7 +41,7 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 var skill = _projectService.GetSkillSetById(Project.skillSetId);
-                Project.SkillSets.Add(skill); 
+                Project.SkillSets.Add(skill);
 
                 var projectId = _projectService.AddProject(Project);
                 if (projectId >= 0)
@@ -48,12 +50,49 @@ namespace Silicus.Finder.Web.Controllers
 
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProjectList");
             }
             catch
             {
                 return View();
             }
+        }
+
+
+        public ActionResult GetProjectList()
+        {
+            var projectList = _projectService.GetProjectsList();
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
+        }
+
+        public ActionResult GetProjectsListByName(string name)
+        {
+            IEnumerable<Project> projectList;
+            ViewBag.Message = "Incorrect Project Name! Please refine your search.";
+
+            if (name != "")
+            {
+                projectList = _projectService.GetProjectsListByName(name);
+
+                if (projectList.Count() == 0)
+                {
+                    return View("ProjectNotFound");
+                }
+            }
+            //If project name is not entered, shows Error message on another view.
+            else
+            {
+                return View("ProjectNotFound");
+            }
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
         }
 
         [HttpGet]
@@ -73,14 +112,22 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult EditProject(Project Project)
         {
-            var updatedProjectId =  _projectService.UpdateProject(Project);
+            var updatedProjectId = _projectService.UpdateProject(Project);
             if (updatedProjectId >= 0)
             {
-                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId+" Updated Successfully.";
+                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
 
             }
-  
-            return RedirectToAction("Index");
+
+            return RedirectToAction("GetProjectList");
+        }
+
+
+        [HttpGet]
+        public ActionResult AddEmployeeToProject(int id)
+        {
+            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
+            return View(employeesForProject);
         }
     }
 }

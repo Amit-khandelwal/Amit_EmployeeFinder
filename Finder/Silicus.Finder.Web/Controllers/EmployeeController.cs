@@ -29,7 +29,7 @@ namespace Silicus.Finder.Web.Controllers
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            List<EmployeeNameViewModel> _employeeNameViewModel = new List<EmployeeNameViewModel>();
+            List<EmployeeViewModel> _employeeNameViewModel = new List<EmployeeViewModel>();
             if ( ModelState.IsValid)
             {
                 var _employeeList = _employeeService.GetEmployeeByName(name);

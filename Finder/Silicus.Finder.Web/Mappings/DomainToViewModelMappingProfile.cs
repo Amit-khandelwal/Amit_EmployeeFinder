@@ -20,8 +20,8 @@ namespace Silicus.Finder.Web.Mappings
         {
             Mapper.CreateMap<EntityA, Model>();
 
-            Mapper.CreateMap<Employee, EmployeeNameViewModel>();
-            //Mapper.CreateMap<SkillSet, SkillSetViewModel>();
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
+            Mapper.CreateMap<Project,ProjectListViewModel>();
             // Example for member to member mapping
             //Mapper.CreateMap<OrganizationUser, OrganizationUserDataAccessViewModel>()
             //    .ForMember(o => o.Name, b => b.MapFrom(z => z.FirstName + " " + z.LastName));
