@@ -13,7 +13,7 @@
     @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("name") }))
     {
         @Html.Label("Employee Name")
-       @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
+        @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
 
     <input type="submit" id="submit" value="Search" class="btn btn-default" />
     }

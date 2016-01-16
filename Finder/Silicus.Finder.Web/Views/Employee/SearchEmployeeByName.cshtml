@@ -11,10 +11,10 @@
 
 @foreach (var item in Model)
 {
-    
+           
         <li>
             @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
         </li>
-   
+           
 }
 
