@@ -687,6 +687,7 @@
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\EditProject.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
