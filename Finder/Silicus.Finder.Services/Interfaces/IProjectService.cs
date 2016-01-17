@@ -12,8 +12,10 @@ namespace Silicus.Finder.Services.Interfaces
         List<Employee> GetAllEmployee();
         IEnumerable<Project> GetProjectsList();
         IEnumerable<Project> GetProjectsListByName(string name);
+        bool DeallocateEmployyeFromProject(int empId, int projectId);
+     
         Employee GetEmployeeById(int? id);
-        IEnumerable<Employee> GetEmployeesAssignedToProject(int id);
+      
        
     }
 }
