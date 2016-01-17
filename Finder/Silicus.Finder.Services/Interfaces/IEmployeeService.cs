@@ -9,7 +9,7 @@ namespace Silicus.Finder.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        Employee GetEmployee(int id);
+        //Employee GetEmployee(int id);
        List<Employee> GetEmployeeByName(string name);
        List<Employee> GetAllEmployees();
        void SaveEmployee(Employee newEmployee);

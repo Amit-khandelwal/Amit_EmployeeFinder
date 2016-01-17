@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Silicus.Finder.Web.ViewModel
 {
-    public class EmployeesListViewMode
+    public class EmployeesListViewModel
     {
         [Key]
         public int EmployeeId { get; set; }
