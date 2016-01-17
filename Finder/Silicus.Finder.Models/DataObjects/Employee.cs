@@ -13,6 +13,7 @@ namespace Silicus.Finder.Models.DataObjects
         public Employee()
         {
             Projects = new HashSet<Project>();
+            SkillSets= new HashSet<SkillSet>();
         }
         [Key]
         public int EmployeeId { get; set; }
@@ -61,14 +62,14 @@ namespace Silicus.Finder.Models.DataObjects
         public virtual Contact Contact { get; set; }
 
         [NotMapped]
-        public int[] ProjectId { get; set; }
+        public IList<int> ProjectId { get; set; }
         public virtual ICollection<Project> Projects { get; set; }   // rename at the time of mapping otherwise Project_ProjectId column will get created
 
         //public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
 
 
         [NotMapped]
-        public int[] SkillId { get; set; }
+        public IList<int> SkillId { get; set; }
         public virtual ICollection<SkillSet> SkillSets { get; set; } 
 
         [Display(Name = "Manager Recommendation")]

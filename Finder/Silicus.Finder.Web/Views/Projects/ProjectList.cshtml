@@ -2,15 +2,15 @@
 
 @{
     ViewBag.Title = "ProjectList";
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
-@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
 <h2>ProjectList</h2>
 <br />
 <br />
 <br />
 <br />
 <p>
-    @Html.ActionLink("Create New", "Create", new { @class = "ProjectCreateButtonCSS" })
+    <input type="submit" value="Create Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" style="margin-left:890px" />
 </p>
 
 <table class="table">
@@ -53,7 +53,8 @@
         <tr>
             <td>
                 <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
-                @*@Html.ActionLink("Details", "GetProjectDetails", "Projects", new { proViewModel = Model, id = item.ProjectId })*@
+               ( @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )
+    
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectId)
@@ -75,36 +76,41 @@
             </td>
 
             <td>
-                @{
-                    // var projectid = ViewBag.ProjectId;
-                    string fullName = "";
-                    var employeeList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.EngagementManagerId)).Select(a => a.Employees).FirstOrDefault();
-                    foreach(var employee in employeeList)
-                    {
-                        fullName = employee.FirstName + " " + employee.LastName;
-                    }
-                    @Html.DisplayFor(modelItem => fullName)
-                    }                   
+                @foreach(var employee in item.Employees.Where(e => e.EmployeeId == item.EngagementManagerId))
+                {
+                    @Html.Label(employee.FirstName + " " + employee.LastName)
+                }
+
+            </td>
+            <td>
+                @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.ProjectManagerId))
+                {
+                    @Html.Label(employee.FirstName+ " " +employee.LastName)
+                }
             </td>
 
             <td>
                 @{
-                    string projectManagerName = "";
-                    var projectManagerList = Model.Where(p => p.Employees.Any(e => e.EmployeeId == item.ProjectManagerId)).Select(a => a.Employees).FirstOrDefault();
-                    foreach (var employee in projectManagerList)
+                    if (item.Status.ToString() == "Completed")
                     {
-                        projectManagerName = employee.FirstName + " " + employee.LastName;
-                    }
-                    @Html.DisplayFor(modelItem => projectManagerName)
-                }  
-            </td>
-
-            <td>
                 <a href="">
-                    <img src="~/Images/Project/project-archive.png" width="22" height="22" />
+                            <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
                 </a>
+                    }
+                    else
+                    {
+                        <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
+                    }
+                }                    
             </td>
+
+            
         </tr>
     }
 
 </table>       
+<script type="text/javascript">
+    var message = '@message';
+    if (message)
+        alert(message);
+</script>  

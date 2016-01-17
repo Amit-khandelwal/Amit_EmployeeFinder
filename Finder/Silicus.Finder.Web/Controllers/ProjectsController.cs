@@ -2,10 +2,8 @@
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
 using Silicus.Finder.Web.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Silicus.Finder.Web.Controllers
@@ -43,14 +41,14 @@ namespace Silicus.Finder.Web.Controllers
                 var skill = _projectService.GetSkillSetById(Project.skillSetId);
                 Project.SkillSets.Add(skill); 
 
-                var projectId = _projectService.Add(Project);
+                var projectId = _projectService.AddProject(Project);
                 if (projectId >= 0)
                 {
-                    TempData["AlertMessage"] = Project.ProjectName + " created successfully..ProjectId:" + projectId;
+                    TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + projectId + " Created Successfully.";
 
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProjectList");
             }
             catch
             {
@@ -104,15 +102,30 @@ namespace Silicus.Finder.Web.Controllers
 
             ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
             ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
+            ViewBag.Technologies = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name", project.skillSetId);
            
             return View(project);
         }
 
         [HttpPost]
-        public ActionResult EditProject(Project project)
+        public ActionResult EditProject(Project Project)
         {
-            _projectService.Add(project);
-            return View(project);
+            var updatedProjectId = _projectService.UpdateProject(Project);
+            if (updatedProjectId >= 0)
+            {
+                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
+
+            }
+
+            return RedirectToAction("GetProjectList");
+        }
+
+
+        [HttpGet]
+        public ActionResult AddEmployeeToProject(int id)
+        {
+            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
+            return View(employeesForProject);
         }
     }
 }
