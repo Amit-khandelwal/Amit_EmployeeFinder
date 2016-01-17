@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<Silicus.Finder.Web.ViewModel.ProjectListViewModel>
 @using PagedList.Mvc;
+@using Silicus.Finder.Models.DataObjects;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 
@@ -18,6 +19,7 @@
     <tr>
         @{
             var count = 1;
+            var employees = ViewData["Employees"] as List<Employee>;
 
             foreach (var name in Model)
             {
@@ -88,13 +90,13 @@
             </td>
 
             <td>
-                @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.EngagementManagerId))
+                @foreach (var employee in employees.Where(e => e.EmployeeId == item.EngagementManagerId))
                 {
                     @Html.Label(employee.FirstName + " " + employee.LastName)
                 }
             </td>
             <td>
-                @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.ProjectManagerId))
+                @foreach (var employee in employees.Where(e => e.EmployeeId == item.ProjectManagerId))
                 {
                     @Html.Label(employee.FirstName + " " + employee.LastName)
                 }

@@ -30,7 +30,7 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects/Create
         public ActionResult CreateProject()
         {
-            ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
+            ViewBag.Employees = new SelectList(_projectService.GetAllEmployees(), "EmployeeId", "FullName");
             ViewBag.Skills = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name");
             return View();
         }
@@ -63,6 +63,8 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult GetProjectList(int? page)
         {
             _pageNumber = (page ?? 1);
+
+            ViewData["Employees"] = _projectService.GetAllEmployees();
             var projectList = _projectService.GetProjectsList();
                
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
@@ -76,7 +78,9 @@ namespace Silicus.Finder.Web.Controllers
             IEnumerable<Project> projectList;
             _pageNumber = (page ?? 1);
 
+            ViewData["Employees"] = _projectService.GetAllEmployees();
             ViewData["name"] = name;
+
             ViewBag.Message = "Incorrect Project Name! Please refine your search.";
 
             projectList = _projectService.GetProjectsListByName(name);
@@ -99,8 +103,8 @@ namespace Silicus.Finder.Web.Controllers
             var selectedEngagementManager = _projectService.GetEmployeeById(project.EngagementManagerId);
             var selectedProjectManager = _projectService.GetEmployeeById(project.ProjectManagerId);
 
-            ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
-            ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
+            ViewBag.EngManager = new SelectList(_projectService.GetAllEmployees(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
+            ViewBag.projManager = new SelectList(_projectService.GetAllEmployees(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
             ViewBag.Technologies = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name", project.skillSetId);
            
             return View(project);
