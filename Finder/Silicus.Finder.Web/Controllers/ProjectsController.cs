@@ -124,8 +124,19 @@ namespace Silicus.Finder.Web.Controllers
         [HttpGet]
         public ActionResult AddEmployeeToProject(int id)
         {
-            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
-            return View(employeesForProject);
+            var employeeList = _projectService.GetAllEmployee();
+            ViewBag.ProjectId = id;
+            return View(employeeList);
         }
+
+         [HttpGet]
+        public ActionResult RemoveProjectEmployee(int empId, int projectId)
+        {
+            var isRemoved = _projectService.DeallocateEmployyeFromProject(empId, projectId);
+            return RedirectToAction("EditProject", new { id = projectId });
+        }
+
+
+     
     }
 }

@@ -2,13 +2,9 @@
 
 @{
     ViewBag.Title = "ProjectList";
-    var message = TempData["AlertMessage"] ?? string.Empty;
+    var message = TempData["AlertMessage"];
 }
 <h2>ProjectList</h2>
-<br />
-<br />
-<br />
-<br />
 <p>
     <input type="submit" value="Create Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" style="margin-left:890px" />
 </p>
@@ -111,6 +107,6 @@
 </table>       
 <script type="text/javascript">
     var message = '@message';
-    if (message)
+    if (message !=null)
         alert(message);
 </script>  

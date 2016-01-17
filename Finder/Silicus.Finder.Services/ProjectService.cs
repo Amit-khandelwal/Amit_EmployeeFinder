@@ -95,10 +95,19 @@ namespace Silicus.Finder.Services
         }
 
 
-        public IEnumerable<Employee> GetEmployeesAssignedToProject(int id)
+        public bool DeallocateEmployyeFromProject(int empId, int projectId)
         {
-            var employeesOnProject = _context.Query<Project>().Where(model => model.ProjectId == id).First().Employees;
-            return employeesOnProject;
+            Project project =_context.Query<Project>().Where(model => model.ProjectId == projectId).FirstOrDefault();
+            Employee employeeToRemove = project.Employees.Where(model => model.EmployeeId == empId).FirstOrDefault();
+            var isEmployeeRemoved=  project.Employees.Remove(employeeToRemove);
+          //  var isEmployeeRemoved = _context.Query<Project>().Where(model => model.ProjectId == projectId).FirstOrDefault().Employees.Remove(employeeToRemove);
+
+            var a = _context.Update<Project>(project);
+
+            if (isEmployeeRemoved)
+                return true;
+            else
+                return false;
         }
     }
 }
