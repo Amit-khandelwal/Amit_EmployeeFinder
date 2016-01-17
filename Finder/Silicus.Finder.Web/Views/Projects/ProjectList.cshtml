@@ -108,7 +108,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ExpectedEndDate)
             </td>
-
             <td>
                 @foreach (var employee in employees.Where(e => e.EmployeeId == item.EngagementManagerId))
                 {
@@ -126,10 +125,11 @@
                 @{
                     if (item.Status.ToString() == "Completed")
                     {
-                         @Html.ActionLink("Archive", "DeleteProject", new { projectId = item.ProjectId }, new { @class = "classname", id = "#dialog-confirm" })
+                        @Html.ActionLink("Archive", "DeleteProject", new { projectId = item.ProjectId, name = ViewData["name"] as string }, new { @class = "classname", id = "#dialog-confirm" })  // nikhil
+                        @*@Html.ActionLink("Archive", "DeleteProject", new { projectId = item.ProjectId }, new { @class = "classname", id = "#dialog-confirm" })*@
                         @*<a projectid=3 href="#" id="archImg" onclick="OpenPopupWindow()"><img id="archiveimg" src="/Images/Project/project_archive.png" width="22" height="22" /></a>*@
                         <a projectid=@item.ProjectId href="#" data-foo="@item.ProjectId" id="archImg" onclick="OpenPopupWindow()"><img id="archiveimg" src="~/Images/Project/project_archive.png" width="22" height="22" /></a>
-                        <img src="~/Images/Project/projectarchive.png" width="22" height="22" onclick="@("window.location.href='" + @Url.Action("GetProjectsListByName", "Projects", new { name = ViewData["name"] as string }) + "'");" />
+                        @*<img src="~/Images/Project/project_archive.png" width="22" height="22" onclick="@("window.location.href='" + @Url.Action("GetProjectsListByName", "Projects", new { name = ViewData["name"] as string }) + "'");" />*@
                     }
                     else
                     {
@@ -137,8 +137,6 @@
                     }
                 }                    
             </td>
-
-            
         </tr>
     }
 </table>       
@@ -153,8 +151,6 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 </div>
 
 <script type="text/javascript">
-
-    
     @*var message = '@message';
     if (message)
         alert(message);*@

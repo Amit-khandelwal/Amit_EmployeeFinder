@@ -14,7 +14,7 @@ namespace Silicus.Finder.Services.Interfaces
 
         SkillSet GetSkillSetById(int? projectId);
 
-        List<Employee> GetAllEmployee();
+        List<Employee> GetAllEmployees();
 
         IEnumerable<Project> GetProjectsList();
 
@@ -24,11 +24,10 @@ namespace Silicus.Finder.Services.Interfaces
 
         IEnumerable<Employee> GetEmployeesAssignedToProject(int projectId);
         
-        Project GetProjectDetailsById(int projectId);
         bool DeallocateEmployyeFromProject(int empId, int projectId);
+
+        Project GetProjectDetailsById(int projectId);
      
-      
-       
         void DeleteProject(int projectId);
     }
 }
