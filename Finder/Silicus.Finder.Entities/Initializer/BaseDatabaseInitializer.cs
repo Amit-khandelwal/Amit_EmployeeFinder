@@ -125,7 +125,7 @@ namespace Silicus.Finder.Entities.Initializer
                 ProjectType = ProjectType.Internal,
                 EngagementType = EngagementType.Time_Based,
                 StartDate = new DateTime(2015,1,10),
-                Status = Status.In_Progress,
+                Status = Status.Completed,
                 ExpectedEndDate = new DateTime(2015,10,20),
                 ActualEndDate = new DateTime(2015,12,23),
                 EngagementManagerId = 1,

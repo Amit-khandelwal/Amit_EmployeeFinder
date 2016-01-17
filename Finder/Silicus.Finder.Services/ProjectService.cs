@@ -27,19 +27,17 @@ namespace Silicus.Finder.Services
             return allEmployeeList;
         }
 
-        public Employee GetEmployeeById(int? id)
+        public Employee GetEmployeeById(int? projectId)
         {
-            var employee=_context.Query<Employee>().Where(model => model.EmployeeId == id).FirstOrDefault();
+            var employee = _context.Query<Employee>().Where(model => model.EmployeeId == projectId).FirstOrDefault();
             return employee;
         }
 
-   
         public IEnumerable<Project> GetProjectsList()
         {
             var projectList = _context.Query<Project>().Include(e=>e.Employees).ToList();
             return projectList;
         }
-
 
         public IEnumerable<Project> GetProjectsListByName(string name)
         {
@@ -63,16 +61,12 @@ namespace Silicus.Finder.Services
 
             return projectListEndsWith;          
         }
-        
 
-
-        public Project GetProjectById(int? id)
+        public Project GetProjectById(int? projectId)
         {
-             var project= _context.Query<Project>().Where(model => model.ProjectId == id).FirstOrDefault();
+            var project = _context.Query<Project>().Where(model => model.ProjectId == projectId).FirstOrDefault();
              return project;
         }
-
-
 
         public List<SkillSet> GetAllSkills()
         {
@@ -80,13 +74,11 @@ namespace Silicus.Finder.Services
             return skills;
         }
 
-
-        public SkillSet GetSkillSetById(int? id)
+        public SkillSet GetSkillSetById(int? projectId)
         {
-            var skillset=_context.Query<SkillSet>().Where(model => model.SkillSetId == id).FirstOrDefault();
+            var skillset = _context.Query<SkillSet>().Where(model => model.SkillSetId == projectId).FirstOrDefault();
             return skillset;
         }
-
 
         public int UpdateProject(Project Project)
         {
@@ -94,13 +86,28 @@ namespace Silicus.Finder.Services
           return Project.ProjectId;
         }
 
-
-        public IEnumerable<Employee> GetEmployeesAssignedToProject(int id)
+        public IEnumerable<Employee> GetEmployeesAssignedToProject(int projectId)
         {
-            var employeesOnProject = _context.Query<Project>().Where(model => model.ProjectId == id).First().Employees;
+            var employeesOnProject = _context.Query<Project>().Where(model => model.ProjectId == projectId).First().Employees;
             return employeesOnProject;
+        }
+        
+        public IEnumerable<Project> GetProjectDetailsBy_Nikhil()
+        {
+            var projectList = _context.Query<Project>().ToList();
+            return projectList;
+        }
+
+        public Project GetProjectDetailsById(int projectId)
+        {
+            var project = _context.Query<Project>().FirstOrDefault(p => p.ProjectId == projectId);
+            return project;
+        }
+
+        public void DeleteProject(int projectId)
+        {
+            var project = _context.Query<Project>().FirstOrDefault(p => p.ProjectId == projectId);
+            _context.Delete<Project>(project);
         }
     }
 }
-
-

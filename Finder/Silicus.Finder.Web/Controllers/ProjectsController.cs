@@ -55,48 +55,11 @@ namespace Silicus.Finder.Web.Controllers
                 return View();
             }
         }    
-        
-    
-        public ActionResult GetProjectList()
-        {
-            var projectList = _projectService.GetProjectsList();
-               
-            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
-            Mapper.Map(projectList, projectListViewModel);
-
-            return View("ProjectList", projectListViewModel);
-        }
-
-        public ActionResult GetProjectsListByName(string name)
-        {
-            IEnumerable<Project> projectList;
-            ViewBag.Message = "Incorrect Project Name! Please refine your search.";
-
-            if (name != "")
-            {
-                projectList = _projectService.GetProjectsListByName(name);
-
-                if (projectList.Count() == 0)
-                {
-                    return View("ProjectNotFound");
-                }
-            }
-            //If project name is not entered, shows Error message on another view.
-            else
-            {                
-                return View("ProjectNotFound");
-            }
-
-            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
-            Mapper.Map(projectList, projectListViewModel);
-
-            return View("ProjectList", projectListViewModel);
-        }
 
         [HttpGet]
-        public ActionResult EditProject(int? id)
+        public ActionResult EditProject(int? projectId)
         {
-            var project = _projectService.GetProjectById(id);
+            var project = _projectService.GetProjectById(projectId);
             var selectedEngagementManager = _projectService.GetEmployeeById(project.EngagementManagerId);
             var selectedProjectManager = _projectService.GetEmployeeById(project.ProjectManagerId);
 
@@ -120,12 +83,63 @@ namespace Silicus.Finder.Web.Controllers
             return RedirectToAction("GetProjectList");
         }
 
-
         [HttpGet]
         public ActionResult AddEmployeeToProject(int id)
         {
             var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
             return View(employeesForProject);
+        }
+
+        public ActionResult GetProjectList()
+        {
+            var projectList = _projectService.GetProjectsList();
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
+        }
+
+        public ActionResult GetProjectsListByName(string name)
+        {
+            IEnumerable<Project> projectList;
+            ViewBag.Message = "Incorrect Project Name! Please refine your search.";
+
+            if (name != "")
+            {
+                projectList = _projectService.GetProjectsListByName(name);
+
+                if (projectList.Count() == 0)
+                {
+                    return View("ProjectNotFound");
+                }
+            }
+            //If project name is not entered, shows Error message on another view.
+            else
+            {
+                return View("ProjectNotFound");
+            }
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel);
+        }
+
+        public ActionResult GetProjectDetails(int projectId)
+        {
+            var projectDetailsById = _projectService.GetProjectDetailsById(projectId);
+            var projectById = new ProjectDetailsViewModel();
+            Mapper.Map(projectDetailsById, projectById);
+
+            return View("ProjectDetails", projectById);
+            //return PartialView("Partialpopup", projectById);
+        }
+        
+        public ActionResult DeleteProject(int projectId)
+        {
+            _projectService.DeleteProject(projectId);
+            return RedirectToAction("GetProjectList", "Projects");
         }
     }
 }

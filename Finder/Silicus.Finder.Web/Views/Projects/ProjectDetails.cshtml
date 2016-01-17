@@ -1,0 +1,158 @@
+﻿@model Silicus.Finder.Web.ViewModel.ProjectDetailsViewModel
+@using Kendo.Mvc.UI;
+
+@{
+    var skills = Html.Partial("~/Views/Projects/ProjectSkillSetDetails.cshtml", Model.SkillSets);
+    var employees = Html.Partial("~/Views/Projects/ProjectEmployeeDetails.cshtml", Model.Employees);
+}
+
+@{
+    ViewBag.Title = "Project Details";
+}
+
+<head>
+    <link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
+</head>
+
+<h2>Project Details</h2>
+
+<div>
+    <hr />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="dl-horizontal">
+                    <div>
+                        <span class="details-header">
+                            @Html.DisplayNameFor(model => model.ProjectId) :
+                        </span>
+                        <span class="details-content">
+                            @Html.DisplayFor(model => model.ProjectId)
+                        </span>
+                    </div>
+                    <div>
+                        <span class="details-header">
+                            @Html.DisplayNameFor(model => model.ProjectName):
+                        </span>
+                        <span class="details-content">
+                            @Html.DisplayFor(model => model.ProjectName)
+                        </span>
+                    </div>
+                    <div>
+                        <span class="details-header">
+                            @Html.DisplayNameFor(model => model.Description):
+                        </span>
+                        <span class="details-content">
+                            @Html.DisplayFor(model => model.Description)
+                        </span>
+                    </div>
+                    <div>
+                        <span class="details-header">
+                            @Html.DisplayNameFor(model => model.ProjectType):
+                        </span>
+                    </div>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.ProjectType)
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.EngagementType):
+                    </span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.EngagementType)
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.Status):
+                    </span>
+
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.Status)
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.StartDate):
+                    </span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.StartDate)
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.ExpectedEndDate):
+                    </span>
+
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.ExpectedEndDate)
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.ActualEndDate):
+                    </span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.ActualEndDate)
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.EngagementManagerId):
+                    </span>
+                    <span class="details-content">
+                        @foreach (var employee in Model.Employees.Where(e => e.EmployeeId == Model.EngagementManagerId))
+                        {
+                            @Html.Label(employee.FirstName + " " + employee.LastName)
+                        }
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.ProjectManagerId):
+                    </span>
+                    <span class="details-content">
+                        @foreach (var employee in Model.Employees.Where(e => e.EmployeeId == Model.ProjectManagerId))
+                        {
+                            @Html.Label(employee.FirstName + " " + employee.LastName)
+                        }
+                    </span>
+                </div>
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.AdditionalNotes):
+                    </span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.AdditionalNotes)
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p>
+            @*@Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )*@  @*written by DADA*@
+            @Html.ActionLink("Edit", "EditProject", new { projectId = Model.ProjectId })
+            @Html.ActionLink("Cancel", "GetProjectList")
+        </p>
+        <hr/>
+
+        <div class="fluid mt20">
+            <div class="kendogrid">
+                @(Html.Kendo().TabStrip()
+                    .Name("Tabs")
+                    .Items(tabstrip =>
+                        {
+                            tabstrip.Add().Text("Skills")
+                                .Selected(true)
+                                .Content(skills.ToString());
+
+                            tabstrip.Add().Text("Employees")
+                                .Content(employees.ToString());
+                        })
+                )
+            </div>
+        </div>
+    </div>
+</div>

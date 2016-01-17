@@ -355,7 +355,10 @@
     <Compile Include="ViewModel\CubicleLocationViewModel.cs" />
     <Compile Include="ViewModel\EmployeeNameViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\ProjectDetailsViewModel.cs" />
+    <Compile Include="ViewModel\ProjectEmployeeDetailsViewModel.cs" />
     <Compile Include="ViewModel\ProjectListViewModel.cs" />
+    <Compile Include="ViewModel\ProjectSkillSetDetailsViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\SkillSetViewModel.cs" />
     <Compile Include="ViewModel\EmployeesListViewMode.cs" />
@@ -444,7 +447,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="Images\Project\projectarchive.png" />
+    <Content Include="Images\Project\project_archive.png" />
     <Content Include="Images\silicus\logo.png" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.min.js" />
@@ -702,7 +705,6 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
@@ -724,6 +726,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Employee\GetAllEmployees.cshtml" />
+    <Content Include="Views\Projects\ProjectDetails.cshtml" />
+    <Content Include="Views\Projects\ProjectEmployeeDetails.cshtml" />
+    <Content Include="Views\Projects\ProjectSkillSetDetails.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
