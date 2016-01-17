@@ -16,6 +16,8 @@ namespace Silicus.Finder.Web.Controllers
         private readonly IEmailService _emailService;
         private readonly IEmployeeService _employeeService;
          private readonly IProjectService  _projectService;
+         private readonly ISkillSetService _skillsetservice;
+        // private readonly 
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -43,11 +45,12 @@ namespace Silicus.Finder.Web.Controllers
             }
         }
 
-        public AdminController(IEmailService emailService, IEmployeeService employeeservice, IProjectService projectService)
+        public AdminController(IEmailService emailService, IEmployeeService employeeservice, IProjectService projectService, ISkillSetService skillsetservice)
         {
             _projectService = projectService;
             _employeeService = employeeservice;
             _emailService = emailService;
+            _skillsetservice = skillsetservice;
         }
 
         public ActionResult Dashboard()
@@ -56,7 +59,8 @@ namespace Silicus.Finder.Web.Controllers
             ViewBag.UserRoles = RoleManager.Roles.Select(r => new SelectListItem {Text = r.Name, Value = r.Name}).ToList();
            
             @ViewBag.NumberOfEmployee = _employeeService.GetEmployee().Count();
-           // @ViewBag.NumberOfProjects = _projectService.GetAllProjects();
+            @ViewBag.NumberOfProjects = _projectService.GetProjectsList().Count();
+           // @ViewBag.NumberOfSkills=_skillsetservice.
            
 
             return View();
