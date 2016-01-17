@@ -46,9 +46,9 @@
             {
 
                 <div class="input-group" style="padding-top:100px">
-                    @Html.TextBox("name", "", new { id = "name", @class = "form-control", @placeholder = "Enter Project Name" })
+                    @Html.TextBox("name", "", new { id = "project_name", @class = "form-control", @placeholder = "Search For Project" })
                     <span class="input-group-btn">
-                        <button class="btn btn-default" id="submit" type="submit"><span class="glyphicon glyphicon-search "></span></button>
+                        <button class="btn btn-default" id="project_submit" type="submit"><span class="glyphicon glyphicon-search "></span></button>
                     </span>
                 </div>
 
@@ -91,15 +91,24 @@
             }
         });
     });
-
-</script>
-
-<script>
-
+    
+    //alert for empty project name
     $(document).ready(function () {
-        document.getElementById("name").value = "";
+        $("#project_submit").click(function () {
+            var data = $("#project_name").val();
+            if (data.length == 0) {
+                alert("Please enter search name");
+                return false;
+            }
+        });
     });
 
+    //reset value of Search TextBox to empty
+    //$(document).ready(function () {
+    //    $(document).load(function () {
+    //        document.getElementById("name").value = "";
+    //    })       
+    //});
 </script>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>

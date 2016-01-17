@@ -5,12 +5,15 @@ using Silicus.Finder.Web.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Silicus.Finder.Web.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly IProjectService _projectService;
+        private int _pageSize = 10;
+        private int _pageNumber;
 
         public ProjectsController(IProjectService projectService)
         {
@@ -54,43 +57,39 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return View();
             }
-        }    
-        
-    
-        public ActionResult GetProjectList()
+        }
+
+
+        public ActionResult GetProjectList(int? page)
         {
+            _pageNumber = (page ?? 1);
             var projectList = _projectService.GetProjectsList();
                
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
-            return View("ProjectList", projectListViewModel);
+            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber, _pageSize));
         }
 
-        public ActionResult GetProjectsListByName(string name)
+        public ActionResult GetProjectsListByName(string name, int? page)
         {
             IEnumerable<Project> projectList;
+            _pageNumber = (page ?? 1);
+
+            ViewData["name"] = name;
             ViewBag.Message = "Incorrect Project Name! Please refine your search.";
 
-            if (name != "")
-            {
-                projectList = _projectService.GetProjectsListByName(name);
+            projectList = _projectService.GetProjectsListByName(name);
 
-                if (projectList.Count() == 0)
-                {
-                    return View("ProjectNotFound");
-                }
-            }
-            //If project name is not entered, shows Error message on another view.
-            else
-            {                
+            if (projectList.Count() == 0)
+            {
                 return View("ProjectNotFound");
             }
-
+            
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
-            return View("ProjectList", projectListViewModel);
+            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber,_pageSize));
         }
 
         [HttpGet]
