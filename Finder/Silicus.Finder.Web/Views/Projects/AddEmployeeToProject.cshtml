@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Employee>
+
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.CubicleLocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerRecommendation)
+        </th>
+        <th>
+            <label>Add To Project</label>
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeId)
+        </td>
+  
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.CubicleLocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerRecommendation)
+        </td>
+        <td>
+            <input type="checkbox" name="SelectedEmpployees" value="@item.EmployeeId" id="@item.EmployeeId"/>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Add" class="btn btn-default" />
+        <input type="submit" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("EditProject", new { id = ViewBag.ProjectId }) + "'");" />
+    </div>
+</div>   

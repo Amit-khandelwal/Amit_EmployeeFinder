@@ -5,6 +5,7 @@ using AutoMapper;
 using Silicus.Finder.Models;
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Web.ViewModel;
+using Silicus.Finder.Web.Controllers;
 
 namespace Silicus.Finder.Web.Mappings
 {

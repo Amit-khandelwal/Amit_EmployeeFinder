@@ -2,10 +2,8 @@
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Interfaces;
 using Silicus.Finder.Web.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Silicus.Finder.Web.Controllers
@@ -126,8 +124,19 @@ namespace Silicus.Finder.Web.Controllers
         [HttpGet]
         public ActionResult AddEmployeeToProject(int id)
         {
-            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
-            return View(employeesForProject);
+            var employeeList = _projectService.GetAllEmployee();
+            ViewBag.ProjectId = id;
+            return View(employeeList);
         }
+
+         [HttpGet]
+        public ActionResult RemoveProjectEmployee(int empId, int projectId)
+        {
+            var isRemoved = _projectService.DeallocateEmployyeFromProject(empId, projectId);
+            return RedirectToAction("EditProject", new { id = projectId });
+        }
+
+
+     
     }
 }
