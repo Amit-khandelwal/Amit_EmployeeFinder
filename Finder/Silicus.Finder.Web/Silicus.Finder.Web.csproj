@@ -361,7 +361,7 @@
     <Compile Include="ViewModel\ProjectSkillSetDetailsViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\SkillSetViewModel.cs" />
-    <Compile Include="ViewModel\EmployeesListViewMode.cs" />
+    <Compile Include="ViewModel\EmployeesListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Silicus.Finder.Web.dll" />
@@ -706,7 +706,6 @@
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
     <Content Include="Views\Projects\ProjectList.cshtml" />
@@ -720,15 +719,19 @@
     <Content Include="Views\Employee\EmployeeCubicleLocation.cshtml" />
     <Content Include="Views\Employee\EmployeeProjectDetails.cshtml" />
     <Content Include="Views\Employee\EmployeeSkillSetDetails.cshtml" />
-    <Content Include="Views\Employee\GetAllEmployees.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\GetEmployeesList.cshtml" />
     <Content Include="Views\Employee\GetAllEmployees.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Employee\GetAllEmployees.cshtml" />
     <Content Include="Views\Projects\ProjectDetails.cshtml" />
+    <Content Include="Views\Technology\Create.cshtml" />
+    <Content Include="Views\Technology\Index.cshtml" />
+    <Content Include="Views\Technology\Success.cshtml" />
     <Content Include="Views\Projects\ProjectEmployeeDetails.cshtml" />
     <Content Include="Views\Projects\ProjectSkillSetDetails.cshtml" />
+    <Content Include="Views\Projects\AddEmployeeToProject.cshtml" />
+    <Content Include="Views\Employee\ProjectEmployeeDetails.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

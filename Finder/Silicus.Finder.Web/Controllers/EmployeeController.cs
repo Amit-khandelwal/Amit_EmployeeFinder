@@ -18,44 +18,37 @@ namespace Silicus.Finder.Web.Controllers
         {
             _employeeService = employeeService;
         }
-        // GET: Employee
-        public ActionResult Index()
-        {
-            var emp = _employeeService.GetAllEmployees();
-            return View(emp);
-        }
-
 
         [HttpPost]
         public ActionResult SearchEmployeeByName(string name)
         {
-            List<EmployeeNameViewModel> employeeNameViewModel = new List<EmployeeNameViewModel>();
+            List<EmployeesListViewModel> employeesListViewModel = new List<EmployeesListViewModel>();
             if (ModelState.IsValid)
             {
                 var employeeList = _employeeService.GetEmployeeByName(name);
-                Mapper.Map(employeeList, employeeNameViewModel);
+                Mapper.Map(employeeList, employeesListViewModel);
 
             }
 
-            if (employeeNameViewModel.Count != 0)
+            if (employeesListViewModel.Count != 0)
             {
-                return View(employeeNameViewModel);
+                return View("Index", employeesListViewModel);
             }
             else
             {
                 ViewBag.current = "Incorrect Employee Name! Please refine your search.";
                 return View("NoEmployee");
             }
-               
-            }
+
+        }
 
 
-        public ActionResult GetAllEmployees()
+        public ActionResult Index()
         {
             var employeesList = _employeeService.GetAllEmployees();
-            var employeesListViewMode = new List<EmployeesListViewMode>();
-            Mapper.Map(employeesList, employeesListViewMode);
-            return View(employeesListViewMode);
+            var employeesListViewModel = new List<EmployeesListViewModel>();
+            Mapper.Map(employeesList, employeesListViewModel);
+            return View(employeesListViewModel);
         }
         [HttpGet]
         public ActionResult Create()
@@ -75,19 +68,19 @@ namespace Silicus.Finder.Web.Controllers
                 // TODO: Add insert logic here
                 if (newEmployee.ProjectId != null)
                 {
-                foreach (int projectId in newEmployee.ProjectId)
-                {
-                    var employeeProject = _employeeService.GetProjectById(projectId);
-                    newEmployee.Projects.Add(employeeProject);
-                }
+                    foreach (int projectId in newEmployee.ProjectId)
+                    {
+                        var employeeProject = _employeeService.GetProjectById(projectId);
+                        newEmployee.Projects.Add(employeeProject);
+                    }
                 }
                 if (newEmployee.SkillId != null)
                 {
-                foreach (int skillId in newEmployee.SkillId)
-                {
-                    var employeeSkill = _employeeService.GetSkillSetById(skillId);
-                    newEmployee.SkillSets.Add(employeeSkill);
-                }
+                    foreach (int skillId in newEmployee.SkillId)
+                    {
+                        var employeeSkill = _employeeService.GetSkillSetById(skillId);
+                        newEmployee.SkillSets.Add(employeeSkill);
+                    }
                 }
 
                 _employeeService.SaveEmployee(newEmployee);
@@ -147,9 +140,12 @@ namespace Silicus.Finder.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var selectedEmployee = _employeeService.GetEmployee(id);
-            return View(selectedEmployee);
+            var selectedEmployee = _employeeService.GetEmployeeById(id);
+            var employeeViewModel = new EmployeeViewModel();
+            Mapper.Map(selectedEmployee, employeeViewModel);
+            return View(employeeViewModel);
+
         }
-        
+
     }
 }

@@ -5,6 +5,7 @@ using AutoMapper;
 using Silicus.Finder.Models;
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Web.ViewModel;
+using Silicus.Finder.Web.Controllers;
 
 namespace Silicus.Finder.Web.Mappings
 {
@@ -21,8 +22,9 @@ namespace Silicus.Finder.Web.Mappings
             Mapper.CreateMap<EntityA, Model>();
 
             Mapper.CreateMap<Employee, EmployeeNameViewModel>();
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
+            Mapper.CreateMap<Project,ProjectListViewModel>();
             Mapper.CreateMap<Employee, EmployeesListViewMode>();
-            Mapper.CreateMap<Project, ProjectListViewModel>();
             Mapper.CreateMap<Project, ProjectDetailsViewModel>();
             // Example for member to member mapping
             //Mapper.CreateMap<OrganizationUser, OrganizationUserDataAccessViewModel>()

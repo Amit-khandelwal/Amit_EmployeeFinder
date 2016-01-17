@@ -74,16 +74,16 @@
             </td>
             <td>
                 @{
-                    var cubicleLocation = item.CubicleLocation.Building + "/" + item.CubicleLocation.FloorNumber + "/"+item.CubicleLocation.FloorNumber;
+        var cubicleLocation = item.CubicleLocation.Building + "/" + item.CubicleLocation.FloorNumber + "/" + item.CubicleLocation.FloorNumber;
                 }
                 @Html.DisplayFor(modelItem => cubicleLocation)
             </td>
             <td>
                 @{
-                    var skypeId = @item.Contact.Skype;
+        var skypeId = @item.Contact.Skype;
                 }
                 @Html.DisplayFor(modelItem => skypeId)
             </td>
         </tr>
     }
-</table> 
+</table>

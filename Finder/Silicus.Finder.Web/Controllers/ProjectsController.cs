@@ -5,12 +5,15 @@ using Silicus.Finder.Web.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Silicus.Finder.Web.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly IProjectService _projectService;
+        private int _pageSize = 10;
+        private int _pageNumber;
 
         public ProjectsController(IProjectService projectService)
         {
@@ -27,7 +30,7 @@ namespace Silicus.Finder.Web.Controllers
         // GET: Projects/Create
         public ActionResult CreateProject()
         {
-            ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
+            ViewBag.Employees = new SelectList(_projectService.GetAllEmployees(), "EmployeeId", "FullName");
             ViewBag.Skills = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name");
             return View();
         }
@@ -55,14 +58,14 @@ namespace Silicus.Finder.Web.Controllers
                 return View();
             }
         }    
-
+        
         [HttpGet]
         public ActionResult EditProject(int? projectId)
         {
             var project = _projectService.GetProjectById(projectId);
             var selectedEngagementManager = _projectService.GetEmployeeById(project.EngagementManagerId);
             var selectedProjectManager = _projectService.GetEmployeeById(project.ProjectManagerId);
-
+    
             ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
             ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
             ViewBag.Technologies = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name", project.skillSetId);
@@ -70,19 +73,7 @@ namespace Silicus.Finder.Web.Controllers
             return View(project);
         }
 
-        [HttpPost]
-        public ActionResult EditProject(Project Project)
-        {
-            var updatedProjectId = _projectService.UpdateProject(Project);
-            if (updatedProjectId >= 0)
-            {
-                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
-
-            }
-
-            return RedirectToAction("GetProjectList");
-        }
-
+        
         [HttpGet]
         public ActionResult AddEmployeeToProject(int id)
         {
@@ -91,43 +82,50 @@ namespace Silicus.Finder.Web.Controllers
         }
 
         public ActionResult GetProjectList()
+        public ActionResult GetProjectList(int? page)
         {
-            var projectList = _projectService.GetProjectsList();
+            _pageNumber = (page ?? 1);
 
+            ViewData["Employees"] = _projectService.GetAllEmployees();
+            var projectList = _projectService.GetProjectsList();
+               
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
-            return View("ProjectList", projectListViewModel);
+            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber, _pageSize));
         }
 
-        public ActionResult GetProjectsListByName(string name)
+        public ActionResult GetProjectsListByName(string name, int? page)
         {
             IEnumerable<Project> projectList;
+            _pageNumber = (page ?? 1);
+
+            ViewData["Employees"] = _projectService.GetAllEmployees();
+            ViewData["name"] = name;
+
             ViewBag.Message = "Incorrect Project Name! Please refine your search.";
 
-            if (name != "")
-            {
                 projectList = _projectService.GetProjectsListByName(name);
 
                 if (projectList.Count() == 0)
                 {
                     return View("ProjectNotFound");
                 }
-            }
-            //If project name is not entered, shows Error message on another view.
-            else
-            {
-                return View("ProjectNotFound");
-            }
 
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
-            return View("ProjectList", projectListViewModel);
+            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber,_pageSize));
         }
 
-        public ActionResult GetProjectDetails(int projectId)
+        
+        [HttpPost]
+        public ActionResult EditProject(Project Project)
         {
+            var updatedProjectId = _projectService.UpdateProject(Project);
+            if (updatedProjectId >= 0)
+        public ActionResult GetProjectDetails(int projectId)
+            {
             var projectDetailsById = _projectService.GetProjectDetailsById(projectId);
             var projectById = new ProjectDetailsViewModel();
             Mapper.Map(projectDetailsById, projectById);
@@ -135,11 +133,24 @@ namespace Silicus.Finder.Web.Controllers
             return View("ProjectDetails", projectById);
             //return PartialView("Partialpopup", projectById);
         }
-        
+
         public ActionResult DeleteProject(int projectId)
         {
             _projectService.DeleteProject(projectId);
             return RedirectToAction("GetProjectList", "Projects");
+            var employeeList = _projectService.GetAllEmployee();
+            ViewBag.ProjectId = id;
+            return View(employeeList);
         }
+
+         [HttpGet]
+        public ActionResult RemoveProjectEmployee(int empId, int projectId)
+        {
+            var isRemoved = _projectService.DeallocateEmployyeFromProject(empId, projectId);
+            return RedirectToAction("EditProject", new { id = projectId });
+        }
+
+
+     
     }
 }

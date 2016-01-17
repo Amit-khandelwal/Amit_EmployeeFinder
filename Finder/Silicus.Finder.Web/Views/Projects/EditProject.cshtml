@@ -1,8 +1,12 @@
 ﻿@model Silicus.Finder.Models.DataObjects.Project
+@using Kendo.Mvc.UI;
 
 @{
-    ViewBag.Title = "Edit Project";
-}
+    ViewBag.Title = "EditProject";
+    var employees = Html.Partial("~/Views/Projects/ProjectEmployeeDetails.cshtml", Model.Employees, new ViewDataDictionary { { "id", Model.ProjectId } });
+    var skills = Html.Partial("~/Views/Projects/ProjectSkillSetDetails.cshtml", Model.SkillSets);
+   
+ }
 
 @using (Html.BeginForm())
 {
@@ -109,15 +113,25 @@
                 @Html.ValidationMessageFor(model => model.skillSetId, "", new { @class = "text-danger" })
             </div>
         </div>
+  
 
+        <div class="fluid mt20">
+            <div class="kendogrid">
+                @(Html.Kendo().TabStrip()
+        .Name("Tabs")
+        .Items(tabstrip =>
+            {
+                tabstrip.Add().Text("Skills")
+                    .Selected(true)
+                    .Content(skills.ToString());
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.ActionLink("Add Employee", "AddEmployeeToProject", new { @class = "ProjectCreateButtonCSS",id=Model.ProjectId}) ||
-                @Html.ActionLink("Add Technologies", "AddTechnologyToProject", new { @class = "ProjectCreateButtonCSS" })
+                tabstrip.Add().Text("Employees")
+                    .Content(employees.ToString());
+            })
+                )
             </div>
         </div>
-       
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -126,12 +140,9 @@
 
             </div>
         </div>
-
-
-
-
     </div>
 }
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

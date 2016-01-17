@@ -11,7 +11,7 @@ namespace Silicus.Finder.Web.ViewModel
     {
         public int EmployeeId { get; set; }
 
-       [Display(Name = "First Name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
@@ -29,15 +29,15 @@ namespace Silicus.Finder.Web.ViewModel
         [Display(Name = "Silicus Experience")]
         public int? SilicusExperienceInMonths { get; set; }
 
-       [Display(Name = "Highest Qualification")]
+        [Display(Name = "Highest Qualification")]
         public string HighestQualification { get; set; }
 
         [Display(Name = "Skill Set")]
-       public virtual ICollection<SkillSet> SkillSets { get; set; }
-        
+        public virtual ICollection<SkillSet> SkillSets { get; set; }
+
         [Display(Name = "Cubicle Location")]
         public virtual CubicleLocation CubicleLocation { get; set; }
         public virtual Contact Contact { get; set; }
-        public virtual ICollection<Project> Projects { get; set; } 
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

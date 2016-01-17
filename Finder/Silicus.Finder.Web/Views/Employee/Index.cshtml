@@ -1,39 +1,30 @@
-﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Employee>
+﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.EmployeesListViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetAllEmployees";
 }
 
-<h2>Index</h2>
-<br />
 <br/>
 <br/>
+
+<h4>List Of Employees</h4>
+
 <br />
 <p>
-    @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("name") }))
-    {
-        @Html.Label("Employee Name")
-        @Html.TextBox("name", "",  new { id = "name", @class = "form-control" })
-
-    <input type="submit" id="submit" value="Search" class="btn btn-default" />
-    }
-
-   
-
+    <input type="submit" value="Add Employee" style="margin-left:850px"  class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
 </p>
-<p>
-    <input type="submit" value="Employeee List" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetAllEmployees", "Employee") + "'");" />
-</p>
+
 <table class="table">
     <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MiddleName)
+            @Html.DisplayNameFor(model => model.Gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName("Type")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
@@ -45,25 +36,34 @@
             @Html.DisplayNameFor(model => model.HighestQualification)
         </th>
         <th>
+            @Html.DisplayName("Email Id")
+        </th>
+        <th>
+            @Html.DisplayName("Contact")
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CubicleLocationId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactId)
+            @Html.DisplayName("ProjectName")
         </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+        <th>
+            @Html.DisplayName("Skills")
+        </th>
+
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MiddleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.EmployeeType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
@@ -75,38 +75,31 @@
                 @Html.DisplayFor(modelItem => item.HighestQualification)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CubicleLocationId)
+                @Html.Label(item.Contact.EmailAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactId)
+                @Html.Label("" + item.Contact.MobileNumber)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }) |
-                @Html.ActionLink("Add Project", "AddProjectToEmployee", new { id = item.EmployeeId }) |
-                @Html.ActionLink("Add Skill", "AddSkillSetToEmployee", new { id = item.EmployeeId })*@
-                
+                @Html.Label(item.CubicleLocation.Building +
+                item.CubicleLocation.FloorNumber +
+                item.CubicleLocation.DeskNumber)
             </td>
-
-            
+            <td>
+                @foreach (var project in item.Projects)
+                {
+                    @Html.Label(project.ProjectName + ",")
+                }
+            </td>
+            <td>
+                @foreach (var skills in item.SkillSets)
+                {
+                    @Html.Label(skills.Name)
+                }
+            </td>
         </tr>
-        
-    }
 
-    @Html.ActionLink("EmployeeList", "GetAllEmployees") 
 
-</table>
+        }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#submit").click(function () {
-            var data = $("#name").val();
-            if (data.length == 0) {
-                alert("Please enter search name");
-                return false;
-            }
-        });
-    });
-</script>
+    </table>
