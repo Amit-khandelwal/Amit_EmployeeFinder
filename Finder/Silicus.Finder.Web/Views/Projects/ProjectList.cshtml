@@ -2,16 +2,11 @@
 
 @{
     ViewBag.Title = "ProjectList";
-    var message = TempData["AlertMessage"] ?? string.Empty;
+    var message = TempData["AlertMessage"];
 }
-@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
 <h2>ProjectList</h2>
-<br />
-<br />
-<br />
-<br />
 <p>
-    @Html.ActionLink("Create New", "CreateProject", new { @class = "ProjectCreateButtonCSS" })
+    <input type="submit" value="Create Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" style="margin-left:890px" />
 </p>
 
 <table class="table">
@@ -46,7 +41,7 @@
         <th>
             @Html.DisplayName("Action")
         </th>
-
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -55,7 +50,7 @@
             <td>
                 <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
                ( @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )
-                @*@Html.ActionLink("Details", "GetProjectDetails", "Projects", new { proViewModel = Model, id = item.ProjectId })*@
+    
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectId)
@@ -77,18 +72,32 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.EngagementManagerId)
+                @foreach(var employee in item.Employees.Where(e => e.EmployeeId == item.EngagementManagerId))
+                {
+                    @Html.Label(employee.FirstName + " " + employee.LastName)
+                }
+
+            </td>
+            <td>
+                @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.ProjectManagerId))
+                {
+                    @Html.Label(employee.FirstName+ " " +employee.LastName)
+                }
             </td>
 
-
             <td>
-                @Html.DisplayFor(modelItem => item.ProjectManagerId)
-            </td>
-
-            <td>
+                @{
+                    if (item.Status.ToString() == "Completed")
+                    {
                 <a href="">
-                    <img src="~/Images/Project/project-archive.png" width="22" height="22" />
+                            <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
                 </a>
+                    }
+                    else
+                    {
+                        <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
+                    }
+                }                    
             </td>
 
             
@@ -98,6 +107,6 @@
 </table>       
 <script type="text/javascript">
     var message = '@message';
-    if (message)
+    if (message !=null)
         alert(message);
 </script>  

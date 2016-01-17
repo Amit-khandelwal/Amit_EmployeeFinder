@@ -24,7 +24,8 @@ namespace Silicus.Finder.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Dashboard", id = UrlParameter.Optional }
+             defaults: new {controller = "Account", action = "Login", id = UrlParameter.Optional}
+                //defaults: new { controller = "Employee", action = "Details", id = UrlParameter.Optional }
                 );
 
           

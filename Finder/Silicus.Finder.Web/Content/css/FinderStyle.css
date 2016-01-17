@@ -1,0 +1,14 @@
+﻿body {
+  margin:10px;
+}
+ .details-header{
+    font-size: 20px;
+    font-family: Arial;
+    color:#000000
+    }
+
+.details-content {
+    font-size: 20px;
+    font-family: Arial;
+    color:#808080
+}

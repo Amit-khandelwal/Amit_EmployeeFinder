@@ -41,7 +41,6 @@ namespace Silicus.Finder.Entities
             modelBuilder.Configurations.Add(new EmployeeMap());
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new SkillSetMap());
-            modelBuilder.Configurations.Add(new EmployeeProjectsMap());
 
             // Many-to-many example - can be moved to Map file as well.
             modelBuilder.Entity<Asset>()

@@ -2,12 +2,8 @@
 using Silicus.Finder.Models.DataObjects;
 using Silicus.Finder.Services.Comparable.EmployeeComparable;
 using Silicus.Finder.Services.Interfaces;
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Silicus.Finder.Services
 {
@@ -70,8 +66,8 @@ namespace Silicus.Finder.Services
 
         public Employee GetEmployeeById(int employeeId)
         {
-            var targetEmployee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
-            return targetEmployee;
+            return context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
+            
         }
 
         public SkillSet GetSkillSetById(int skillSetId)
@@ -80,31 +76,22 @@ namespace Silicus.Finder.Services
 
         }
 
-        public void SaveEmployeeProject(EmployeeProjects newEmployeeProject)
-        {
-            context.Add(newEmployeeProject);
-        }
-
-        public void SaveEmployeeSkillSet(EmployeeSkillSet newEmployeeSkillSet)
-        {
-            context.Add(newEmployeeSkillSet);
-        }
-
-        private void DeleteEmployee(Employee selectedEmployee)
-        {
-            context.Delete(selectedEmployee);
-        }
-
         public void EditEmployee(Employee selectedEmployee)
         {
-            var targetEmployee = GetEmployeeById(selectedEmployee.EmployeeId);
-            DeleteEmployee(targetEmployee);
-            context.Add(selectedEmployee);
+           // context.Update(selectedEmployee.Contact);
+            context.Update<Employee>(selectedEmployee);
         }
 
         public void AddProjectToEmployee(Employee targetEmployee)
         {
 
+        }
+
+
+        public Employee GetEmployee(int employeeId)
+        {
+            var employee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).Single();
+            return employee;
         }
     }
 

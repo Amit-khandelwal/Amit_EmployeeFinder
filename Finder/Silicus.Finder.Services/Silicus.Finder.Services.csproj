@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="Comparable\EmployeeComparable\EmployeeSortByName.cs" />
     <Compile Include="EmailService.cs" />
+    <Compile Include="EmployeeComparable\EmployeeSortByName.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />

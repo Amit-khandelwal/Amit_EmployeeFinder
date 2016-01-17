@@ -1,9 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using Silicus.Finder.Models.DataObjects;
 using System.Collections;
 using System.Collections.Generic;
+
 
 namespace Silicus.Finder.Entities.Initializer
 {
@@ -46,59 +48,41 @@ namespace Silicus.Finder.Entities.Initializer
 
             });
 
-            //context.Add(
-            //      new Project
-            //       {
-            //           ProjectName = "Employee Finder",
-            //           ProjectType = ProjectType.Internal,
-            //           EngagementType = EngagementType.Time_Based,
-            //           StartDate = new System.DateTime(2010, 05, 22),
-            //           ExpectedEndDate = new System.DateTime(2010, 05, 22),
-            //           ActualEndDate = new System.DateTime(2010, 05, 22),
-            //           AdditionalNotes = "This is additional note",
-            //           Description = "Find the exact employee",
-            //           Employees = new List<Employee>
-            //                          {
 
-
-            //                           }
-            //                       }
-
-            //                       );
 
             context.Add(
                 new Employee
-                       {
-                           FirstName = "Abhishek",
-                           MiddleName = "A",
-                           LastName = "Jadhav",
-                           Gender = Gender.Male,
+                {
+                    FirstName = "Abhishek",
+                    MiddleName = "A",
+                    LastName = "Jadhav",
+                    Gender = Gender.Male,
 
-                           Contact = new Contact
-                               {
-                                   EmailAddress = "a@b.com",
-                                   MobileNumber = 758838,
-                                   PhoneNumber = "02382-265234",
-                                   Skype = "aMohite"
-                               },
+                    Contact = new Contact
+                    {
+                        EmailAddress = "a@b.com",
+                        MobileNumber = 758838,
+                        PhoneNumber = "02382-265234",
+                        Skype = "aMohite"
+                    },
 
-                           CubicleLocation = new CubicleLocation
-                                  {
-                                      Building = "B",
-                                      DeskNumber = "5/INCB-19",
-                                      FloorNumber = 5
-                                  },
+                    CubicleLocation = new CubicleLocation
+                    {
+                        Building = "B",
+                        DeskNumber = "5/INCB-19",
+                        FloorNumber = 5
+                    },
 
-                           EmployeeType = EmployeeType.Contract,
-                           HighestQualification = "Be",
-                           ManagerRecommendation = "Well performance",
-                           SilicusExperienceInMonths = 4,
-                           TotalExperienceInMonths = 4,
-                           SkillSets = new List<SkillSet> { 
+                    EmployeeType = EmployeeType.Contract,
+                    HighestQualification = "Be",
+                    ManagerRecommendation = "Well performance",
+                    SilicusExperienceInMonths = 4,
+                    TotalExperienceInMonths = 4,
+                    SkillSets = new List<SkillSet> { 
                                             new SkillSet {Name="C#",Description="C# net description" }
                                          }
 
-                       }
+                }
                          );
 
 
@@ -134,6 +118,41 @@ namespace Silicus.Finder.Entities.Initializer
             }
             );
 
+            context.Add(new Project
+            {
+                ProjectName = "SilicusFinder",
+                Description = "Employee Finder",
+                ProjectType = ProjectType.Internal,
+                EngagementType = EngagementType.Time_Based,
+                StartDate = new DateTime(2015,1,10),
+                Status = Status.In_Progress,
+                ExpectedEndDate = new DateTime(2015,10,20),
+                ActualEndDate = new DateTime(2015,12,23),
+                EngagementManagerId = 1,
+                ProjectManagerId = 2,
+                AdditionalNotes = "Project is developing",                
+            }
+            );
+
+            context.Add(new Project
+            {
+                ProjectName = "Online Reservation",
+                Description = "All types of reservation",
+                ProjectType = ProjectType.External,
+                EngagementType = EngagementType.T_and_M,
+                StartDate = new DateTime(2016, 1, 10),
+                Status = Status.Not_Started,
+                ExpectedEndDate = new DateTime(2016, 10, 20),
+                ActualEndDate = new DateTime(2016, 12, 4),
+                EngagementManagerId = 2,
+                ProjectManagerId = 1,
+                AdditionalNotes = "Project is not started",
+            }
+            );
+
+           
+           
+
         }
 
 
@@ -147,7 +166,7 @@ namespace Silicus.Finder.Entities.Initializer
 
             context.Database.ExecuteSqlCommand(modifiedSqlScript);
         }
-
+        
         private static void DropExistingConnectionToDatabase(FinderIpDataContext context, string databaseName)
         {
             var sqlContent = Content(DropConnectionScript);

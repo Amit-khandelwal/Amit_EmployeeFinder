@@ -66,7 +66,8 @@ namespace Silicus.Finder.Web
 
 		    var ex = Server.GetLastError();
 
-		    if (ex != null)
+		    
+            if (ex != null)
 		    {
                 logger.Log(string.Format("Server_Exception - {0}", ex.Message), LogCategory.Error);
                 logger.Log(string.Format("Server_Exception - Stack Trace - {0}", ex.StackTrace), LogCategory.Error);
