@@ -1,9 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using Silicus.Finder.Models.DataObjects;
+using System.Collections;
 using System.Collections.Generic;
-using System;
+
 
 namespace Silicus.Finder.Entities.Initializer
 {
@@ -148,42 +150,11 @@ namespace Silicus.Finder.Entities.Initializer
             }
             );
 
-            //context.Add(new Project
-            //{
-            //    ProjectDescription = "Landmark"
-            //});
-
-            //context.Add(new Project
-            //{
-            //    ProjectDescription = "MorningStar"
-            //});
-            
-            //context.Add(new ProjectDetail
-            //{
-            //    ProjectName = "Landmark",
-            //    Status = "Red"
-            //});
-
-            //context.Add(new ProjectDetail
-            //{
-            //    ProjectName = "MorningStar",
-            //    Status = "Green"
-            //});
-
-            //context.Add(new Manager
-            //{
-            //    ManagerName = "Shailendra"
-            //});
-
-            //context.Add(new Manager
-            //{
-            //    ManagerName = "Sulekha"
-            //});
-
-
-         
+           
+           
 
         }
+
 
         private static void AddIndexes(FinderIpDataContext context, string databaseName)
         {

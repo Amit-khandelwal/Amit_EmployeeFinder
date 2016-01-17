@@ -17,15 +17,15 @@ namespace Silicus.Finder.Services
 
         private delegate void SendEmailDelegate(System.Net.Mail.MailMessage m);
 
-        public void SendEmail(string emailId, string subject, string body)
+        public void SendEmail(string EmailAddress, string subject, string body)
         {
-            var msg = PrepareMessage(emailId, subject, body);
+            var msg = PrepareMessage(EmailAddress, subject, body);
             _smtpClient.Send(msg);
         }       
 
-        public void SendEmailAsync(string emailId, string subject, string body)
+        public void SendEmailAsync(string EmailAddress, string subject, string body)
         {
-            var msg = PrepareMessage(emailId, subject, body);
+            var msg = PrepareMessage(EmailAddress, subject, body);
             SendEmailDelegate sd = new SendEmailDelegate(_smtpClient.Send);
             AsyncCallback cb = new AsyncCallback(SendEmailResponse);
             sd.BeginInvoke(msg, cb, sd); 
@@ -37,14 +37,14 @@ namespace Silicus.Finder.Services
             sd.EndInvoke(ar);
         }
 
-        private static MailMessage PrepareMessage(string emailId, string subject, string body)
+        private static MailMessage PrepareMessage(string EmailAddress, string subject, string body)
         {
-            Guard.ArgumentNotNullOrEmpty(emailId, "emailId");
+            Guard.ArgumentNotNullOrEmpty(EmailAddress, "EmailAddress");
             Guard.ArgumentNotNullOrEmpty(subject, "subject");
             Guard.ArgumentNotNullOrEmpty(body, "body");
 
             var msg = new MailMessage();
-            msg.To.Add(new MailAddress(emailId));
+            msg.To.Add(new MailAddress(EmailAddress));
             msg.Subject = subject;
             msg.IsBodyHtml = true;
             //msg.Body = body;

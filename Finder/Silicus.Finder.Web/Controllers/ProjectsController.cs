@@ -39,12 +39,12 @@ namespace Silicus.Finder.Web.Controllers
             try
             {
                 var skill = _projectService.GetSkillSetById(Project.skillSetId);
-                Project.SkillSets.Add(skill);                
-                
-                var projectId = _projectService.Add(Project);
+                Project.SkillSets.Add(skill); 
+
+                var projectId = _projectService.AddProject(Project);
                 if (projectId >= 0)
                 {
-                    TempData["AlertMessage"] = Project.ProjectName + " created successfully..ProjectId:" + projectId;
+                    TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + projectId + " Created Successfully.";
 
                 }
 
@@ -54,13 +54,13 @@ namespace Silicus.Finder.Web.Controllers
             {
                 return View();
             }
-        }
-
-
+        }    
+        
+    
         public ActionResult GetProjectList()
         {
             var projectList = _projectService.GetProjectsList();
-
+               
             List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
             Mapper.Map(projectList, projectListViewModel);
 
@@ -83,7 +83,7 @@ namespace Silicus.Finder.Web.Controllers
             }
             //If project name is not entered, shows Error message on another view.
             else
-            {
+            {                
                 return View("ProjectNotFound");
             }
 
@@ -102,15 +102,30 @@ namespace Silicus.Finder.Web.Controllers
 
             ViewBag.EngManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedEngagementManager.EmployeeId);
             ViewBag.projManager = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName", selectedProjectManager.EmployeeId);
-
+            ViewBag.Technologies = new SelectList(_projectService.GetAllSkills(), "SkillSetId", "Name", project.skillSetId);
+           
             return View(project);
         }
 
         [HttpPost]
-        public ActionResult EditProject(Project project)
+        public ActionResult EditProject(Project Project)
         {
-            _projectService.Add(project);
-            return View(project);
+            var updatedProjectId = _projectService.UpdateProject(Project);
+            if (updatedProjectId >= 0)
+            {
+                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
+
+            }
+
+            return RedirectToAction("GetProjectList");
+        }
+
+
+        [HttpGet]
+        public ActionResult AddEmployeeToProject(int id)
+        {
+            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
+            return View(employeesForProject);
         }
     }
 }

@@ -2,11 +2,14 @@
 
 @{
     ViewBag.Title = "ProjectList";
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
 <h2>ProjectList</h2>
 <br />
 <br />
-<p>    
+<br />
+<br />
+<p>
     <input type="submit" value="Create Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" style="margin-left:890px" />
 </p>
 
@@ -49,7 +52,9 @@
     {
         <tr>
             <td>
-                <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>                
+                <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
+               ( @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )
+    
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectId)
@@ -69,26 +74,28 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ExpectedEndDate)
             </td>
-            <td>               
+
+            <td>
                 @foreach(var employee in item.Employees.Where(e => e.EmployeeId == item.EngagementManagerId))
                 {
                     @Html.Label(employee.FirstName + " " + employee.LastName)
                 }
-                             
+
             </td>
-            <td>          
+            <td>
                 @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.ProjectManagerId))
                 {
                     @Html.Label(employee.FirstName+ " " +employee.LastName)
                 }
             </td>
+
             <td>
                 @{
                     if (item.Status.ToString() == "Completed")
                     {
-                        <a href="">
+                <a href="">
                             <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
-                        </a>
+                </a>
                     }
                     else
                     {
@@ -96,7 +103,14 @@
                     }
                 }                    
             </td>
+
+            
         </tr>
     }
 
 </table>       
+<script type="text/javascript">
+    var message = '@message';
+    if (message)
+        alert(message);
+</script>  

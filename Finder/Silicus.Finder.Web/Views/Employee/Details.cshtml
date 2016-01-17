@@ -1,0 +1,99 @@
+﻿@model Silicus.Finder.Models.DataObjects.Employee
+<link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
+@using Kendo.Mvc.UI;
+
+@{
+    var skills = Html.Partial("~/Views/Employee/EmployeeSkillSetDetails.cshtml", Model.SkillSets);
+    var projects = Html.Partial("~/Views/Employee/EmployeeProjectDetails.cshtml", Model.Projects);
+}
+
+<h2>Employee Details</h2>
+<hr />
+<h3>Summary</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="dl-horizontal">
+
+                <div>
+                    <span class="details-header">Name</span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.FirstName)
+
+                        @Html.DisplayFor(model => model.MiddleName)
+
+                        @Html.DisplayFor(model => model.LastName)
+                    </span>
+                </div>
+
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.TotalExperienceInMonths)
+                    </span>
+                    <span>Months</span>
+                </div>
+
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.SilicusExperienceInMonths)
+                    </span>
+                    <span>Months</span>
+                </div>
+
+                <div>
+                    <span class="details-header">
+                        @Html.DisplayNameFor(model => model.HighestQualification)
+                    </span>
+                    <span>:</span>
+                    <span class="details-content">
+                        @Html.DisplayFor(model => model.HighestQualification)
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div>@Html.Partial("~/Views/Employee/EmployeeCubicleLocation.cshtml", Model.CubicleLocation)</div>
+            <div>@Html.Partial("~/Views/Employee/EmployeeContactDetails.cshtml", Model.Contact)</div>
+        </div>
+    </div>
+
+
+</div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { employeeId = Model.EmployeeId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+
+
+    <div class="fluid mt20 row">
+        <div class="kendogrid">
+            @(Html.Kendo().TabStrip()
+        .Name("Tabs")
+        .Items(tabstrip =>
+            {
+                tabstrip.Add().Text("Skills")
+                    .Selected(true)
+                    .Content(skills.ToString());
+
+                tabstrip.Add().Text("Projects")
+                    .Content(projects.ToString());
+            })
+            )
+        </div>
+    </div>
+</div>

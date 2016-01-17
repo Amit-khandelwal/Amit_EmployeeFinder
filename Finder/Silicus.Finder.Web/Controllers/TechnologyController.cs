@@ -34,7 +34,8 @@ namespace Silicus.Finder.Web.Controllers
         public ActionResult Create(SkillSet skillSet)
         {
             _skillSetService.Add(skillSet);
-            return View();
+            ViewBag.SavedskillSet = skillSet.Name;
+            return View("Success");
         }
     }
 }
