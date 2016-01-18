@@ -60,7 +60,7 @@ namespace Silicus.Finder.Web.Controllers
            
             @ViewBag.NumberOfEmployee = _employeeService.GetAllEmployees().Count();
             @ViewBag.NumberOfProjects = _projectService.GetProjectsList().Count();
-           // @ViewBag.NumberOfSkills=_skillsetservice.
+            // @ViewBag.NumberOfSkills=_skillsetservice.GetAllSkillSet().Count();
            
 
             return View();

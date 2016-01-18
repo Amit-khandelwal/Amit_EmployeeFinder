@@ -47,11 +47,12 @@ namespace Silicus.Finder.Web.Controllers
                     TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + projectId + " Created Successfully.";
 
                 }
-
+               
                 return RedirectToAction("GetProjectList");
             }
             catch
             {
+              
                 return View();
             }
         }    

@@ -48,6 +48,7 @@ namespace Silicus.Finder.Web.Controllers
             var employeesList = _employeeService.GetAllEmployees();
             var employeesListViewModel = new List<EmployeesListViewModel>();
             Mapper.Map(employeesList, employeesListViewModel);
+            @ViewBag.Employees = employeesListViewModel;
             return View(employeesListViewModel);
         }
         [HttpGet]
@@ -138,12 +139,21 @@ namespace Silicus.Finder.Web.Controllers
 
         }
 
+        //public ActionResult Details(int id)
+        //{
+        //    var selectedEmployee = _employeeService.GetEmployeeById(id);
+        //    var employeeViewModel = new EmployeeViewModel();
+        //    Mapper.Map(selectedEmployee, employeeViewModel);
+        //    return View(employeeViewModel);
+
+        //}
+
         public ActionResult Details(int id)
         {
             var selectedEmployee = _employeeService.GetEmployeeById(id);
             var employeeViewModel = new EmployeeViewModel();
             Mapper.Map(selectedEmployee, employeeViewModel);
-            return View(employeeViewModel);
+            return PartialView("Partial",employeeViewModel);
 
         }
 

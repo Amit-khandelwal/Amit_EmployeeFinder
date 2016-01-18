@@ -1,19 +1,42 @@
 ﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.EmployeesListViewModel>
+@using Kendo.Mvc.UI;
 
 @{
     ViewBag.Title = "GetAllEmployees";
 }
-
-<br/>
-<br/>
+<div id="modal-container" class="k-popup" tabindex="-1" role="dialog">
+    <div class="modal-content" style="position:fixed !important">
+    </div>
+</div>
+<br />
+<br />
 
 <h4>List Of Employees</h4>
-
 <br />
 <p>
-    <input type="submit" value="Add Employee" style="margin-left:850px"  class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
+    <input type="submit" value="Add Employee" style="margin-left:850px" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
 </p>
+<div id="my-dialog"></div>
 
+@(Html.Kendo().Grid((IEnumerable<Silicus.Finder.Web.ViewModel.EmployeesListViewModel>)ViewBag.Employees) //Bind the grid to ViewBag.Products
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(employee => employee.FullName);
+          columns.Bound(employee => employee.Gender);
+          columns.Bound(employee => employee.EmployeeType);
+          columns.Bound(employee => employee.SilicusExperienceInMonths);
+          columns.Bound(employee => employee.HighestQualification);
+          columns.Bound(employee => employee.EmployeeId);
+          columns.Bound(employee => employee.Contact.MobileNumber);
+          columns.Bound(employee => employee.CubicleLocationId);
+          columns.Bound(employee => employee.SkillId);
+         
+      })
+      .Pageable() // Enable paging
+      .Sortable() // Enable sorting
+      
+)
 <table class="table">
     <tr>
 
@@ -58,7 +81,7 @@
             <td>
                 @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
             </td>
-
+            @Html.ActionLink("Details ", "Details", "Employee", new { id = item.EmployeeId }, new { @class = "modal-link btn btn-success" })
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
@@ -103,3 +126,38 @@
         }
 
     </table>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+
+            // Initalize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+
+    </script>
