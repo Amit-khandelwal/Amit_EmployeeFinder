@@ -27,7 +27,21 @@ namespace Silicus.Finder.Web.Controllers
             return View();
         }
 
+        public ActionResult GetProjectList(int? page)
+        {
+            _pageNumber = (page ?? 1);
+
+            ViewData["Employees"] = _projectService.GetAllEmployees();
+            var projectList = _projectService.GetProjectsList();
+
+            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
+            Mapper.Map(projectList, projectListViewModel);
+
+            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber, _pageSize));
+        }
+
         // GET: Projects/Create
+        [HttpGet]
         public ActionResult CreateProject()
         {
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployees(), "EmployeeId", "FullName");
@@ -35,6 +49,7 @@ namespace Silicus.Finder.Web.Controllers
             return View();
         }
 
+  
         // POST: Projects/Create
         [HttpPost]
         public ActionResult CreateProject(Project Project)
@@ -73,27 +88,46 @@ namespace Silicus.Finder.Web.Controllers
             return View(project);
         }
 
-        
+        [HttpPost]
+        public ActionResult EditProject(Project Project)
+        {
+            var updatedProjectId = _projectService.UpdateProject(Project);
+            if (updatedProjectId >= 0)
+            {
+                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
+            }
+            return RedirectToAction("GetProjectList");
+        }
+
+        public ActionResult DeleteProject(int projectId, string name)
+        {
+            _projectService.DeleteProject(projectId);
+            if (name == "")
+            {
+                return RedirectToAction("GetProjectList");
+            }
+            return RedirectToAction("GetProjectsListByName", name);
+        }
+
+
         [HttpGet]
         public ActionResult AddEmployeeToProject(int id)
         {
-            var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
-            return View(employeesForProject);
+            ViewBag.ProjectId = id;
+           // var employeesForProject = _projectService.GetEmployeesAssignedToProject(id);
+            var employees = _projectService.GetAllEmployees();
+            return View(employees);
         }
 
-        public ActionResult GetProjectList(int? page)
+        [HttpGet]
+        public ActionResult AddSkillsToProject(int id)
         {
-            _pageNumber = (page ?? 1);
-
-            ViewData["Employees"] = _projectService.GetAllEmployees();
-            var projectList = _projectService.GetProjectsList();
-               
-            List<ProjectListViewModel> projectListViewModel = new List<ProjectListViewModel>();
-            Mapper.Map(projectList, projectListViewModel);
-
-            return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber, _pageSize));
+            ViewBag.ProjectId = id;
+            var allSkills = _projectService.GetAllSkills();
+            return View(allSkills);
         }
-
+    
+       
         public ActionResult GetProjectsListByName(string name, int? page)
         {
             IEnumerable<Project> projectList;
@@ -117,16 +151,7 @@ namespace Silicus.Finder.Web.Controllers
             return View("ProjectList", projectListViewModel.ToPagedList(_pageNumber,_pageSize));
         }
 
-        [HttpPost]
-        public ActionResult EditProject(Project Project)
-        {
-            var updatedProjectId = _projectService.UpdateProject(Project);
-            if (updatedProjectId >= 0)
-            {
-                TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + updatedProjectId + " Updated Successfully.";
-            }
-            return RedirectToAction("GetProjectList");
-        }
+       
 
         public ActionResult GetProjectDetails(int projectId)
         {
@@ -140,18 +165,9 @@ namespace Silicus.Finder.Web.Controllers
             //return PartialView("Partialpopup", projectById);
         }
 
-        public ActionResult DeleteProject(int projectId, string name)
-        {
-            _projectService.DeleteProject(projectId);
-            if (name == "")
-            {
-                return RedirectToAction("GetProjectList");
-            }
-            return RedirectToAction("GetProjectsListByName", name);
-        }
-
-        [HttpGet]
-        public ActionResult RemoveProjectEmployee(int empId, int projectId)
+    
+         [HttpGet]
+        public ActionResult DeallocateProjectEmployee(int empId, int projectId)
         {
             var isRemoved = _projectService.DeallocateEmployyeFromProject(empId, projectId);
             return RedirectToAction("EditProject", new { id = projectId });

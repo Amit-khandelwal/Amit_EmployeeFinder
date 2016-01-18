@@ -145,7 +145,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
 @Html.PagedListPager(Model, page => Url.Action("GetProjectList", new { page }))
 
-
+            
 <div id="dialog-confirm">
     Are you sure, you want to Archive this Project ?
 </div>

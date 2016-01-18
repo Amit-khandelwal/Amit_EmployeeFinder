@@ -734,6 +734,9 @@
     <Content Include="Views\Technology\SkillSetList.cshtml" />
     <Content Include="Views\Technology\GetAllSkillSet.cshtml" />
     <Content Include="Views\Technology\Details.cshtml" />
+    <Content Include="Views\Projects\EditProjectEmployeeDetails.cshtml" />
+    <Content Include="Views\Projects\EditProjectSkillSetDetails.cshtml" />
+    <Content Include="Views\Projects\AddSkillsToProject.cshtml" />
     <Content Include="Views\Technology\GetSkillSetListByName.cshtml" />
     <Content Include="Views\Technology\Edit.cshtml" />
     <Content Include="Views\Technology\SuccessUpdate.cshtml" />
