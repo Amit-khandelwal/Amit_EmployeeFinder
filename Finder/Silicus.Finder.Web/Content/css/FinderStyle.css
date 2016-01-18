@@ -1,14 +1,19 @@
 ﻿body {
-  margin:10px;
+    margin: 10px;
 }
- .details-header{
-    font-size: 20px;
+
+.details-header {
+    font-size: 15px;
     font-family: Arial;
-    color:#000000
-    }
+    color: #000000;
+}
 
 .details-content {
-    font-size: 20px;
+    font-size: 15px;
     font-family: Arial;
-    color:#808080
+    color: #808080;
+}
+
+.overlay2 {
+margin:10px;
 }
