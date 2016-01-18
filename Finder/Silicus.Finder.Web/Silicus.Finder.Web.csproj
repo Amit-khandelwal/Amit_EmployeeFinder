@@ -698,13 +698,11 @@
     <Content Include="Views\Admin\_partialViewUser.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ComboBox.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\CreateProject.cshtml" />
     <Content Include="Views\Admin\_partialViewjqgrid.cshtml" />
     <Content Include="Views\Admin\Select.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CubicalLocation.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Employee\NoEmployee.cshtml" />
     <Content Include="Views\Employee\SearchEmployeeByName.cshtml" />
@@ -713,18 +711,12 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\EditProject.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\AddProjectToEmployee.cshtml" />
-    <Content Include="Views\Employee\EmployeeContactDetails.cshtml" />
-    <Content Include="Views\Employee\EmployeeCubicleLocation.cshtml" />
-    <Content Include="Views\Employee\EmployeeProjectDetails.cshtml" />
-    <Content Include="Views\Employee\EmployeeSkillSetDetails.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Employee\GetEmployeesList.cshtml" />
-    <Content Include="Views\Employee\GetAllEmployees.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Projects\ProjectDetails.cshtml" />
+    <Content Include="Views\Employee\_ContactDetails.cshtml" />
+    <Content Include="Views\Employee\_CubicleLocationDetails.cshtml" />
+    <Content Include="Views\Employee\_ProjectDetails.cshtml" />
+    <Content Include="Views\Employee\_SkillSetDetails.cshtml" />
+    <Content Include="Views\Employee\GetAllEmployeesList.cshtml" />
     <Content Include="Views\Technology\Create.cshtml" />
     <Content Include="Views\Technology\Success.cshtml" />
     <Content Include="Views\Projects\ProjectEmployeeDetails.cshtml" />
@@ -740,6 +732,7 @@
     <Content Include="Views\Technology\GetSkillSetListByName.cshtml" />
     <Content Include="Views\Technology\Edit.cshtml" />
     <Content Include="Views\Technology\SuccessUpdate.cshtml" />
+    <Content Include="Views\Employee\_Details.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

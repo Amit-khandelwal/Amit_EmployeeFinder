@@ -32,7 +32,7 @@ namespace Silicus.Finder.Web.Controllers
 
             if (employeesListViewModel.Count != 0)
             {
-                return View("Index", employeesListViewModel);
+                return View("GetAllEmployeesList", employeesListViewModel);
             }
             else
             {
@@ -43,12 +43,12 @@ namespace Silicus.Finder.Web.Controllers
         }
 
 
-        public ActionResult Index()
+        public ActionResult GetAllEmployees()
         {
             var employeesList = _employeeService.GetAllEmployees();
             var employeesListViewModel = new List<EmployeesListViewModel>();
             Mapper.Map(employeesList, employeesListViewModel);
-            return View(employeesListViewModel);
+            return View("GetAllEmployeesList",employeesListViewModel);
         }
         [HttpGet]
         public ActionResult Create()
@@ -65,6 +65,9 @@ namespace Silicus.Finder.Web.Controllers
         {
             try
             {
+                ViewBag.Projects = new MultiSelectList(_employeeService.GetAllProjects(), "ProjectId", "ProjectName");
+                ViewBag.Skills = new MultiSelectList(_employeeService.GetAllSkillSets(), "SkillSetId", "Name");
+           
                 // TODO: Add insert logic here
                 if (newEmployee.ProjectId != null)
                 {
@@ -143,7 +146,7 @@ namespace Silicus.Finder.Web.Controllers
             var selectedEmployee = _employeeService.GetEmployeeById(id);
             var employeeViewModel = new EmployeeViewModel();
             Mapper.Map(selectedEmployee, employeeViewModel);
-            return View(employeeViewModel);
+            return PartialView("_Details",employeeViewModel);
 
         }
 

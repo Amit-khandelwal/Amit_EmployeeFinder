@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "GetAllEmployees";
 }
-
+<div id="modal-container" class="k-popup" tabindex="-1" role="dialog">
+    <div class="modal-content" style="position:fixed !important">
+    </div>
+</div>
 <br/>
 <br/>
 
@@ -12,8 +15,9 @@
 <br />
 <p>
     <input type="submit" value="Add Employee" style="margin-left:850px"  class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Create", "Employee") + "'");" />
-</p>
 
+</p>
+<div id="my-dialog"></div>
 <table class="table">
     <tr>
 
@@ -56,9 +60,9 @@
         {
         <tr>
             <td>
-                @Html.ActionLink(item.FullName, "Details", new { id = item.EmployeeId })
+                @Html.ActionLink(item.FirstName+" "+item.LastName, "Details", "Employee", new { id = item.EmployeeId }, new { @class = "modal-link" })
             </td>
-
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
@@ -103,3 +107,29 @@
         }
 
     </table>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('body').on('click', '.modal-link', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+</script>
