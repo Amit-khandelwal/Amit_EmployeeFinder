@@ -735,6 +735,8 @@
     <Content Include="Views\Technology\GetAllSkillSet.cshtml" />
     <Content Include="Views\Technology\Details.cshtml" />
     <Content Include="Views\Technology\GetSkillSetListByName.cshtml" />
+    <Content Include="Views\Technology\Edit.cshtml" />
+    <Content Include="Views\Technology\SuccessUpdate.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

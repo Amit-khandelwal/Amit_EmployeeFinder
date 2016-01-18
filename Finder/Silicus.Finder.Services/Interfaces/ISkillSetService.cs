@@ -14,5 +14,6 @@ namespace Silicus.Finder.Services.Interfaces
         void DeleteSkillSet(int skillSetId);
         SkillSet GetSkillSetById(int skillSetId);
         IEnumerable<SkillSet> GetSkillSetListByName(string name);
+        void EditSkillSet(SkillSet selectedSkillSet);
     }
 }

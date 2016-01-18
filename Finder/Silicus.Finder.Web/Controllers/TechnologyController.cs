@@ -58,5 +58,19 @@ namespace Silicus.Finder.Web.Controllers
 
             return View(skillSetList);
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var selectedSkillSet = _skillSetService.GetSkillSetById(id);
+            return View(selectedSkillSet);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(SkillSet selectedSkillSet)
+        {
+            _skillSetService.EditSkillSet(selectedSkillSet);
+            ViewBag.UpdatedskillSet = selectedSkillSet.Name;
+            return View("SuccessUpdate");
+        }
     }
 }

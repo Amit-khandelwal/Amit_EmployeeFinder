@@ -45,5 +45,10 @@ namespace Silicus.Finder.Services
             var projectListStartsWith = _context.Query<SkillSet>().Where(e => e.Name.Contains(name)).ToList();
             return projectListStartsWith;
         }
+
+        public void EditSkillSet(SkillSet selectedSkillSet)
+        {
+            _context.Update<SkillSet>(selectedSkillSet);
+        }
     }
 }
