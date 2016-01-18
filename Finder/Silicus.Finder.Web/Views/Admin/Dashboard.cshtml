@@ -57,7 +57,7 @@
                 <button style=" width:50%;  height:80px;margin-left:50px"><span class="fa fa-cogs fa-5x"></span></button>
 
             }
-            @using (Html.BeginForm("SearchEmployeeByName", "Employee", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
+            @using (Html.BeginForm("GetSkillSetListByName", "Technology", FormMethod.Post, new { name = @Html.TextBox("Employee Name") }))
             {
 
                 <div class="input-group" style="padding-top:100px">

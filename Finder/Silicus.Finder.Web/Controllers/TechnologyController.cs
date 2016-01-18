@@ -51,5 +51,12 @@ namespace Silicus.Finder.Web.Controllers
 
             return View(selectedEmployee);
         }
+
+        public ActionResult GetSkillSetListByName(string name)
+        {
+            var skillSetList = _skillSetService.GetSkillSetListByName(name);
+
+            return View(skillSetList);
+        }
     }
 }

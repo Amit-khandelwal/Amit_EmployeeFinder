@@ -40,5 +40,10 @@ namespace Silicus.Finder.Services
             return _context.Query<SkillSet>().Where(skill => skill.SkillSetId == skillSetId).Single();
 
         }
+        public IEnumerable<SkillSet> GetSkillSetListByName(string name)
+        {
+            var projectListStartsWith = _context.Query<SkillSet>().Where(e => e.Name.Contains(name)).ToList();
+            return projectListStartsWith;
+        }
     }
 }
