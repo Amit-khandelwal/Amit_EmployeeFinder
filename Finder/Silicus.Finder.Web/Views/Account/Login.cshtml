@@ -10,7 +10,7 @@
         <div class="col-md-8 hidden-sm hidden-xs col-lg-8" style="background-image:url(../Images/silicus/loginbackground.jpg);background-size:cover;height:100vh;">@*<img src="~/Images/silicus/loginbackground.jpg" style="height:100vh;width:100%;" />*@</div>
         <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4" style="background-color:#2B4F6F;height:100vh">
             <div class=" logincontainer" style="display:table;">
-                <div style="width:350px; display:table-cell; vertical-align:middle">
+                <div  id="login-div"  style="width:350px;">
                     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "loginform", @class = "form-horizontal" }))
                     { 
                         <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
@@ -57,3 +57,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    var x=$(window).width();
+    var y=$(window).height();
+    var a=x/4;
+    var b=y/2;
+    //alert(b);
+    $(document).ready(function () { $("#login-div").css({ 'margin-top': b }) });
+</script>

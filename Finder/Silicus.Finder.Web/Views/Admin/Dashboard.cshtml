@@ -45,6 +45,7 @@
                 <div class="input-group" style="padding-top:100px">
                     @Html.TextBox("name", "", new { id = "pname", @class = "form-control", @placeholder = "Search For Project" })
                     <span class="input-group-btn">
+
                         <button class="btn btn-default" id="psubmit" type="submit"><span class="glyphicon glyphicon-search "></span></button>
                     </span>
                 </div>
@@ -70,7 +71,7 @@
                     </span>
                 </div>
             }
-            <div style="height:20px;"><h2 style="color:black">0 Technologies</h2></div>
+            <div style="height:20px;"><h2 style="color:black">@ViewBag.NumberOfTechnologies Technologies</h2></div>
         </div>
     </div>
 </div>

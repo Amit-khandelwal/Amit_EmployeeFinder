@@ -25,6 +25,7 @@ namespace Silicus.Finder.Web.Mappings
             Mapper.CreateMap<Employee, EmployeeViewModel>();
             Mapper.CreateMap<Project,ProjectListViewModel>();
             Mapper.CreateMap<Employee, EmployeesListViewModel>();
+            Mapper.CreateMap<Project, ProjectDetailsViewModel>();
             // Example for member to member mapping
             //Mapper.CreateMap<OrganizationUser, OrganizationUserDataAccessViewModel>()
             //    .ForMember(o => o.Name, b => b.MapFrom(z => z.FirstName + " " + z.LastName));

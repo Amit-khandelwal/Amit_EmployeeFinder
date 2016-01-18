@@ -54,50 +54,168 @@ namespace Silicus.Finder.Entities.Initializer
                 new Employee
                 {
                     FirstName = "Abhishek",
-                    MiddleName = "A",
+                    MiddleName = "A.",
                     LastName = "Jadhav",
                     Gender = Gender.Male,
 
                     Contact = new Contact
                     {
-                        EmailAddress = "a@b.com",
-                        MobileNumber = 758838,
+                        EmailAddress = "abhishekjadhav@gmail.com",
+                        MobileNumber = 758738,
                         PhoneNumber = "02382-265234",
-                        Skype = "aMohite"
+                        Skype = "ajadhav"
                     },
 
                     CubicleLocation = new CubicleLocation
                     {
                         Building = "B",
-                        DeskNumber = "5/INCB-19",
+                        DeskNumber = "5/INCB-14",
                         FloorNumber = 5
                     },
 
                     EmployeeType = EmployeeType.Contract,
-                    HighestQualification = "Be",
+                    HighestQualification = "B.E.",
                     ManagerRecommendation = "Well performance",
                     SilicusExperienceInMonths = 4,
                     TotalExperienceInMonths = 4,
-                    SkillSets = new List<SkillSet> { 
-                                            new SkillSet {Name="C#",Description="C# net description" }
-                                         }
+                    SkillSets = new List<SkillSet> 
+                    { 
+                        new SkillSet {Name="C#",Description="C#.NET description" }
+                    },
 
-                }
-                         );
+                    Projects = new List<Project> 
+                    {
+                        new Project 
+                        {
+                            ProjectName = "SilicusFinder",
+                            Description = "Employee Finder",
+                            ProjectType = ProjectType.Internal,
+                            EngagementType = EngagementType.Time_Based,
+                            StartDate = new DateTime(2015,1,10),
+                            Status = Status.In_Progress,
+                            ExpectedEndDate = new DateTime(2015,10,20),
+                            ActualEndDate = new DateTime(2015,12,23),
+                            EngagementManagerId = 1,
+                            ProjectManagerId = 4,
+                            AdditionalNotes = "Project is developing",
+                        }
+                     }
+                });
 
 
             context.Add(new Employee
             {
-                FirstName = "Ankit",
-                MiddleName = "Amit",
-                LastName = "Agrawal",
+                FirstName = "Shivani",
+                MiddleName = "S.",
+                LastName = "Surana",
                 Gender = Gender.Male,
                 Contact = new Contact
                 {
-                    EmailAddress = "a@b.com",
-                    MobileNumber = 758838,
-                    PhoneNumber = "02382-265234",
-                    Skype = "aMohite"
+                    EmailAddress = "shivanisurana@gmail.com",
+                    MobileNumber = 758439,
+                    PhoneNumber = "02382-265236",
+                    Skype = "ssurana"
+                },
+                CubicleLocation = new CubicleLocation
+                {
+                    Building = "B",
+                    DeskNumber = "5/INCB-18",
+                    FloorNumber = 5
+                },
+                //EmployeeSkillSets
+                EmployeeType = EmployeeType.Permanent,
+                HighestQualification = "C-DAC",
+                ManagerRecommendation = "Well performance",
+                SilicusExperienceInMonths = 4,
+                TotalExperienceInMonths = 4,
+
+                SkillSets = new List<SkillSet> 
+                { 
+                    new SkillSet {Name="C#",Description="C#.NET description" }
+                },
+
+                Projects = new List<Project> 
+                {
+                    new Project
+                    {
+                        ProjectName = "Silicus Lab",
+                        Description = "Silicus Labs POCs",
+                        ProjectType = ProjectType.Internal,
+                        EngagementType = EngagementType.Fixed_Price,
+                        StartDate = new DateTime(2015, 1, 10),
+                        Status = Status.Not_Started,
+                        ExpectedEndDate = new DateTime(2016, 2, 5),
+                        ActualEndDate = new DateTime(2016, 6, 16),
+                        EngagementManagerId = 5,
+                        ProjectManagerId = 3,
+                        AdditionalNotes = "Project is under consideration"
+                    }
+                }
+            });
+
+            context.Add(new Employee
+            {
+                FirstName = "Nikhil",
+                MiddleName = "D.",
+                LastName = "Darwai",
+                Gender = Gender.Female,
+                Contact = new Contact
+                {
+                    EmailAddress = "nikhildarwai@gmail.com",
+                    MobileNumber = 758239,
+                    PhoneNumber = "02382-265230",
+                    Skype = "ndarwai"
+                },
+                CubicleLocation = new CubicleLocation
+                {
+                    Building = "B",
+                    DeskNumber = "5/INCB-23",
+                    FloorNumber = 5
+                },
+                //EmployeeSkillSets
+                EmployeeType = EmployeeType.Permanent,
+                HighestQualification = "C-DAC",
+                ManagerRecommendation = "Well performance",
+                SilicusExperienceInMonths = 4,
+                TotalExperienceInMonths = 4,
+
+                SkillSets = new List<SkillSet> 
+                { 
+                    new SkillSet {Name="ASP",Description="ASP.NET description" }
+                },
+
+                Projects = new List<Project> 
+                {
+                    new Project
+                    {
+                        ProjectName = "Online Reservation",
+                        Description = "All types of reservation",
+                        ProjectType = ProjectType.External,
+                        EngagementType = EngagementType.T_and_M,
+                        StartDate = new DateTime(2014, 1, 10),
+                        Status = Status.Completed,
+                        ExpectedEndDate = new DateTime(2015, 10, 20),
+                        ActualEndDate = new DateTime(2016, 1, 5),
+                        EngagementManagerId = 1,
+                        ProjectManagerId = 4,
+                        AdditionalNotes = "Project is completed"
+                    }
+                }
+            });
+
+
+            context.Add(new Employee
+            {
+                FirstName = "Asha",
+                MiddleName = "B.",
+                LastName = "Bhandare",
+                Gender = Gender.Female,
+                Contact = new Contact
+                {
+                    EmailAddress = "ashabhandare@gmail.com",
+                    MobileNumber = 758126,
+                    PhoneNumber = "02382-265229",
+                    Skype = "abhandare"
                 },
                 CubicleLocation = new CubicleLocation
                 {
@@ -107,52 +225,85 @@ namespace Silicus.Finder.Entities.Initializer
                 },
                 //EmployeeSkillSets
                 EmployeeType = EmployeeType.Contract,
-                HighestQualification = "MTEK",
+                HighestQualification = "MBA",
                 ManagerRecommendation = "Well performance",
                 SilicusExperienceInMonths = 4,
                 TotalExperienceInMonths = 4,
 
-                SkillSets = new List<SkillSet> { 
-                                                  new SkillSet {Name="ASP",Description="ASP net description" }
-                                               }
-            }
-            );
+                SkillSets = new List<SkillSet> 
+                { 
+                    new SkillSet {Name="ASP",Description="ASP.NET description" }
+                },
 
-            context.Add(new Project
+                Projects = new List<Project> 
+                {
+                    new Project
+                    {
+                        ProjectName = "Frameworx",
+                        Description = "Silicus internal .NET framework",
+                        ProjectType = ProjectType.Internal,
+                        EngagementType = EngagementType.Fixed_Price,
+                        StartDate = new DateTime(2016, 1, 10),
+                        Status = Status.In_Progress,
+                        ExpectedEndDate = new DateTime(2016, 10, 20),
+                        ActualEndDate = new DateTime(2016, 12, 4),
+                        EngagementManagerId = 5,
+                        ProjectManagerId = 3,
+                        AdditionalNotes = "Project is under developement"
+                    }
+                }
+            });
+
+
+            context.Add(new Employee
             {
-                ProjectName = "SilicusFinder",
-                Description = "Employee Finder",
-                ProjectType = ProjectType.Internal,
-                EngagementType = EngagementType.Time_Based,
-                StartDate = new DateTime(2015,1,10),
-                Status = Status.In_Progress,
-                ExpectedEndDate = new DateTime(2015,10,20),
-                ActualEndDate = new DateTime(2015,12,23),
-                EngagementManagerId = 1,
-                ProjectManagerId = 2,
-                AdditionalNotes = "Project is developing",                
-            }
-            );
+                FirstName = "Pratik",
+                MiddleName = "P.",
+                LastName = "Patil",
+                Gender = Gender.Male,
+                Contact = new Contact
+                {
+                    EmailAddress = "pratikpatil@gmail.com",
+                    MobileNumber = 758176,
+                    PhoneNumber = "02382-124785",
+                    Skype = "ppatil"
+                },
+                CubicleLocation = new CubicleLocation
+                {
+                    Building = "B",
+                    DeskNumber = "5/INCB-20",
+                    FloorNumber = 5
+                },
+                //EmployeeSkillSets
+                EmployeeType = EmployeeType.Permanent,
+                HighestQualification = "C-DAC",
+                ManagerRecommendation = "Well performance",
+                SilicusExperienceInMonths = 4,
+                TotalExperienceInMonths = 4,
 
-            context.Add(new Project
-            {
-                ProjectName = "Online Reservation",
-                Description = "All types of reservation",
-                ProjectType = ProjectType.External,
-                EngagementType = EngagementType.T_and_M,
-                StartDate = new DateTime(2016, 1, 10),
-                Status = Status.Not_Started,
-                ExpectedEndDate = new DateTime(2016, 10, 20),
-                ActualEndDate = new DateTime(2016, 12, 4),
-                EngagementManagerId = 2,
-                ProjectManagerId = 1,
-                AdditionalNotes = "Project is not started",
-            }
-            );
+                SkillSets = new List<SkillSet> 
+                { 
+                    new SkillSet {Name="C#",Description="C#.NET description" }
+                },
 
-           
-           
-
+                Projects = new List<Project> 
+                {
+                    new Project
+                    {
+                        ProjectName = "Provare",
+                        Description = "Online tool for conducting tests",
+                        ProjectType = ProjectType.External,
+                        EngagementType = EngagementType.T_and_M,
+                        StartDate = new DateTime(2015, 7, 8),
+                        Status = Status.Completed,
+                        ExpectedEndDate = new DateTime(2016, 2, 17),
+                        ActualEndDate = new DateTime(2016, 5, 19),
+                        EngagementManagerId = 2,
+                        ProjectManagerId = 1,
+                        AdditionalNotes = "Project is done"
+                    }
+                }
+            });
         }
 
 
@@ -166,7 +317,7 @@ namespace Silicus.Finder.Entities.Initializer
 
             context.Database.ExecuteSqlCommand(modifiedSqlScript);
         }
-        
+
         private static void DropExistingConnectionToDatabase(FinderIpDataContext context, string databaseName)
         {
             var sqlContent = Content(DropConnectionScript);
