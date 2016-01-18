@@ -3,8 +3,8 @@
 
 @{
     ViewBag.Title = "EditProject";
-    var employees = Html.Partial("~/Views/Projects/ProjectEmployeeDetails.cshtml", Model.Employees, new ViewDataDictionary { { "id", Model.ProjectId } });
-    var skills = Html.Partial("~/Views/Projects/ProjectSkillSetDetails.cshtml", Model.SkillSets);
+    var employees = Html.Partial("~/Views/Projects/EditProjectEmployeeDetails.cshtml", Model.Employees, new ViewDataDictionary { { "id", Model.ProjectId } });
+    var skills = Html.Partial("~/Views/Projects/EditProjectSkillSetDetails.cshtml", Model.SkillSets, new ViewDataDictionary { { "id", Model.ProjectId } });
    
  }
 
@@ -114,7 +114,6 @@
             </div>
         </div>
   
-
         <div class="fluid mt20">
             <div class="kendogrid">
                 @(Html.Kendo().TabStrip()
@@ -136,7 +135,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Update" id="Create" class="btn btn-default" />
-                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetProjectList", "Projects") + "'");" />
+                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetProjectDetails", "Projects", new { projectId = Model.ProjectId }) + "'");" />
 
             </div>
         </div>

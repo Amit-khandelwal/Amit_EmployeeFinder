@@ -26,11 +26,8 @@
                 </div>
 
             }
-
             <div style="height:20px;"><h2 style="color:black">@ViewBag.NumberOfEmployee Employees</h2></div>
         </div>
-
-
         <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4" style="height:400px;border:solid;border-color:gray;">
             @using (Html.BeginForm("GetProjectList", "Projects"))
             {
@@ -43,16 +40,16 @@
             {
 
                 <div class="input-group" style="padding-top:100px">
-                    @Html.TextBox("name", "", new { id = "pname", @class = "form-control", @placeholder = "Search For Project" })
+                    @Html.TextBox("name", "", new { id = "project_name", @class = "form-control", @placeholder = "Search For Project" })
                     <span class="input-group-btn">
-                        <button class="btn btn-default" id="psubmit" type="submit"><span class="glyphicon glyphicon-search "></span></button>
+                        <button class="btn btn-default" id="project_submit" type="submit"><span class="glyphicon glyphicon-search "></span></button>
                     </span>
                 </div>
             }
             <div style="height:20px;"><h2 style="color:black">@ViewBag.NumberOfProjects Projects</h2></div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4" style="border:solid;border-color:gray;  height:400px">
-            @using (Html.BeginForm("Index", "Technology"))
+            @using (Html.BeginForm("GetAllSkillSet", "Technology"))
             {
                 <div>
                     <button style="width:100%;height:80px;background-color:#666666;">Technologies</button>
@@ -76,7 +73,6 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
         $("#submit").click(function () {
             var data = $("#name").val();
@@ -87,14 +83,16 @@
         });
     });
 
-</script>
-
-<script>
-
+    //alert for empty project name
     $(document).ready(function () {
-        document.getElementById("name").value = "";
+        $("#project_submit").click(function () {
+            var data = $("#project_name").val();
+            if (data.length == 0) {
+                alert("Please enter search name");
+                return false;
+            }
+        });
     });
-
 </script>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>

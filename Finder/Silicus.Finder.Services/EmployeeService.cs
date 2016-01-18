@@ -66,8 +66,8 @@ namespace Silicus.Finder.Services
 
         public Employee GetEmployeeById(int employeeId)
         {
-            return context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).First();
-            
+            return context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).Single();
+
         }
 
         public SkillSet GetSkillSetById(int skillSetId)
@@ -78,21 +78,17 @@ namespace Silicus.Finder.Services
 
         public void EditEmployee(Employee selectedEmployee)
         {
-           // context.Update(selectedEmployee.Contact);
+            Employee emp = GetEmployeeById(selectedEmployee.EmployeeId);
+            selectedEmployee.ContactId = emp.ContactId;
+            selectedEmployee.Contact = emp.Contact;
+            selectedEmployee.CubicleLocationId = emp.CubicleLocationId;
+            selectedEmployee.CubicleLocation = emp.CubicleLocation;
+           
             context.Update<Employee>(selectedEmployee);
+
+          
         }
 
-        public void AddProjectToEmployee(Employee targetEmployee)
-        {
-
-        }
-
-
-        public Employee GetEmployee(int employeeId)
-        {
-            var employee = context.Query<Employee>().Where(emp => emp.EmployeeId == employeeId).Single();
-            return employee;
-        }
     }
 
 }

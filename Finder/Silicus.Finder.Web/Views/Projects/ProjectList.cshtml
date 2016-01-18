@@ -1,56 +1,94 @@
-﻿@model IEnumerable<Silicus.Finder.Web.ViewModel.ProjectListViewModel>
+﻿@model PagedList.IPagedList<Silicus.Finder.Web.ViewModel.ProjectListViewModel>
+@using PagedList.Mvc;
+@using Silicus.Finder.Models.DataObjects;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "ProjectList";
     var message = TempData["AlertMessage"] ?? string.Empty;
 }
-<h2>ProjectList</h2>
+<head>
+    <title>test</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <style>
+        #dialog-confirm {
+            display: none;
+        }
+
+        a.classname {
+            background: url('../../Images/Project/project_archive.png') no-repeat;
+            display: block;
+            width: 150px;
+            height: 150px;
+            text-indent: -9999px; /* hides the link text */
+        }
+
+    </style>
+
+</head>
+
+<h2>Project List</h2>
+
 <p>
     <input type="submit" value="Create Project" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("CreateProject", "Projects") + "'");" style="margin-left:890px" />
 </p>
 
 <table class="table">
     <tr>
+        @{
+            var count = 1;
+            var employees = ViewData["Employees"] as List<Employee>;
+
+            foreach (var name in Model)
+            {
+                if (count < 2)
+                {
         <th>
-            @Html.DisplayNameFor(model => model.ProjectName)
+                        @Html.DisplayNameFor(model => name.ProjectName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectId)
+                        @Html.DisplayNameFor(model => name.ProjectId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectType)
+                        @Html.DisplayNameFor(model => name.ProjectType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EngagementType)
+                        @Html.DisplayNameFor(model => name.EngagementType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+                        @Html.DisplayNameFor(model => name.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+                        @Html.DisplayNameFor(model => name.StartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExpectedEndDate)
+                        @Html.DisplayNameFor(model => name.ExpectedEndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EngagementManagerId)
+                        @Html.DisplayNameFor(model => name.EngagementManagerId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectManagerId)
+                        @Html.DisplayNameFor(model => name.ProjectManagerId)
         </th>
         <th>
             @Html.DisplayName("Action")
         </th>
         <th></th>
+                }
+                count++;
+            }
+        }
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                <a href="">@Html.DisplayFor(modelItem => item.ProjectName)</a>
-               ( @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) )
-    
+                @Html.ActionLink(item.ProjectName + "-" + item.ProjectId, "GetProjectDetails", new { projectId = item.ProjectId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectId)
@@ -70,43 +108,119 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ExpectedEndDate)
             </td>
-
             <td>
-                @foreach(var employee in item.Employees.Where(e => e.EmployeeId == item.EngagementManagerId))
+                @foreach (var employee in employees.Where(e => e.EmployeeId == item.EngagementManagerId))
                 {
                     @Html.Label(employee.FirstName + " " + employee.LastName)
                 }
 
             </td>
             <td>
-                @foreach (var employee in item.Employees.Where(e => e.EmployeeId == item.ProjectManagerId))
+                @foreach (var employee in employees.Where(e => e.EmployeeId == item.ProjectManagerId))
                 {
-                    @Html.Label(employee.FirstName+ " " +employee.LastName)
+                    @Html.Label(employee.FirstName + " " + employee.LastName)
                 }
             </td>
-
             <td>
                 @{
                     if (item.Status.ToString() == "Completed")
                     {
-                <a href="">
-                            <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
-                </a>
+                        @Html.ActionLink("Archive", "DeleteProject", new { projectId = item.ProjectId, name = ViewData["name"] as string }, new { @class = "classname", id = "#dialog-confirm" })  // nikhil
+                        @*@Html.ActionLink("Archive", "DeleteProject", new { projectId = item.ProjectId }, new { @class = "classname", id = "#dialog-confirm" })*@
+                        @*<a projectid=3 href="#" id="archImg" onclick="OpenPopupWindow()"><img id="archiveimg" src="/Images/Project/project_archive.png" width="22" height="22" /></a>*@
+                        <a projectid=@item.ProjectId href="#" data-foo="@item.ProjectId" id="archImg" onclick="OpenPopupWindow()"><img id="archiveimg" src="~/Images/Project/project_archive.png" width="22" height="22" /></a>
+                        @*<img src="~/Images/Project/project_archive.png" width="22" height="22" onclick="@("window.location.href='" + @Url.Action("GetProjectsListByName", "Projects", new { name = ViewData["name"] as string }) + "'");" />*@
                     }
                     else
                     {
-                        <img src="~/Images/Project/projectarchive.png" width="22" height="22" />
+                        <img src="~/Images/Project/project_archive.png" width="22" height="22" />
                     }
                 }                    
             </td>
-
-            
         </tr>
     }
-
 </table>       
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GetProjectList", new { page }))
+
+            
+<div id="dialog-confirm">
+    Are you sure, you want to Archive this Project ?
+</div>
+
 <script type="text/javascript">
-    var message = '@message';
+    @*var message = '@message';
     if (message)
-        alert(message);
+        alert(message);*@
+
+    //alert('load load ');
+    //var load = 1;
+    //if (load == 1) {
+    //    load = 2;
+    //    location.reload(true);
+    //}
+
+    //window.onload = function () {
+    //    location.reload(true);
+    //};
+
+    //$(document).on("pageload", function () {
+    //    alert('loaded');
+    //});
+
+    //$(document).ready(function () {
+    //    $("a").click(function () {
+    //        alert("The paragraph was clicked. jhjh ");
+      
+    //    });
+    //});
+    
+    @*@ViewBag.projectID = id;
+    var i = @ViewBag.projectID;*@
+
+    function OpenPopupWindow() {
+
+        var el = document.getElementById('archImg').getAttribute('projectid');
+        var eel = el.getAttribute('data-foo');
+        alert(el + "yha hu mai");
+
+        var id = $("#archImg").attr("projectid");
+       // var id = $('a[href="#"]').data('id');
+        alert(id+ 'demo');
+
+        
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            modal: true,
+            title: "Confirm Archive",
+            height: 250,
+            width: 400,
+            buttons: {
+                "Yes": function ()
+                {
+                    $(this).dialog('close');
+                    $("dialog-confirm").css("display: block");
+                    $.get('@Url.Action("DeleteProject", "Projects", new { projectId = 2 })');
+
+                    //window.location.href = window.location.href;
+                    // location.reload(true);
+
+                    @*$.ajax({
+                        //data : { id1 : id },
+                        //idd : id,
+                        url: '@Url.Action("DeleteProject", "Projects", new { projectId = @ViewBag.projectID })',
+                        type: "GET",
+                        success : ({
+                            // to do
+                        })
+                    })*@
+                },
+                "No": function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
 </script>  

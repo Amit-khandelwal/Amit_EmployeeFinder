@@ -1,4 +1,4 @@
-﻿@model Silicus.Finder.Models.DataObjects.Employee
+﻿@model Silicus.Finder.Web.ViewModel.EmployeeViewModel
 <link href="~/Content/css/FinderStyle.css" rel="stylesheet" />
 @using Kendo.Mvc.UI;
 
@@ -72,17 +72,17 @@
 
 </div>
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { employeeId = Model.EmployeeId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
 
 
 
 
-    <div class="fluid mt20 row">
-        <div class="kendogrid">
-            @(Html.Kendo().TabStrip()
+<div class="fluid mt20 row">
+    <div class="kendogrid">
+        @(Html.Kendo().TabStrip()
         .Name("Tabs")
         .Items(tabstrip =>
             {
@@ -93,7 +93,8 @@
                 tabstrip.Add().Text("Projects")
                     .Content(projects.ToString());
             })
-            )
-        </div>
+        )
     </div>
+</div>
+
 </div>
