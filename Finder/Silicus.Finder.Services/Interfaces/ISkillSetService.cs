@@ -10,5 +10,8 @@ namespace Silicus.Finder.Services.Interfaces
         //List<SkillSet> GetAllSkillSet();
 
          void Add(SkillSet skillSet);
+         List<SkillSet> GetAllSkills();
+         void DeleteSkillSet(int skillSetId);
+         SkillSet GetSkillSetById(int skillSetId);
     }
 }

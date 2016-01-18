@@ -726,12 +726,14 @@
     </Content>
     <Content Include="Views\Projects\ProjectDetails.cshtml" />
     <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
     <Content Include="Views\Technology\Success.cshtml" />
     <Content Include="Views\Projects\ProjectEmployeeDetails.cshtml" />
     <Content Include="Views\Projects\ProjectSkillSetDetails.cshtml" />
     <Content Include="Views\Projects\AddEmployeeToProject.cshtml" />
     <Content Include="Views\Employee\ProjectEmployeeDetails.cshtml" />
+    <Content Include="Views\Technology\SkillSetList.cshtml" />
+    <Content Include="Views\Technology\GetAllSkillSet.cshtml" />
+    <Content Include="Views\Technology\Details.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
