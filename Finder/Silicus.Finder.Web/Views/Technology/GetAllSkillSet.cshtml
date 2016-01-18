@@ -1,39 +1,22 @@
 ﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.SkillSet>
+           @using Kendo.Mvc.UI;
 
 @{
     ViewBag.Title = "GetAllSkillSet";
 }
 
 <h2>Technologies</h2>
+<div class="container">
+@(Html.Kendo().Grid((IEnumerable<Silicus.Finder.Models.DataObjects.SkillSet>)(Model)) //Bind the grid to ViewBag.Products
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(skills=>skills.Name);
+          columns.Bound(employee => employee.Description);        
+      })
+      .Pageable() // Enable paging
+      .Sortable() // Enable sorting
 
-<p>
-    @Html.ActionLink("Add New Technology", "Create", null, new { @class = "btn btn-primary" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-           @Html.ActionLink(item.Name, "Details", new { id = item.SkillSetId })
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "DeleteSkillSet", new { skillSetId = item.SkillSetId }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Cancel", "Dashboard", "admin", null, new { @class = "btn btn-primary" })
-        </td>
-    </tr>
-}
-
-</table>
+</div>
