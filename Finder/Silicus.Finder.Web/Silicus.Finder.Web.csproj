@@ -737,6 +737,7 @@
     <Content Include="Views\Projects\EditProjectEmployeeDetails.cshtml" />
     <Content Include="Views\Projects\EditProjectSkillSetDetails.cshtml" />
     <Content Include="Views\Projects\AddSkillsToProject.cshtml" />
+    <Content Include="Views\Technology\GetSkillSetListByName.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
