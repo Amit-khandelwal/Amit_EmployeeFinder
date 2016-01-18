@@ -5,17 +5,29 @@ namespace Silicus.Finder.Services.Interfaces
     public interface IProjectService
     {
         int AddProject(Project Project);
+
         int UpdateProject(Project Project);
-        Project GetProjectById(int? id);
+
+        Project GetProjectById(int? projectId);
+
         List<SkillSet> GetAllSkills();
-        SkillSet GetSkillSetById(int? id);
-        List<Employee> GetAllEmployee();
+
+        SkillSet GetSkillSetById(int? projectId);
+
+        List<Employee> GetAllEmployees();
+
         IEnumerable<Project> GetProjectsList();
+
         IEnumerable<Project> GetProjectsListByName(string name);
+
+        Employee GetEmployeeById(int? projectId);
+
+        IEnumerable<Employee> GetEmployeesAssignedToProject(int projectId);
+        
         bool DeallocateEmployyeFromProject(int empId, int projectId);
+
+        Project GetProjectDetailsById(int projectId);
      
-        Employee GetEmployeeById(int? id);
-      
-       
+        void DeleteProject(int projectId);
     }
 }

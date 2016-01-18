@@ -22,5 +22,33 @@ namespace Silicus.Finder.Services
         {
             _context.Add(skillSet);
         }
+
+        public List<SkillSet> GetAllSkills()
+        {
+            var allSkillSet = _context.Query<SkillSet>().ToList();
+            return allSkillSet;
+        }
+
+        public void DeleteSkillSet(int skillSetId)
+        {
+            var skillset = _context.Query<SkillSet>().FirstOrDefault(p => p.SkillSetId == skillSetId);
+            _context.Delete<SkillSet>(skillset);
+        }
+
+        public SkillSet GetSkillSetById(int skillSetId)
+        {
+            return _context.Query<SkillSet>().Where(skill => skill.SkillSetId == skillSetId).Single();
+
+        }
+        public IEnumerable<SkillSet> GetSkillSetListByName(string name)
+        {
+            var projectListStartsWith = _context.Query<SkillSet>().Where(e => e.Name.Contains(name)).ToList();
+            return projectListStartsWith;
+        }
+
+        public void EditSkillSet(SkillSet selectedSkillSet)
+        {
+            _context.Update<SkillSet>(selectedSkillSet);
+        }
     }
 }

@@ -1,16 +1,9 @@
 ﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.Employee>
-
-@{
-    var currenProjectId = ViewData["id"];
-}
+@*@model IEnumerable<Silicus.Finder.Web.ViewModel.ProjectEmployeeDetailsViewModel>*@
 
 <p>
     <h2>Project Employees</h2>
 </p>
-<p>
-    @Html.ActionLink("Add Employee", "AddEmployeeToProject", "Projects", new { id = currenProjectId },null)
-</p>
-
 <table class="table">
     <tr style="font-weight: bold;">
         <th>
@@ -20,22 +13,31 @@
             @Html.DisplayNameFor(model => model.FullName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EmployeeType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CubicleLocationId)
+            @Html.DisplayNameFor(model => model.TotalExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilicusExperienceInMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighestQualification)
+        </th>
+        <th>
+            @Html.DisplayName("Cubical Location")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Contact.Skype)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact.EmailAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact.MobileNumber)
         </th>
         <th></th>
     </tr>
@@ -50,39 +52,38 @@
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EmployeeType)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TotalExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilicusExperienceInMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighestQualification)
+            </td>
+            <td>
                 @{
-                    var cubicleLocation = item.CubicleLocation.Building + "-Building,Floor-" + item.CubicleLocation.FloorNumber + ",Desk- " + item.CubicleLocation.DeskNumber;
+        var cubicleLocation = item.CubicleLocation.Building + "/" + item.CubicleLocation.FloorNumber + "/" + item.CubicleLocation.FloorNumber;
                 }
                 @Html.DisplayFor(modelItem => cubicleLocation)
             </td>
             <td>
                 @{
-                    var skypeId = Model.Select(model => model.Contact.Skype);
+        var skypeId = @item.Contact.Skype;
                 }
-                  @Html.DisplayFor(modelItem => skypeId)
-            </td>
-
-            <td>
-                @{
-                  var emailAddress = Model.Select(model => model.Contact.EmailAddress);
-                }
-                @Html.DisplayFor(modelItem => emailAddress)
-            </td>
-            <td>
-                @{
-                  var mobileNo = Model.Select(model => model.Contact.MobileNumber);
-                }
-                @Html.DisplayFor(modelItem => mobileNo)
-            </td>
-            <td>
-                @Html.ActionLink("Remove", "RemoveProjectEmployee", "Projects", new { empId = item.EmployeeId, projectId = currenProjectId }, null)
+                @Html.DisplayFor(modelItem => skypeId)
             </td>
         </tr>
     }
-</table> 
+</table>

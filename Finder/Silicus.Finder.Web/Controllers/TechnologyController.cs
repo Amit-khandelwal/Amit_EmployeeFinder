@@ -18,11 +18,6 @@ namespace Silicus.Finder.Web.Controllers
         {
             _skillSetService = skillSetService;
         }
-        // GET: Technology
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult Create()
         {
@@ -36,6 +31,46 @@ namespace Silicus.Finder.Web.Controllers
             _skillSetService.Add(skillSet);
             ViewBag.SavedskillSet = skillSet.Name;
             return View("Success");
+        }
+
+        public ActionResult GetAllSkillSet()
+        {
+            var skillSetList = _skillSetService.GetAllSkills();
+            return View(skillSetList);
+        }
+
+        public ActionResult DeleteSkillSet(int skillSetId)
+        {
+            _skillSetService.DeleteSkillSet(skillSetId);
+            return RedirectToAction("GetAllSkillSet");
+        }
+
+        public ActionResult Details(int id)
+        {
+            var selectedEmployee = _skillSetService.GetSkillSetById(id);
+
+            return View(selectedEmployee);
+        }
+
+        public ActionResult GetSkillSetListByName(string name)
+        {
+            var skillSetList = _skillSetService.GetSkillSetListByName(name);
+
+            return View(skillSetList);
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var selectedSkillSet = _skillSetService.GetSkillSetById(id);
+            return View(selectedSkillSet);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(SkillSet selectedSkillSet)
+        {
+            _skillSetService.EditSkillSet(selectedSkillSet);
+            ViewBag.UpdatedskillSet = selectedSkillSet.Name;
+            return View("SuccessUpdate");
         }
     }
 }

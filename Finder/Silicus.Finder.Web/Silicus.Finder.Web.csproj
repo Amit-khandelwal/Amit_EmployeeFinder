@@ -355,7 +355,10 @@
     <Compile Include="ViewModel\CubicleLocationViewModel.cs" />
     <Compile Include="ViewModel\EmployeeNameViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\ProjectDetailsViewModel.cs" />
+    <Compile Include="ViewModel\ProjectEmployeeDetailsViewModel.cs" />
     <Compile Include="ViewModel\ProjectListViewModel.cs" />
+    <Compile Include="ViewModel\ProjectSkillSetDetailsViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\SkillSetViewModel.cs" />
     <Compile Include="ViewModel\EmployeesListViewModel.cs" />
@@ -444,7 +447,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="Images\Project\projectarchive.png" />
+    <Content Include="Images\Project\project_archive.png" />
     <Content Include="Images\silicus\logo.png" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\3.3.1\bootstrap.min.js" />
@@ -721,13 +724,22 @@
     <Content Include="Views\Employee\GetAllEmployees.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Projects\ProjectDetails.cshtml" />
     <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
     <Content Include="Views\Technology\Success.cshtml" />
     <Content Include="Views\Projects\ProjectEmployeeDetails.cshtml" />
     <Content Include="Views\Projects\ProjectSkillSetDetails.cshtml" />
     <Content Include="Views\Projects\AddEmployeeToProject.cshtml" />
-    <Content Include="Views\Employee\Partial.cshtml" />
+    <Content Include="Views\Employee\ProjectEmployeeDetails.cshtml" />
+    <Content Include="Views\Technology\SkillSetList.cshtml" />
+    <Content Include="Views\Technology\GetAllSkillSet.cshtml" />
+    <Content Include="Views\Technology\Details.cshtml" />
+    <Content Include="Views\Projects\EditProjectEmployeeDetails.cshtml" />
+    <Content Include="Views\Projects\EditProjectSkillSetDetails.cshtml" />
+    <Content Include="Views\Projects\AddSkillsToProject.cshtml" />
+    <Content Include="Views\Technology\GetSkillSetListByName.cshtml" />
+    <Content Include="Views\Technology\Edit.cshtml" />
+    <Content Include="Views\Technology\SuccessUpdate.cshtml" />
     <None Include="Web.Integration.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

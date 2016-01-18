@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Silicus.Finder.Models.DataObjects.SkillSet>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+             @Html.Label("Select Technology")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+         <td>
+            <input type="checkbox" name="SelectedSkill" value="@item.SkillSetId" id="@item.Name" />
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Add" class="btn btn-default" />
+        <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("EditProject", new { projectId = ViewBag.ProjectId }) + "'");" />
+    </div>
+</div>
