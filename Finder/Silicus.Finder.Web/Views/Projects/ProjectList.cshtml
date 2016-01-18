@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "ProjectList";
-    var message = TempData["AlertMessage"];
+    var message = TempData["AlertMessage"] ?? string.Empty;
 }
 <h2>ProjectList</h2>
 <p>
@@ -107,6 +107,6 @@
 </table>       
 <script type="text/javascript">
     var message = '@message';
-    if (message !=null)
+    if (message)
         alert(message);
 </script>  

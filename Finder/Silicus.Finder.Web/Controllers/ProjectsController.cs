@@ -25,6 +25,7 @@ namespace Silicus.Finder.Web.Controllers
         }
 
         // GET: Projects/Create
+        [HttpGet]
         public ActionResult CreateProject()
         {
             ViewBag.Employees = new SelectList(_projectService.GetAllEmployee(), "EmployeeId", "FullName");
@@ -32,6 +33,7 @@ namespace Silicus.Finder.Web.Controllers
             return View();
         }
 
+  
         // POST: Projects/Create
         [HttpPost]
         public ActionResult CreateProject(Project Project)
@@ -47,15 +49,16 @@ namespace Silicus.Finder.Web.Controllers
                     TempData["AlertMessage"] = Project.ProjectName + " Having ProjectId: " + projectId + " Created Successfully.";
 
                 }
-
-                return RedirectToAction("GetProjectList");
+              
+              return RedirectToAction("GetProjectList");
             }
             catch
             {
                 return View();
             }
-        }    
-        
+        }
+
+    
     
         public ActionResult GetProjectList()
         {

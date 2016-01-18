@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.ProjectId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" ,id="ProjectId"} })
                 @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", id = "ProjectName" } })
                 @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -135,8 +135,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update" class="btn btn-default" />
-                <input type="submit" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetProjectList", "Projects") + "'");" />
+                <input type="submit" value="Update" id="Create" class="btn btn-default" />
+                <input type="button" value="Cancel" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("GetProjectList", "Projects") + "'");" />
 
             </div>
         </div>
@@ -147,3 +147,15 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script>
+    $(document).ready(function ()
+      {
+        $("#Create").click(function ()
+            {
+            var data = $("#ProjectName").val();
+                alert("Project:"+data+" Updated Successfully");
+            }
+        );
+    });
+
+</script>
